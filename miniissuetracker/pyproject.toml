@@ -1,0 +1,13 @@
+[project]
+name = "miniissuetracker"
+version = "1.0.0"
+description = "A small issue/task tracking REST service (stdlib WSGI + SQLite)"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"

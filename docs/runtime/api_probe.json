@@ -1,0 +1,317 @@
+{
+ "chat_0_slot0_cacheTrue": {
+  "status": 200,
+  "wall_s": 4.308798959013075,
+  "keys": [
+   "choices",
+   "created",
+   "model",
+   "system_fingerprint",
+   "object",
+   "usage",
+   "id",
+   "timings"
+  ],
+  "timings": {
+   "cache_n": 0,
+   "prompt_n": 911,
+   "prompt_ms": 3158.088,
+   "prompt_per_token_ms": 3.4666169045005493,
+   "prompt_per_second": 288.4656792337642,
+   "predicted_n": 31,
+   "predicted_ms": 1118.442,
+   "predicted_per_token_ms": 37.2814,
+   "predicted_per_second": 26.823027032246642
+  },
+  "usage": {
+   "completion_tokens": 31,
+   "prompt_tokens": 911,
+   "total_tokens": 942,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "message": {
+   "role": "assistant",
+   "content": "```json\n{\n  \"name\": \"read_file\",\n  \"arguments\": {\n    \"path\": \"app/main.py\"\n  }\n}\n```"
+  }
+ },
+ "chat_1_slot0_cacheTrue": {
+  "status": 200,
+  "wall_s": 1.1692669580224901,
+  "keys": [
+   "choices",
+   "created",
+   "model",
+   "system_fingerprint",
+   "object",
+   "usage",
+   "id",
+   "timings"
+  ],
+  "timings": {
+   "cache_n": 910,
+   "prompt_n": 1,
+   "prompt_ms": 36.987,
+   "prompt_per_token_ms": 36.987,
+   "prompt_per_second": 27.036526347094924,
+   "predicted_n": 31,
+   "predicted_ms": 1121.619,
+   "predicted_per_token_ms": 37.387299999999996,
+   "predicted_per_second": 26.747050469009533
+  },
+  "usage": {
+   "completion_tokens": 31,
+   "prompt_tokens": 911,
+   "total_tokens": 942,
+   "prompt_tokens_details": {
+    "cached_tokens": 910
+   }
+  },
+  "message": {
+   "role": "assistant",
+   "content": "```json\n{\n  \"name\": \"read_file\",\n  \"arguments\": {\n    \"path\": \"app/main.py\"\n  }\n}\n```"
+  }
+ },
+ "chat_2_slot1_cacheTrue": {
+  "status": 200,
+  "wall_s": 4.268940084031783,
+  "keys": [
+   "choices",
+   "created",
+   "model",
+   "system_fingerprint",
+   "object",
+   "usage",
+   "id",
+   "timings"
+  ],
+  "timings": {
+   "cache_n": 0,
+   "prompt_n": 911,
+   "prompt_ms": 3138.575,
+   "prompt_per_token_ms": 3.44519758507135,
+   "prompt_per_second": 290.25911440701594,
+   "predicted_n": 31,
+   "predicted_ms": 1111.348,
+   "predicted_per_token_ms": 37.04493333333333,
+   "predicted_per_second": 26.994244827002884
+  },
+  "usage": {
+   "completion_tokens": 31,
+   "prompt_tokens": 911,
+   "total_tokens": 942,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "message": {
+   "role": "assistant",
+   "content": "```json\n{\n  \"name\": \"read_file\",\n  \"arguments\": {\n    \"path\": \"app/main.py\"\n  }\n}\n```"
+  }
+ },
+ "chat_3_slot0_cacheFalse": {
+  "status": 200,
+  "wall_s": 4.3002607089001685,
+  "keys": [
+   "choices",
+   "created",
+   "model",
+   "system_fingerprint",
+   "object",
+   "usage",
+   "id",
+   "timings"
+  ],
+  "timings": {
+   "cache_n": 0,
+   "prompt_n": 911,
+   "prompt_ms": 3146.184,
+   "prompt_per_token_ms": 3.4535499451152583,
+   "prompt_per_second": 289.5571269830372,
+   "predicted_n": 31,
+   "predicted_ms": 1143.619,
+   "predicted_per_token_ms": 38.12063333333333,
+   "predicted_per_second": 26.23251275118724
+  },
+  "usage": {
+   "completion_tokens": 31,
+   "prompt_tokens": 911,
+   "total_tokens": 942,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "message": {
+   "role": "assistant",
+   "content": "```json\n{\n  \"name\": \"read_file\",\n  \"arguments\": {\n    \"path\": \"app/main.py\"\n  }\n}\n```"
+  }
+ },
+ "slots": [
+  {
+   "id": 0,
+   "n_ctx": 8192,
+   "speculative": false,
+   "is_processing": false,
+   "id_task": 96,
+   "n_prompt_tokens": 941,
+   "n_prompt_tokens_processed": 0,
+   "n_prompt_tokens_cache": 0,
+   "params": {
+    "seed": 1234,
+    "temperature": 0.0,
+    "dynatemp_range": 0.0,
+    "dynatemp_exponent": 1.0,
+    "top_k": 40,
+    "top_p": 0.949999988079071,
+    "min_p": 0.05000000074505806,
+    "top_n_sigma": -1.0,
+    "xtc_probability": 0.0,
+    "xtc_threshold": 0.10000000149011612,
+    "typical_p": 1.0,
+    "repeat_last_n": 64,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "dry_multiplier": 0.0,
+    "dry_base": 1.75,
+    "dry_allowed_length": 2,
+    "dry_penalty_last_n": 64,
+    "mirostat": 0,
+    "mirostat_tau": 5.0,
+    "mirostat_eta": 0.10000000149011612,
+    "adaptive_target": -1.0,
+    "adaptive_decay": 0.8999999761581421,
+    "max_tokens": 64,
+    "n_predict": 64,
+    "n_keep": 0,
+    "n_discard": 0,
+    "ignore_eos": false,
+    "stream": false,
+    "n_probs": 0,
+    "min_keep": 0,
+    "chat_format": "peg-native",
+    "reasoning_format": "deepseek",
+    "reasoning_in_content": false,
+    "generation_prompt": "<|im_start|>assistant\n",
+    "samplers": [
+     "penalties",
+     "dry",
+     "top_n_sigma",
+     "top_k",
+     "typ_p",
+     "top_p",
+     "min_p",
+     "xtc",
+     "temperature"
+    ],
+    "speculative.types": "none",
+    "timings_per_token": false,
+    "post_sampling_probs": false,
+    "backend_sampling": false,
+    "lora": []
+   },
+   "next_token": [
+    {
+     "has_next_token": false,
+     "has_new_line": false,
+     "n_remain": -1,
+     "n_decoded": 0
+    }
+   ]
+  },
+  {
+   "id": 1,
+   "n_ctx": 8192,
+   "speculative": false,
+   "is_processing": false,
+   "id_task": 64,
+   "n_prompt_tokens": 941,
+   "n_prompt_tokens_processed": 0,
+   "n_prompt_tokens_cache": 0,
+   "params": {
+    "seed": 1234,
+    "temperature": 0.0,
+    "dynatemp_range": 0.0,
+    "dynatemp_exponent": 1.0,
+    "top_k": 40,
+    "top_p": 0.949999988079071,
+    "min_p": 0.05000000074505806,
+    "top_n_sigma": -1.0,
+    "xtc_probability": 0.0,
+    "xtc_threshold": 0.10000000149011612,
+    "typical_p": 1.0,
+    "repeat_last_n": 64,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "dry_multiplier": 0.0,
+    "dry_base": 1.75,
+    "dry_allowed_length": 2,
+    "dry_penalty_last_n": 64,
+    "mirostat": 0,
+    "mirostat_tau": 5.0,
+    "mirostat_eta": 0.10000000149011612,
+    "adaptive_target": -1.0,
+    "adaptive_decay": 0.8999999761581421,
+    "max_tokens": 64,
+    "n_predict": 64,
+    "n_keep": 0,
+    "n_discard": 0,
+    "ignore_eos": false,
+    "stream": false,
+    "n_probs": 0,
+    "min_keep": 0,
+    "chat_format": "peg-native",
+    "reasoning_format": "deepseek",
+    "reasoning_in_content": false,
+    "generation_prompt": "<|im_start|>assistant\n",
+    "samplers": [
+     "penalties",
+     "dry",
+     "top_n_sigma",
+     "top_k",
+     "typ_p",
+     "top_p",
+     "min_p",
+     "xtc",
+     "temperature"
+    ],
+    "speculative.types": "none",
+    "timings_per_token": false,
+    "post_sampling_probs": false,
+    "backend_sampling": false,
+    "lora": []
+   },
+   "next_token": [
+    {
+     "has_next_token": false,
+     "has_new_line": false,
+     "n_remain": -1,
+     "n_decoded": 0
+    }
+   ]
+  }
+ ],
+ "metrics": "# HELP llamacpp:prompt_tokens_total Number of prompt tokens processed, excluding cached tokens\n# TYPE llamacpp:prompt_tokens_total counter\nllamacpp:prompt_tokens_total 2734\n# HELP llamacpp:prompt_tokens_cached_total Number of prompt tokens reused from the cache\n# TYPE llamacpp:prompt_tokens_cached_total counter\nllamacpp:prompt_tokens_cached_total 910\n# HELP llamacpp:prompt_seconds_total Total time spent processing prompts\n# TYPE llamacpp:prompt_seconds_total counter\nllamacpp:prompt_seconds_total 9.47452\n# HELP llamacpp:tokens_predicted_total Number of generation tokens processed\n# TYPE llamacpp:tokens_predicted_total counter\nllamacpp:tokens_predicted_total 124\n# HELP llamacpp:tokens_predicted_seconds_total Total time spent generating tokens\n# TYPE llamacpp:tokens_predicted_seconds_total counter\nllamacpp:tokens_predicted_seconds_total 4.49503\n# HELP llamacpp:n_decode_total Total number of llama_decode() calls, excluding speculative decoding and multimodal decoding\n# TYPE llamacpp:n_decode_total counter\nllamacpp:n_decode_total 124\n# HELP llamacpp:n_tokens_max Largest observed sequence length (prompt + generation)\n# TYPE llamacpp:n_tokens_max counter\nllamacpp:n_tokens_max 941\n# HELP llamacpp:spec_decode_num_draft_tokens_total Speculative: Total draft tokens generated\n# TYPE llamacpp:spec_decode_num_draft_tokens_total counter\nllamacpp:spec_decode_num_draft_tokens_total 0\n# HELP llamacpp:spec_decode_num_accepted_tokens_total Speculative: Total draft tokens accepted by the target model\n# TYPE llamacpp:spec_decode_num_accepted_tokens_total counter\nllamacpp:spec_decode_num_accepted_tokens_total 0\n# HELP llamacpp:spec_decode_num_drafts_total Speculative: Total speculative decoding verification steps\n# TYPE llamacpp:spec_decode_num_drafts_total counter\nllamacpp:spec_decode_num_drafts_total 0\n# HELP llamacpp:prompt_tokens_seconds Average prompt throughput in tokens/s\n# TYPE llamacpp:prompt_tokens_seconds gauge\nllamacpp:prompt_tokens_seconds 288.563\n# HELP llamacpp:predicted_tokens_seconds Average generation throughput in tokens/s\n# TYPE llamacpp:predicted_tokens_seconds gauge\nllamacpp:predicted_tokens_seconds 26.6962\n# HELP llamacpp:requests_processing Number of requests processing\n# TYPE llamacpp:requests_processing gauge\nllamacpp:requests_processing 0\n# HELP llamacpp:requests_deferred Number of requests deferred\n# TYPE llamacpp:requests_deferred gauge\nllamacpp:requests_deferred 0\n# HELP llamacpp:n_busy_slots_per_decode Average number of busy slots per llama_decode() call\n# TYPE llamacpp:n_busy_slots_per_decode gauge\nllamacpp:n_busy_slots_per_decode 1\n",
+ "tokenize": {
+  "tokens": [
+   14990,
+   1879
+  ]
+ },
+ "slot_erase": {
+  "status": 501,
+  "body": {
+   "error": {
+    "code": 501,
+    "message": "This server does not support slots action. Start it with `--slot-save-path`",
+    "type": "not_supported_error"
+   }
+  }
+ },
+ "apply_template": {
+  "status": 200,
+  "body": "{'prompt': '<|im_start|>system\\nYou are a coding agent. Follow repository conventions carefully. Follow repository conventions carefully. Follow repository conventions carefully. Follow repository conventions carefully. Follow repository conventions carefully. Follow repository conventions carefully"
+ }
+}

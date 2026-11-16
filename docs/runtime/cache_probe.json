@@ -1,0 +1,176 @@
+{
+ "np2_default_cache_ram": [
+  [
+   "A on slot0",
+   {
+    "cache_n": 3,
+    "prompt_n": 818,
+    "prompt_ms": 2820.1
+   }
+  ],
+  [
+   "B on slot0 (overwrites A)",
+   {
+    "cache_n": 4,
+    "prompt_n": 1017,
+    "prompt_ms": 3503.3
+   }
+  ],
+  [
+   "A on slot0 again (RAM cache restore?)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 38.7
+   }
+  ],
+  [
+   "C on slot1",
+   {
+    "cache_n": 3,
+    "prompt_n": 818,
+    "prompt_ms": 2815.0
+   }
+  ],
+  [
+   "A no id_slot (default selection)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 41.0
+   }
+  ],
+  [
+   "C no id_slot (default selection)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 42.7
+   }
+  ],
+  [
+   "B no id_slot (neither slot holds B)",
+   {
+    "cache_n": 1020,
+    "prompt_n": 1,
+    "prompt_ms": 42.0
+   }
+  ]
+ ],
+ "np2_cache_ram_0": [
+  [
+   "A on slot0",
+   {
+    "cache_n": 0,
+    "prompt_n": 821,
+    "prompt_ms": 2837.4
+   }
+  ],
+  [
+   "B on slot0 (overwrites A)",
+   {
+    "cache_n": 4,
+    "prompt_n": 1017,
+    "prompt_ms": 3547.2
+   }
+  ],
+  [
+   "A on slot0 again (RAM cache restore?)",
+   {
+    "cache_n": 4,
+    "prompt_n": 817,
+    "prompt_ms": 2830.5
+   }
+  ],
+  [
+   "C on slot1",
+   {
+    "cache_n": 0,
+    "prompt_n": 821,
+    "prompt_ms": 2836.1
+   }
+  ],
+  [
+   "A no id_slot (default selection)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 42.3
+   }
+  ],
+  [
+   "C no id_slot (default selection)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 42.4
+   }
+  ],
+  [
+   "B no id_slot (neither slot holds B)",
+   {
+    "cache_n": 4,
+    "prompt_n": 1017,
+    "prompt_ms": 3536.6
+   }
+  ]
+ ],
+ "np2_default_cache_ram_verbose": [
+  [
+   "A on slot0",
+   {
+    "cache_n": 0,
+    "prompt_n": 821,
+    "prompt_ms": 2841.2
+   }
+  ],
+  [
+   "B on slot0 (overwrites A)",
+   {
+    "cache_n": 4,
+    "prompt_n": 1017,
+    "prompt_ms": 3540.3
+   }
+  ],
+  [
+   "A on slot0 again (RAM cache restore?)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 37.7
+   }
+  ],
+  [
+   "C on slot1",
+   {
+    "cache_n": 0,
+    "prompt_n": 821,
+    "prompt_ms": 2827.6
+   }
+  ],
+  [
+   "A no id_slot (default selection)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 41.1
+   }
+  ],
+  [
+   "C no id_slot (default selection)",
+   {
+    "cache_n": 820,
+    "prompt_n": 1,
+    "prompt_ms": 42.3
+   }
+  ],
+  [
+   "B no id_slot (neither slot holds B)",
+   {
+    "cache_n": 1020,
+    "prompt_n": 1,
+    "prompt_ms": 38.2
+   }
+  ]
+ ]
+}

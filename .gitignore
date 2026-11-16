@@ -1,0 +1,9 @@
+.venv/
+.run/
+models/*.gguf
+gateway/target/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.tmp

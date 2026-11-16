@@ -1,0 +1,19 @@
+[project]
+name = "agent-aware-routing"
+version = "0.1.0"
+description = "Agent-aware KV-cache routing research harness: target repo, fault lab, LangGraph agent, benchmarks"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "langgraph>=0.2",
+    "pytest>=8",
+    "psutil>=5.9",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "httpx>=0.27",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["faultlab/tests", "agent/tests", "bench/tests"]

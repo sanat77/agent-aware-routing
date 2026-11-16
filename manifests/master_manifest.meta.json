@@ -1,0 +1,153 @@
+{
+ "sha256": "41f699b67124463cac6f0b86b23b3f223f1aa4be563be96efe536299fe2cc2d6",
+ "episodes": 1000,
+ "master_seed": 20261115,
+ "tiers": [
+  [
+   0,
+   50
+  ],
+  [
+   50,
+   100
+  ],
+  [
+   100,
+   500
+  ],
+  [
+   500,
+   1000
+  ]
+ ],
+ "workloads": {
+  "repeated_prefix": {
+   "purpose": "prompt-cache reuse across turns and across sessions sharing one system prompt",
+   "concurrency": [
+    1
+   ],
+   "group_size": [
+    5
+   ],
+   "arrival": "closed_loop",
+   "delay": [
+    "zero"
+   ],
+   "context_mode": "append",
+   "unique_nonce": false,
+   "resumable": false
+  },
+  "concurrent": {
+   "purpose": "slot competition with 2/4/8 simultaneous sessions",
+   "concurrency": [
+    2,
+    4,
+    8
+   ],
+   "group_size": [
+    2,
+    4,
+    8
+   ],
+   "arrival": "simultaneous_jitter_1s",
+   "delay": [
+    "uniform",
+    0.0,
+    1.0
+   ],
+   "context_mode": "append",
+   "unique_nonce": false,
+   "resumable": false
+  },
+  "tool_wait": {
+   "purpose": "cache retention across long tool waits with LangGraph interrupt/resume",
+   "concurrency": [
+    4
+   ],
+   "group_size": [
+    4
+   ],
+   "arrival": "stagger_2s",
+   "delay": [
+    "lognormal",
+    6.0,
+    0.6,
+    1.0,
+    30.0
+   ],
+   "context_mode": "append",
+   "unique_nonce": false,
+   "resumable": true
+  },
+  "bursty": {
+   "purpose": "bursts larger than the slot count, causing queueing and cache pressure",
+   "concurrency": [
+    8
+   ],
+   "group_size": [
+    10
+   ],
+   "arrival": "burst_0.5s",
+   "delay": [
+    "uniform",
+    0.0,
+    0.5
+   ],
+   "context_mode": "append",
+   "unique_nonce": false,
+   "resumable": false
+  },
+  "unique_prefix": {
+   "purpose": "control: unique per-session preamble and a per-turn header defeat prefix reuse",
+   "concurrency": [
+    4
+   ],
+   "group_size": [
+    4
+   ],
+   "arrival": "stagger_1s",
+   "delay": [
+    "uniform",
+    0.0,
+    1.0
+   ],
+   "context_mode": "rewrite_header",
+   "unique_nonce": true,
+   "resumable": false
+  }
+ },
+ "per_workload": {
+  "repeated_prefix": 200,
+  "concurrent": 200,
+  "tool_wait": 200,
+  "bursty": 200,
+  "unique_prefix": 200
+ },
+ "per_category": {
+  "incorrect_pagination": 40,
+  "sorting_errors": 40,
+  "filtering_errors": 40,
+  "boundary_conditions": 40,
+  "null_empty_handling": 40,
+  "authentication_mistakes": 40,
+  "permission_errors": 40,
+  "serialization_bugs": 40,
+  "datetime_errors": 40,
+  "incorrect_defaults": 40,
+  "duplicate_request_handling": 40,
+  "retry_logic_bugs": 40,
+  "exception_handling_errors": 40,
+  "state_transition_errors": 40,
+  "database_query_mistakes": 40,
+  "incorrect_aggregation": 40,
+  "input_validation_failures": 40,
+  "file_path_handling": 40,
+  "incorrect_fallback": 40,
+  "error_propagation_bugs": 40,
+  "resource_cleanup_issues": 40,
+  "concurrency_defects": 40,
+  "type_conversion_bugs": 40,
+  "incorrect_status_codes": 40,
+  "cache_invalidation_mistakes": 40
+ }
+}

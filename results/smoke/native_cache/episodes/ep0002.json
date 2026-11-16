@@ -1,0 +1,324 @@
+{
+ "run_id": "native_cache-e2e-first10",
+ "config": "native_cache",
+ "episode_id": "ep0002",
+ "session_id": "sess-0002-7805dc57",
+ "workload": "tool_wait",
+ "bug_category": "concurrency_defects",
+ "bug_variation": 16,
+ "fault_id": "lock_read_only",
+ "status": "completed",
+ "outcome": "verified",
+ "crash": null,
+ "scheduled_start": 1794796701.6183648,
+ "started_at": 1794796701.628913,
+ "session_wait_s": 0.010548114776611328,
+ "agent_latency_s": 93.34262108802795,
+ "total_latency_s": 95.06906700134277,
+ "evaluation_s": 1.7264459133148193,
+ "model_calls": 6,
+ "tool_calls": 5,
+ "tool_calls_ok": 5,
+ "tool_seconds": 4.080636250437237,
+ "tool_wait_seconds": 27.522,
+ "interrupts": 5,
+ "resumption_latency_ms": [
+  397.0724724735108,
+  1534.6187300266113,
+  1597.9267093275146,
+  364.8139817047119,
+  337.65365226708985
+ ],
+ "model_errors": [],
+ "input_tokens": 11241,
+ "cached_tokens": 9688,
+ "recomputed_tokens": 1553,
+ "output_tokens": 544,
+ "final_summary": "The race condition in `TicketSequence.next()` caused duplicate ticket numbers under concurrent access. The fix moved the increment operation into the lock block, ensuring atomic read-and-increment. This guarantees unique ticket numbers across threads.",
+ "diff": "diff --git a/tracker/sequence.py b/tracker/sequence.py\nindex f76c315..c04e778 100644\n--- a/tracker/sequence.py\n+++ b/tracker/sequence.py\n@@ -15,7 +15,7 @@ class TicketSequence:\n     def next(self):\n         with self._lock:\n             current = self._next\n-        self._store(current + 1)\n+            self._next = current + 1\n         self.issued.append(current)\n         return current\n \n",
+ "evaluation": {
+  "timed_out": false,
+  "collected": 165,
+  "visible_test_passed": true,
+  "hidden_bug_tests_total": 1,
+  "hidden_bug_tests_passed": 1,
+  "hidden_tests_total": 111,
+  "hidden_tests_passed": 111,
+  "regression_tests_total": 163,
+  "regression_tests_passed": 163,
+  "task_success": true,
+  "regression_free": true,
+  "failed_tests": [],
+  "pytest_returncode": 0
+ },
+ "calls": [
+  {
+   "step": 0,
+   "request_id": "sess-0002-7805dc57-s0-62a7fa",
+   "sent_offset_s": 0.6378629207611084,
+   "gap_since_prev_response_s": null,
+   "client_latency_ms": 15429.323958000168,
+   "attempts": 1,
+   "served_slot": 0,
+   "prompt_chars": 5294,
+   "prompt_n": 890,
+   "cache_n": 469,
+   "prompt_ms": 4640.417,
+   "predicted_n": 72,
+   "predicted_ms": 10639.982,
+   "stop_type": "eos",
+   "ttft_ms": 4788.314792,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.041999999999999996,
+   "gateway_overhead_ms": 0.052416999998968095,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 1,
+   "request_id": "sess-0002-7805dc57-s1-7bb6c5",
+   "sent_offset_s": 23.671568155288696,
+   "gap_since_prev_response_s": 7.604381322860718,
+   "client_latency_ms": 10050.857790978625,
+   "attempts": 1,
+   "served_slot": 0,
+   "prompt_chars": 5742,
+   "prompt_n": 48,
+   "cache_n": 1407,
+   "prompt_ms": 347.227,
+   "predicted_n": 88,
+   "predicted_ms": 9659.563,
+   "stop_type": "eos",
+   "ttft_ms": 387.81920900000006,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.29200000000000004,
+   "gateway_overhead_ms": 0.09437500000058208,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 2,
+   "request_id": "sess-0002-7805dc57-s2-4b36e9",
+   "sent_offset_s": 36.452499866485596,
+   "gap_since_prev_response_s": 2.730073928833008,
+   "client_latency_ms": 13799.378999974579,
+   "attempts": 1,
+   "served_slot": 0,
+   "prompt_chars": 6851,
+   "prompt_n": 277,
+   "cache_n": 1505,
+   "prompt_ms": 1491.304,
+   "predicted_n": 135,
+   "predicted_ms": 12269.299,
+   "stop_type": "eos",
+   "ttft_ms": 1527.488584,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.20800000000000002,
+   "gateway_overhead_ms": 0.06691700000192213,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 3,
+   "request_id": "sess-0002-7805dc57-s3-a04499",
+   "sent_offset_s": 54.602569580078125,
+   "gap_since_prev_response_s": 4.350690603256226,
+   "client_latency_ms": 6096.010459004901,
+   "attempts": 1,
+   "served_slot": 0,
+   "prompt_chars": 8059,
+   "prompt_n": 279,
+   "cache_n": 1833,
+   "prompt_ms": 1539.268,
+   "predicted_n": 80,
+   "predicted_ms": 4504.26,
+   "stop_type": "eos",
+   "ttft_ms": 1589.481208,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.08399999999999999,
+   "gateway_overhead_ms": 0.054123999999319494,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 4,
+   "request_id": "sess-0002-7805dc57-s4-7527ea",
+   "sent_offset_s": 67.71723365783691,
+   "gap_since_prev_response_s": 7.018653631210327,
+   "client_latency_ms": 7173.538125003688,
+   "attempts": 1,
+   "served_slot": 0,
+   "prompt_chars": 8526,
+   "prompt_n": 29,
+   "cache_n": 2191,
+   "prompt_ms": 312.47,
+   "predicted_n": 64,
+   "predicted_ms": 6813.044,
+   "stop_type": "eos",
+   "ttft_ms": 358.58625,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.041999999999999996,
+   "gateway_overhead_ms": 0.05495900000005349,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 5,
+   "request_id": "sess-0002-7805dc57-s5-a9466e",
+   "sent_offset_s": 82.62489366531372,
+   "gap_since_prev_response_s": 7.734121799468994,
+   "client_latency_ms": 8925.614375039004,
+   "attempts": 1,
+   "served_slot": 0,
+   "prompt_chars": 8920,
+   "prompt_n": 30,
+   "cache_n": 2283,
+   "prompt_ms": 273.091,
+   "predicted_n": 105,
+   "predicted_ms": 8596.417,
+   "stop_type": "eos",
+   "ttft_ms": 324.738041,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.041999999999999996,
+   "gateway_overhead_ms": 0.07308299999931478,
+   "decision_reason": "native",
+   "requested_slot": null
+  }
+ ],
+ "tools": [
+  {
+   "tool": "list_files",
+   "ok": true,
+   "seconds": 0.0014889170415699482,
+   "origin": "bootstrap",
+   "output_chars": 691,
+   "args_keys": [
+    "path"
+   ]
+  },
+  {
+   "tool": "read_file",
+   "ok": true,
+   "seconds": 0.000169374980032444,
+   "origin": "bootstrap",
+   "output_chars": 1380,
+   "args_keys": [
+    "end_line",
+    "path",
+    "start_line"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.6280186250805855,
+   "origin": "bootstrap",
+   "output_chars": 506,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "search_code",
+   "ok": true,
+   "seconds": 0.00897924997843802,
+   "origin": "agent",
+   "output_chars": 44,
+   "args_keys": [
+    "path",
+    "pattern"
+   ]
+  },
+  {
+   "tool": "read_file",
+   "ok": true,
+   "seconds": 0.001221375074237585,
+   "origin": "agent",
+   "output_chars": 691,
+   "args_keys": [
+    "end_line",
+    "path",
+    "start_line"
+   ]
+  },
+  {
+   "tool": "apply_patch",
+   "ok": true,
+   "seconds": 0.002143917023204267,
+   "origin": "agent",
+   "output_chars": 593,
+   "args_keys": [
+    "end_line",
+    "new_text",
+    "path",
+    "start_line"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.7837770420592278,
+   "origin": "agent",
+   "output_chars": 25,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 1.0021229580743238,
+   "origin": "agent",
+   "output_chars": 26,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.8404934160644189,
+   "origin": "verify",
+   "output_chars": 25,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.7769145000493154,
+   "origin": "verify",
+   "output_chars": 26,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "git_diff",
+   "ok": true,
+   "seconds": 0.035306875011883676,
+   "origin": "verify",
+   "output_chars": 390,
+   "args_keys": []
+  }
+ ],
+ "prompt_versions": {
+  "system_prompt_sha": "81b6eb089dca2cda",
+  "action_schema_sha": "481c6de8fb7f3c1b"
+ },
+ "options": {
+  "max_steps": 15,
+  "n_predict": 512,
+  "ctx_tokens": 8192,
+  "episode_timeout_s": 1500,
+  "context_mode": "append",
+  "resumable": true
+ }
+}

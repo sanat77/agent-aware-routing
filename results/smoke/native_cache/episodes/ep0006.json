@@ -1,0 +1,318 @@
+{
+ "run_id": "native_cache-e2e-first10",
+ "config": "native_cache",
+ "episode_id": "ep0006",
+ "session_id": "sess-0006-7fd8d6cd",
+ "workload": "concurrent",
+ "bug_category": "incorrect_defaults",
+ "bug_variation": 8,
+ "fault_id": "page_size_10",
+ "status": "completed",
+ "outcome": "verified",
+ "crash": null,
+ "scheduled_start": 1794796489.25853,
+ "started_at": 1794796489.261937,
+ "session_wait_s": 0.003407001495361328,
+ "agent_latency_s": 99.55658102035522,
+ "total_latency_s": 101.33417320251465,
+ "evaluation_s": 1.7775921821594238,
+ "model_calls": 6,
+ "tool_calls": 5,
+ "tool_calls_ok": 5,
+ "tool_seconds": 4.071173289907165,
+ "tool_wait_seconds": 1.744,
+ "interrupts": 0,
+ "resumption_latency_ms": [],
+ "model_errors": [],
+ "input_tokens": 12119,
+ "cached_tokens": 9871,
+ "recomputed_tokens": 2248,
+ "output_tokens": 637,
+ "final_summary": "The default page size was incorrectly set to 10 in the configuration file. This was fixed by updating the `default_page_size` value to 20 in `tracker/config.py`. The change ensures that GET /tasks returns 20 items by default, matching the expected behavior.",
+ "diff": "diff --git a/tracker/config.py b/tracker/config.py\nindex 686192d..0799872 100644\n--- a/tracker/config.py\n+++ b/tracker/config.py\n@@ -10,7 +10,7 @@ from dataclasses import dataclass, fields\n DEFAULTS = {\n     \"database_path\": \"tracker.db\",\n     \"secret_key\": \"dev-secret-change-me\",\n-    \"default_page_size\": 10,\n+    \"default_page_size\": 20,\n     \"max_page_size\": 100,\n     \"token_ttl_seconds\": 3600,\n     \"cache_ttl_seconds\": 30,\n",
+ "evaluation": {
+  "timed_out": false,
+  "collected": 165,
+  "visible_test_passed": true,
+  "hidden_bug_tests_total": 4,
+  "hidden_bug_tests_passed": 4,
+  "hidden_tests_total": 111,
+  "hidden_tests_passed": 111,
+  "regression_tests_total": 160,
+  "regression_tests_passed": 160,
+  "task_success": true,
+  "regression_free": true,
+  "failed_tests": [],
+  "pytest_returncode": 0
+ },
+ "calls": [
+  {
+   "step": 0,
+   "request_id": "sess-0006-7fd8d6cd-s0-6c41d0",
+   "sent_offset_s": 0.8030261993408203,
+   "gap_since_prev_response_s": null,
+   "client_latency_ms": 17112.345583038405,
+   "attempts": 1,
+   "served_slot": 1,
+   "prompt_chars": 5089,
+   "prompt_n": 1290,
+   "cache_n": 0,
+   "prompt_ms": 6447.56,
+   "predicted_n": 83,
+   "predicted_ms": 8028.955,
+   "stop_type": "eos",
+   "ttft_ms": 9082.010957999999,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 2536.5354556341454,
+   "routing_decision_us": 0.041,
+   "gateway_overhead_ms": 0.04137599999739905,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 1,
+   "request_id": "sess-0006-7fd8d6cd-s1-e9ddf1",
+   "sent_offset_s": 18.513176918029785,
+   "gap_since_prev_response_s": 0.5978050231933594,
+   "client_latency_ms": 15215.060041984543,
+   "attempts": 1,
+   "served_slot": 1,
+   "prompt_chars": 6336,
+   "prompt_n": 264,
+   "cache_n": 1347,
+   "prompt_ms": 1506.617,
+   "predicted_n": 95,
+   "predicted_ms": 8911.483,
+   "stop_type": "eos",
+   "ttft_ms": 6301.176958,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 4699.754530361703,
+   "routing_decision_us": 0.041999999999999996,
+   "gateway_overhead_ms": 0.06541699999979755,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 2,
+   "request_id": "sess-0006-7fd8d6cd-s2-64ef26",
+   "sent_offset_s": 33.74042201042175,
+   "gap_since_prev_response_s": 0.012185096740722656,
+   "client_latency_ms": 24992.471875040792,
+   "attempts": 1,
+   "served_slot": 1,
+   "prompt_chars": 7173,
+   "prompt_n": 214,
+   "cache_n": 1669,
+   "prompt_ms": 2876.334,
+   "predicted_n": 181,
+   "predicted_ms": 22086.113,
+   "stop_type": "eos",
+   "ttft_ms": 2903.7849170000004,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.083,
+   "gateway_overhead_ms": 0.08249899999646004,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 3,
+   "request_id": "sess-0006-7fd8d6cd-s3-6a9e62",
+   "sent_offset_s": 58.95782470703125,
+   "gap_since_prev_response_s": 0.2249307632446289,
+   "client_latency_ms": 10983.007124974392,
+   "attempts": 1,
+   "served_slot": 1,
+   "prompt_chars": 8550,
+   "prompt_n": 391,
+   "cache_n": 1947,
+   "prompt_ms": 2257.298,
+   "predicted_n": 84,
+   "predicted_ms": 8701.932,
+   "stop_type": "eos",
+   "ttft_ms": 2277.851208,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.167,
+   "gateway_overhead_ms": 0.07162500000049477,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 4,
+   "request_id": "sess-0006-7fd8d6cd-s4-e04870",
+   "sent_offset_s": 71.12305045127869,
+   "gap_since_prev_response_s": 1.1822185516357422,
+   "client_latency_ms": 7579.72137501929,
+   "attempts": 1,
+   "served_slot": 1,
+   "prompt_chars": 9005,
+   "prompt_n": 59,
+   "cache_n": 2390,
+   "prompt_ms": 465.234,
+   "predicted_n": 70,
+   "predicted_ms": 7090.823,
+   "stop_type": "eos",
+   "ttft_ms": 486.321375,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.083,
+   "gateway_overhead_ms": 0.025750000000698492,
+   "decision_reason": "native",
+   "requested_slot": null
+  },
+  {
+   "step": 5,
+   "request_id": "sess-0006-7fd8d6cd-s5-0480dc",
+   "sent_offset_s": 80.41243314743042,
+   "gap_since_prev_response_s": 1.7096612453460693,
+   "client_latency_ms": 17669.948833063245,
+   "attempts": 1,
+   "served_slot": 1,
+   "prompt_chars": 9399,
+   "prompt_n": 30,
+   "cache_n": 2518,
+   "prompt_ms": 356.994,
+   "predicted_n": 124,
+   "predicted_ms": 17268.51,
+   "stop_type": "eos",
+   "ttft_ms": 399.97920899999997,
+   "gateway_queue_ms": 0.0,
+   "est_upstream_queue_ms": 0.0,
+   "routing_decision_us": 0.083,
+   "gateway_overhead_ms": 0.03170899999895482,
+   "decision_reason": "native",
+   "requested_slot": null
+  }
+ ],
+ "tools": [
+  {
+   "tool": "list_files",
+   "ok": true,
+   "seconds": 0.027662792010232806,
+   "origin": "bootstrap",
+   "output_chars": 688,
+   "args_keys": [
+    "path"
+   ]
+  },
+  {
+   "tool": "read_file",
+   "ok": true,
+   "seconds": 0.0002960419515147805,
+   "origin": "bootstrap",
+   "output_chars": 815,
+   "args_keys": [
+    "end_line",
+    "path",
+    "start_line"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.7667341249762103,
+   "origin": "bootstrap",
+   "output_chars": 884,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "search_code",
+   "ok": true,
+   "seconds": 0.008083207998424768,
+   "origin": "agent",
+   "output_chars": 844,
+   "args_keys": [
+    "path",
+    "pattern"
+   ]
+  },
+  {
+   "tool": "read_file",
+   "ok": true,
+   "seconds": 0.0007231670897454023,
+   "origin": "agent",
+   "output_chars": 421,
+   "args_keys": [
+    "end_line",
+    "path",
+    "start_line"
+   ]
+  },
+  {
+   "tool": "apply_patch",
+   "ok": true,
+   "seconds": 0.003610249958001077,
+   "origin": "agent",
+   "output_chars": 713,
+   "args_keys": [
+    "end_line",
+    "new_text",
+    "path",
+    "start_line"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.8837516669882461,
+   "origin": "agent",
+   "output_chars": 25,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 1.0110261660302058,
+   "origin": "agent",
+   "output_chars": 26,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.6065299159381539,
+   "origin": "verify",
+   "output_chars": 25,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "run_tests",
+   "ok": true,
+   "seconds": 0.737027540919371,
+   "origin": "verify",
+   "output_chars": 26,
+   "args_keys": [
+    "target"
+   ]
+  },
+  {
+   "tool": "git_diff",
+   "ok": true,
+   "seconds": 0.025728416047059,
+   "origin": "verify",
+   "output_chars": 430,
+   "args_keys": []
+  }
+ ],
+ "prompt_versions": {
+  "system_prompt_sha": "81b6eb089dca2cda",
+  "action_schema_sha": "481c6de8fb7f3c1b"
+ },
+ "options": {
+  "max_steps": 15,
+  "n_predict": 512,
+  "ctx_tokens": 8192,
+  "episode_timeout_s": 1500,
+  "context_mode": "append",
+  "resumable": false
+ }
+}

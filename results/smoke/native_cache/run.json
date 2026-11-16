@@ -1,0 +1,105 @@
+{
+ "run_id": "native_cache-e2e-first10",
+ "config": "native_cache",
+ "label": "first10",
+ "episodes": 10,
+ "wall_s": 2071.6570019721985,
+ "stack": {
+  "config": "native_cache",
+  "policy": "passthrough",
+  "llama_args": [
+   "llama-server",
+   "-m",
+   "/Users/sanat/Desktop/Dev Projects/agent-aware-routing/models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+   "-ngl",
+   "99",
+   "-fa",
+   "on",
+   "-c",
+   "32768",
+   "-np",
+   "4",
+   "--metrics",
+   "--slots",
+   "-lv",
+   "4",
+   "--seed",
+   "1234",
+   "-t",
+   "4",
+   "-ctk",
+   "q8_0",
+   "-ctv",
+   "q8_0",
+   "--cache-ram",
+   "4096",
+   "--host",
+   "127.0.0.1",
+   "--port",
+   "8090"
+  ],
+  "gateway_args": [
+   "/Users/sanat/Desktop/Dev Projects/agent-aware-routing/gateway/target/release/inference-gateway",
+   "--listen",
+   "127.0.0.1:8080",
+   "--upstream",
+   "http://127.0.0.1:8090",
+   "--policy",
+   "passthrough",
+   "--n-slots",
+   "4",
+   "--log-dir",
+   "results/smoke/native_cache/logs/gateway",
+   "--run-id",
+   "native_cache-e2e-first10"
+  ],
+  "llama_pid": 28347,
+  "gateway_pid": 28352,
+  "model_startup_s": 1.358886957168579,
+  "gateway_startup_s": 0.012174844741821289,
+  "build_info": "b11669-620d2225c",
+  "total_slots": 4,
+  "n_ctx_per_slot": 8192,
+  "gateway_url": "http://127.0.0.1:8080",
+  "llama_url": "http://127.0.0.1:8090",
+  "started_at": 1794796141.399254
+ },
+ "peak_rss_bytes": {
+  "llama": 7223001088,
+  "gateway": 6029312,
+  "bench": 192167936
+ },
+ "monitor_samples": 3956,
+ "gateway_stats": {
+  "aggregates": {
+   "cached_tokens": 272819,
+   "errors": 0,
+   "events": 200,
+   "gateway_overhead_ms_total": 7.344620999965628,
+   "per_slot_requests": {
+    "0": 59,
+    "1": 43,
+    "2": 8,
+    "3": 7
+   },
+   "predicted_tokens": 16136,
+   "prompt_tokens": 433047,
+   "requests": 117,
+   "routing_overhead_us_total": 9.877999999999998
+  },
+  "in_flight": 0,
+  "policy": "passthrough"
+ },
+ "agent": {
+  "max_steps": 15,
+  "n_predict": 512,
+  "ctx_tokens": 8192,
+  "episode_timeout_s": 1500
+ },
+ "model": {
+  "path": "models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+  "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+  "source": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/main/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
+ },
+ "manifest_sha256": "41f699b67124463cac6f0b86b23b3f223f1aa4be563be96efe536299fe2cc2d6"
+}

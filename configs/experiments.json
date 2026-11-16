@@ -1,0 +1,76 @@
+{
+  "model": {
+    "path": "models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+    "source": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/main/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
+  },
+  "llama_server": {
+    "binary": "llama-server",
+    "expected_build": "b11669-620d2225c",
+    "port": 8090,
+    "common_args": [
+      "-ngl",
+      "99",
+      "-fa",
+      "on",
+      "-c",
+      "32768",
+      "-np",
+      "4",
+      "--metrics",
+      "--slots",
+      "-lv",
+      "4",
+      "--seed",
+      "1234",
+      "-t",
+      "4",
+      "-ctk",
+      "q8_0",
+      "-ctv",
+      "q8_0"
+    ],
+    "n_slots": 4,
+    "ctx_per_slot": 8192
+  },
+  "gateway": {
+    "binary": "gateway/target/release/inference-gateway",
+    "port": 8080
+  },
+  "agent": {
+    "max_steps": 15,
+    "n_predict": 512,
+    "ctx_tokens": 8192,
+    "episode_timeout_s": 3600
+  },
+  "configs": {
+    "no_cache": {
+      "label": "A: no cache",
+      "llama_extra": [
+        "--no-cache-prompt",
+        "--cache-ram",
+        "0"
+      ],
+      "gateway_policy": "no_cache",
+      "results_dir": "results/baseline/no_cache"
+    },
+    "native_cache": {
+      "label": "B: native automatic KV caching",
+      "llama_extra": [
+        "--cache-ram",
+        "4096"
+      ],
+      "gateway_policy": "passthrough",
+      "results_dir": "results/baseline/native_cache"
+    },
+    "session_affinity": {
+      "label": "C: fixed session affinity",
+      "llama_extra": [
+        "--cache-ram",
+        "4096"
+      ],
+      "gateway_policy": "session_affinity",
+      "results_dir": "results/baseline/session_affinity"
+    }
+  }
+}
