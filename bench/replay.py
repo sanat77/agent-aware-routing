@@ -18,11 +18,12 @@ from pathlib import Path
 import httpx
 
 from agent.prompts import ACTION_SCHEMA, ACTION_SCHEMA_SHA
+from agent.session import ABORT
 
 from . import stack
 from .manifest import load
 from .monitor import Monitor
-from .provenance import write_run_json
+from .provenance import install_termination_handler, write_run_json
 from .run_e2e import groups_in_order
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -97,8 +98,12 @@ def replay_session(ep, trace, *, gateway, out, lock, scheduled_start, repeat_tag
            "session_wait_s": max(0.0, t_start - scheduled_start), "session_latency_s": (last_resp or t_start) - t_start,
            "requests": len(records), "request_errors": errors, "records": records}
     with lock:
+        if ABORT.is_set():  # shutting down: do not record a session cut short by the shutdown
+            client.close()
+            return res
+        line = json.dumps(res) + "\n"
         with open(out / "replay_sessions.jsonl", "a") as f:
-            f.write(json.dumps(res) + "\n")
+            f.write(line)
     client.close()
     return res
 
@@ -106,8 +111,11 @@ def replay_session(ep, trace, *, gateway, out, lock, scheduled_start, repeat_tag
 def run(config, trace_root, episodes, out, policy=None, gateway_extra=(), repeat_tag="0"):
     out.mkdir(parents=True, exist_ok=True)
     done = set()
-    if (out / "replay_sessions.jsonl").exists():
-        done = {json.loads(l)["episode_id"] for l in (out / "replay_sessions.jsonl").read_text().splitlines()}
+    for line in (out / "replay_sessions.jsonl").read_text().splitlines() if (out / "replay_sessions.jsonl").exists() else []:
+        try:
+            done.add(json.loads(line)["episode_id"])
+        except (json.JSONDecodeError, KeyError):
+            continue  # a line truncated by an interrupted write; that session is replayed again
     traces = {e["episode_id"]: load_trace(trace_root, e["episode_id"]) for e in episodes}
     missing = [k for k, v in traces.items() if not v]
     episodes = [e for e in episodes if traces.get(e["episode_id"])]
@@ -117,10 +125,29 @@ def run(config, trace_root, episodes, out, policy=None, gateway_extra=(), repeat
     info = stack.start(config, out / "logs", run_id=f"{config}-replay-{out.name}", policy_override=policy,
                        gateway_extra=gateway_extra)
     mon = Monitor(out / "logs", info["llama_url"], {"llama": info["llama_pid"], "gateway": info["gateway_pid"]}).start()
-    lock = threading.Lock()
+    lock = threading.RLock()  # re-entrant: the signal handler may run while the main thread holds it
     t_run = time.time()
     n = [len(done)]
-    status = "interrupted"
+    finalized = []
+
+    def finalize(status):
+        if finalized:
+            return finalized[0]
+        mon.stop()
+        stack.stop()
+        meta = {"config": config, "policy": policy or stack.EXPERIMENTS["configs"][config]["gateway_policy"],
+                "trace_root": str(trace_root), "episodes": len(episodes), "missing_traces": missing,
+                "status": status, "stack": info, "peak_rss_bytes": mon.peak_rss, "repeat_tag": repeat_tag,
+                "manifest_sha256": json.loads((ROOT / "manifests" / "master_manifest.meta.json").read_text())["sha256"]}
+        finalized.append(write_run_json(out / "run.json", meta, time.time() - t_run))
+        return finalized[0]
+
+    def abort_and_finalize(status):
+        with lock:  # wait for any session that is writing its record, then block further writes
+            ABORT.set()
+        return finalize(status)
+
+    install_termination_handler(abort_and_finalize)
     try:
         for group in groups_in_order(episodes):
             todo = [e for e in group if e["episode_id"] not in done]
@@ -150,16 +177,10 @@ def run(config, trace_root, episodes, out, policy=None, gateway_extra=(), repeat
             for t in threads:
                 t.join()
             print(f"[replay {config} {out.name}] {n[0]}/{len(episodes)} sessions", flush=True)
-        status = "complete"
-    finally:
-        mon.stop()
-        stack.stop()
-        meta = {"config": config, "policy": policy or stack.EXPERIMENTS["configs"][config]["gateway_policy"],
-                "trace_root": str(trace_root), "episodes": len(episodes), "missing_traces": missing,
-                "status": status, "stack": info, "peak_rss_bytes": mon.peak_rss, "repeat_tag": repeat_tag,
-                "manifest_sha256": json.loads((ROOT / "manifests" / "master_manifest.meta.json").read_text())["sha256"]}
-        meta = write_run_json(out / "run.json", meta, time.time() - t_run)
-    return meta
+        return finalize("complete")
+    except BaseException:
+        abort_and_finalize("error")
+        raise
 
 
 def main():

@@ -12,12 +12,12 @@ import threading
 import time
 from pathlib import Path
 
-from agent.session import run_episode
+from agent.session import ABORT, run_episode
 
 from . import stack
 from .manifest import WORKLOADS, load
 from .monitor import Monitor
-from .provenance import write_run_json
+from .provenance import install_termination_handler, write_run_json
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -125,21 +125,20 @@ def main():
                                                             "gateway": info["gateway_pid"]}).start()
         t_start = time.time()
         n_done = [len(done)]
-        status = "interrupted"
+        finalized = []
 
         def log(r):
+            if r.get("status") == "aborted":
+                return
             n_done[0] += 1
             ev = r.get("evaluation") or {}
             print(f"[{run_id}] {n_done[0]}/{len(episodes)} {r.get('episode_id')} {r.get('workload')} "
                   f"{r.get('status')}/{r.get('outcome')} success={ev.get('task_success')} "
                   f"calls={r.get('model_calls')} t={r.get('total_latency_s', 0):.0f}s", flush=True)
 
-        try:
-            for group in groups_in_order(episodes):
-                run_group(group, out_dir=out_dir, info=info, config_name=args.config,
-                          agent_cfg=exp["agent"], run_id=run_id, log=log)
-            status = "complete"
-        finally:
+        def finalize(status):
+            if finalized:
+                return finalized[0]
             mon.stop()
             gw_stats = None
             try:
@@ -155,7 +154,20 @@ def main():
                     "gateway_stats": gw_stats, "agent": exp["agent"], "model": exp["model"],
                     "manifest_sha256": json.loads(
                         (ROOT / "manifests" / "master_manifest.meta.json").read_text())["sha256"]}
-            meta = write_run_json(out_dir / "run.json", meta, time.time() - t_start)
+            finalized.append(write_run_json(out_dir / "run.json", meta, time.time() - t_start))
+            return finalized[0]
+
+        install_termination_handler(lambda status: (ABORT.set(), finalize(status)))
+        try:
+            for group in groups_in_order(episodes):
+                run_group(group, out_dir=out_dir, info=info, config_name=args.config,
+                          agent_cfg=exp["agent"], run_id=run_id, log=log)
+            meta = finalize("complete")
+        except BaseException:
+            ABORT.set()
+            finalize("error")
+            raise
+        completed = meta["episodes_completed"]
         print(f"[{run_id}] {completed}/{len(episodes)} episodes complete; this invocation "
               f"{(time.time() - t_start) / 60:.1f} min, total {meta['wall_s'] / 60:.1f} min", flush=True)
 

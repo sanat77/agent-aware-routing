@@ -23,6 +23,8 @@ from .prompts import ACTION_SCHEMA_SHA, SYSTEM_PROMPT_SHA
 from .tools import RepoTools
 
 _EVENT_LOCK = threading.Lock()
+# Set when the benchmark is being shut down: in-flight episodes must not be recorded (they are re-run on resume).
+ABORT = threading.Event()
 
 
 class Recorder:
@@ -130,6 +132,9 @@ def run_episode(episode, *, out_dir, gateway_url, run_id, config_name, workspace
         snap = graph.get_state(cfg)
         state = dict(snap.values) if snap else {}
     t_agent_done = time.time()
+    if ABORT.is_set():
+        client.close()
+        return {"episode_id": episode["episode_id"], "workload": episode["workload"], "status": "aborted"}
     status = (state or {}).get("status", "failed") if not crash else "failed"
     outcome = (state or {}).get("outcome", "crash" if crash else "unknown")
     client.event(episode["session_id"], "completed" if status == "completed" else "failed", outcome=outcome)
@@ -172,6 +177,9 @@ def run_episode(episode, *, out_dir, gateway_url, run_id, config_name, workspace
         "options": options,
     }
     # The trace is written first and the episode JSON last (atomically): the JSON marks the episode complete.
+    if ABORT.is_set():
+        client.close()
+        return {"episode_id": episode["episode_id"], "workload": episode["workload"], "status": "aborted"}
     trace_path = out_dir / "traces" / f"{episode['episode_id']}.jsonl.gz"
     with gzip.open(str(trace_path) + ".tmp", "wt") as f:
         for t in recorder.trace:

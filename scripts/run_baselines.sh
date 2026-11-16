@@ -4,6 +4,7 @@
 #
 #   scripts/run_baselines.sh            # tier 0 (50 episodes): E2E + replay for B, C, then A
 #   scripts/run_baselines.sh --tier1    # additionally extend everything to 100 episodes (tier 1)
+#   scripts/run_baselines.sh --check    # preflight checks only
 #
 # Safe to stop with Ctrl-C at any time. Re-running the same command resumes: completed episodes and replayed
 # sessions are skipped, and logs/metrics are appended. Requires AC power (set ALLOW_BATTERY=1 to override).
@@ -12,10 +13,13 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 PY="$ROOT/.venv/bin/python"
 WITH_TIER1=0
+CHECK_ONLY=0
 [[ "${1:-}" == "--tier1" ]] && WITH_TIER1=1
+[[ "${1:-}" == "--check" ]] && CHECK_ONLY=1
 mkdir -p results/baseline .run
 LOG="results/baseline/run_baselines_$(date +%Y%m%d_%H%M%S).log"
-exec > >(tee -a "$LOG") 2>&1
+# tee ignores Ctrl-C so the log keeps the final lines while the benchmark saves its progress
+exec > >(trap '' INT; tee -a "$LOG") 2>&1
 
 say() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"; }
 FAILED=()
@@ -23,7 +27,9 @@ FAILED=()
 # keep the Mac awake (idle + system sleep) for as long as this script runs
 caffeinate -is -w $$ &
 
-trap 'say "interrupted - stopping inference stack"; "$PY" -m bench.stack stop >/dev/null 2>&1; exit 130' INT TERM
+# Ctrl-C reaches the running benchmark directly (same process group); it saves its progress and exits.
+# The trap only makes sure the inference servers are gone before this script exits.
+trap 'say "interrupted - progress is saved; re-run the same command to resume"; "$PY" -m bench.stack stop >/dev/null 2>&1; exit 130' INT TERM
 
 # ---------------------------------------------------------------- preflight
 say "preflight checks (log: $LOG)"
@@ -62,6 +68,7 @@ fi
 git diff --quiet HEAD -- agent bench faultlab miniissuetracker gateway/src configs manifests 2>/dev/null \
   || say "WARNING: frozen code differs from the committed baseline-freeze state (recorded in run.json)"
 "$PY" -m bench.stack stop >/dev/null 2>&1
+if [[ $CHECK_ONLY == 1 ]]; then say "preflight passed (--check: nothing run)"; exit 0; fi
 
 run_stage() {  # name, command...
   local name="$1"; shift

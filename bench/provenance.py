@@ -1,5 +1,7 @@
 """Provenance recorded in every run.json: git commit, dirty state of frozen paths, invocation history."""
 import json
+import os
+import signal
 import subprocess
 import time
 from pathlib import Path
@@ -36,5 +38,25 @@ def write_run_json(path, meta, invocation_wall_s):
     meta["wall_s"] = sum(i["wall_s"] for i in invocations)
     meta["invocations"] = invocations
     meta["git"] = invocations[-1]["git"]
-    path.write_text(json.dumps(meta, indent=1, default=str))
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(meta, indent=1, default=str))
+    os.replace(tmp, path)
     return meta
+
+
+def install_termination_handler(finalize):
+    """On SIGTERM/SIGINT: record the interrupted invocation (finalize) and exit at once.
+
+    os._exit stops worker threads immediately, so no in-flight episode can be recorded as a failure caused by the
+    shutdown; those episodes are simply re-run on resume. The caller's shell stops the inference stack afterwards.
+    """
+    def handler(signum, frame):
+        try:
+            finalize("interrupted")
+            print(f"received signal {signum}; progress saved, exiting (re-run to resume)", flush=True)
+        except BaseException:  # noqa: BLE001 - e.g. BrokenPipeError when the terminal's tee is already gone
+            pass
+        finally:
+            os._exit(128 + signum)
+    signal.signal(signal.SIGTERM, handler)
+    signal.signal(signal.SIGINT, handler)

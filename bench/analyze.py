@@ -32,10 +32,19 @@ def rate(num, den):
 
 
 def _jsonl(path):
+    """Read a JSONL file, skipping a line truncated by an interrupted write."""
     p = Path(path)
     if not p.exists():
         return []
-    return [json.loads(l) for l in p.read_text().splitlines() if l.strip()]
+    rows = []
+    for line in p.read_text().splitlines():
+        if not line.strip():
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return rows
 
 
 def load_dirs(base, kind, tiers=None):
