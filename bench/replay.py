@@ -108,7 +108,12 @@ def replay_session(ep, trace, *, gateway, out, lock, scheduled_start, repeat_tag
     return res
 
 
-def run(config, trace_root, episodes, out, policy=None, gateway_extra=(), repeat_tag="0"):
+def run(config, trace_root, episodes, out, policy=None, gateway_extra=(), repeat_tag="0", allow_missing=False):
+    traces = {e["episode_id"]: load_trace(trace_root, e["episode_id"]) for e in episodes}
+    missing = [k for k, v in traces.items() if not v]
+    if missing and not allow_missing:
+        raise SystemExit(f"[replay {config} {out.name}] {len(missing)} recorded traces are missing under {trace_root} "
+                         f"(e.g. {missing[:3]}); finish the Baseline B end-to-end run first, or pass --allow-missing")
     out.mkdir(parents=True, exist_ok=True)
     done = set()
     for line in (out / "replay_sessions.jsonl").read_text().splitlines() if (out / "replay_sessions.jsonl").exists() else []:
@@ -116,8 +121,6 @@ def run(config, trace_root, episodes, out, policy=None, gateway_extra=(), repeat
             done.add(json.loads(line)["episode_id"])
         except (json.JSONDecodeError, KeyError):
             continue  # a line truncated by an interrupted write; that session is replayed again
-    traces = {e["episode_id"]: load_trace(trace_root, e["episode_id"]) for e in episodes}
-    missing = [k for k, v in traces.items() if not v]
     episodes = [e for e in episodes if traces.get(e["episode_id"])]
     if episodes and {e["episode_id"] for e in episodes} <= done and (out / "run.json").exists():
         print(f"[replay {config} {out.name}] all {len(episodes)} sessions already complete; skipping", flush=True)
@@ -192,6 +195,7 @@ def main():
     ap.add_argument("--out", default=None)
     ap.add_argument("--policy", default=None)
     ap.add_argument("--repeat-tag", default="0")
+    ap.add_argument("--allow-missing", action="store_true", help="replay only the sessions that have traces")
     ap.add_argument("--gateway-arg", action="append", default=[])
     args = ap.parse_args()
     manifest = load()
@@ -204,7 +208,7 @@ def main():
     for label, eps in selections:
         out = Path(args.out) / label if args.out else ROOT / cfg["results_dir"] / "replay" / label
         meta = run(args.config, Path(args.traces), eps, out, policy=args.policy,
-                   gateway_extra=args.gateway_arg, repeat_tag=args.repeat_tag)
+                   gateway_extra=args.gateway_arg, repeat_tag=args.repeat_tag, allow_missing=args.allow_missing)
         print(json.dumps({k: meta[k] for k in ("config", "episodes", "wall_s", "missing_traces")}))
 
 
