@@ -1,10 +1,14 @@
 """Report for the multi-server experiment (S1 round-robin, S2 prefix-aware, S3 prefix-aware + session-aware cache).
 
-Usage: python -m bench.cluster_report [--profile one_mac] [--tiers tier0,tier1]
-Writes reports/generated/cluster_<profile>_tables.md (+ metrics JSON, charts) and per-setup summaries/CSVs.
+Usage: python -m bench.cluster_report [--profile one_mac] [--run run1] [--tiers tier0,tier1] [--snapshot]
+Writes, per run: reports/generated/cluster_<profile>_<run>_tables.md (+ metrics JSON, charts in
+reports/assets/cluster_<profile>_<run>/), and across runs: reports/generated/cluster_<profile>_all_runs.md.
+Reports are rebuilt from the raw results, which are never modified; --snapshot keeps a dated copy as well.
 """
 import argparse
 import json
+import shutil
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -117,17 +121,80 @@ def make_section(profile, tiers):
     return section
 
 
+def _key_metrics(summary, kind):
+    """A few headline numbers from one setup's summary (for comparing repeated runs)."""
+    if not summary:
+        return None
+    n = summary.get("episodes") or 0
+    lat = summary.get("5_end_to_end_task_latency_s" if kind == "e2e" else "5_end_to_end_session_latency_s") or {}
+    rec = (summary.get("13_recomputed_prompt_tokens") or {}).get("total")
+    out = {"episodes": n, "latency_mean_s": lat.get("mean"), "ttft_mean_ms": (summary.get("6_ttft_ms") or {}).get("mean"),
+           "prefix_reuse": (summary.get("12_prefix_cache_reuse_ratio") or {}).get("value"),
+           "recomputed_tokens_per_episode": (rec / n) if (rec is not None and n) else None}
+    if kind == "e2e":
+        out["task_success"] = (summary.get("1_task_success_rate") or {}).get("value")
+    return out
+
+
+def write_runs_summary(profile, per_run):
+    """reports/generated/cluster_<profile>_all_runs.md: one row per run, plus mean and std across runs."""
+    cols = [("episodes", "episodes", 0), ("task_success", "bug-fix rate", 3), ("latency_mean_s", "mean latency (s)", 1),
+            ("ttft_mean_ms", "mean TTFT (ms)", 0), ("prefix_reuse", "prefix reuse", 3),
+            ("recomputed_tokens_per_episode", "recomputed tokens / episode", 0)]
+    md = (f"# All runs: {profile}\n\nEach run is a separate result set (`results/cluster/{profile}/<run>/`). "
+          "Rows are per run; the last row of each block is the mean and standard deviation across runs.\n\n")
+    for kind, title in (("e2e", "End-to-end (real agents)"), ("replay", "Trace replay (same requests)")):
+        md += f"## {title}\n\n"
+        for s in SETUPS:
+            rows = [(run, m[kind][s]) for run, m in per_run.items() if m.get(kind, {}).get(s)]
+            if not rows:
+                continue
+            use = [c for c in cols if not (kind == "replay" and c[0] == "task_success")]
+            md += f"**{report.LABELS[s]}**\n\n| run | " + " | ".join(c[1] for c in use) + " |\n|---|" + "---|" * len(use) + "\n"
+            for run, k in rows:
+                md += f"| {run} | " + " | ".join(report._fmt(k.get(c[0]), c[2]) if k.get(c[0]) is not None else "n/a"
+                                                for c in use) + " |\n"
+            if len(rows) > 1:
+                cells = []
+                for c in use:
+                    v = [k[c[0]] for _, k in rows if k.get(c[0]) is not None]
+                    cells.append(f"{np.mean(v):.{c[2]}f} ± {np.std(v, ddof=1):.{c[2]}f}" if len(v) > 1 else "n/a")
+                md += "| mean ± std | " + " | ".join(cells) + " |\n"
+            md += "\n"
+    path = ROOT / "reports" / "generated" / f"cluster_{profile}_all_runs.md"
+    path.write_text(md)
+    return path
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--profile", default="one_mac")
+    ap.add_argument("--run", default=None, help="one run name; default: every run found")
     ap.add_argument("--tiers", default=None)
+    ap.add_argument("--snapshot", action="store_true", help="also keep a time-stamped copy of each report")
     args = ap.parse_args()
     tiers = args.tiers.split(",") if args.tiers else None
     base = ROOT / CLUSTER["results_root"] / args.profile
-    for s in SETUPS:
-        report.RESULT_DIRS[s] = base / s
-    report.build(list(SETUPS), f"cluster_{args.profile}", kinds=("e2e", "replay"), baseline="S1", tiers=tiers,
-                 pairs=[("S2", "S1"), ("S3", "S2"), ("S3", "S1")], extra_sections=make_section(args.profile, tiers))
+    runs = [args.run] if args.run else sorted(d.name for d in base.glob("*") if d.is_dir() and
+                                               any((d / s).is_dir() for s in SETUPS))
+    per_run = {}
+    stamp = time.strftime("%Y%m%d_%H%M%S")
+    for run in runs:
+        for s in SETUPS:
+            report.RESULT_DIRS[s] = base / run / s
+        name = f"cluster_{args.profile}_{run}"
+        metrics = report.build(list(SETUPS), name, kinds=("e2e", "replay"), baseline="S1", tiers=tiers,
+                               pairs=[("S2", "S1"), ("S3", "S2"), ("S3", "S1")],
+                               extra_sections=make_section(args.profile, tiers))
+        per_run[run] = {kind: {s: _key_metrics((metrics.get(kind) or {}).get(s), kind) for s in SETUPS}
+                        for kind in ("e2e", "replay")}
+        if args.snapshot:
+            hist = ROOT / "reports" / "generated" / "history"
+            hist.mkdir(parents=True, exist_ok=True)
+            shutil.copy(ROOT / "reports" / "generated" / f"{name}_tables.md", hist / f"{name}_tables_{stamp}.md")
+    if per_run:
+        path = write_runs_summary(args.profile, per_run)
+        print(f"wrote {path.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

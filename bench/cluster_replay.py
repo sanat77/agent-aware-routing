@@ -104,7 +104,7 @@ def replay_session(ep, trace, *, router_url, out, lock, scheduled_start, tag):
     return res
 
 
-def run(setup, profile, trace_root, episodes, out, tag="0", allow_missing=False):
+def run(setup, profile, trace_root, episodes, out, tag="0", allow_missing=False, run_name="run1"):
     traces = {e["episode_id"]: load_trace(trace_root, e["episode_id"]) for e in episodes}
     missing = [k for k, v in traces.items() if not v]
     if missing and not allow_missing:
@@ -122,7 +122,7 @@ def run(setup, profile, trace_root, episodes, out, tag="0", allow_missing=False)
     if episodes and {e["episode_id"] for e in episodes} <= done and (out / "run.json").exists():
         say(f"[replay {setup} {out.name}] all {len(episodes)} sessions already complete; skipping")
         return json.loads((out / "run.json").read_text())
-    run_id = f"cluster-{profile}-{setup}-replay-{out.name}"
+    run_id = f"cluster-{profile}-{run_name}-{setup}-replay-{out.name}"
     info = cluster.start(setup, out / "logs", run_id=run_id, profile=profile)
     mons = start_monitors(out, info)
     lock = threading.RLock()
@@ -141,7 +141,7 @@ def run(setup, profile, trace_root, episodes, out, tag="0", allow_missing=False)
             say(f"final stats collection failed: {exc!r}")
         cluster.stop()
         stack, peak = stack_meta(info, mons)
-        meta = {"setup": setup, "profile": profile, "trace_root": str(trace_root), "episodes": len(episodes),
+        meta = {"run": run_name, "setup": setup, "profile": profile, "trace_root": str(trace_root), "episodes": len(episodes),
                 "missing_traces": missing, "status": status, "stack": stack, "peak_rss_bytes": peak, "repeat_tag": tag,
                 "manifest_sha256": json.loads((ROOT / "manifests" / "master_manifest.meta.json").read_text())["sha256"]}
         finalized.append(write_run_json(out / "run.json", meta, time.time() - t_run))
@@ -192,22 +192,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--setup", required=True, choices=sorted(cluster.CLUSTER["setups"]))
     ap.add_argument("--profile", default="one_mac")
+    ap.add_argument("--run", default="run1", help="result-set name; replays use the recording of the same run")
     ap.add_argument("--tiers", default="0")
-    ap.add_argument("--traces", default=None, help="defaults to the recording setup's e2e directory")
+    ap.add_argument("--traces", default=None, help="defaults to the recording setup's e2e directory of this run")
     ap.add_argument("--first", type=int, default=None)
     ap.add_argument("--out", default=None)
     ap.add_argument("--allow-missing", action="store_true")
     args = ap.parse_args()
     manifest = load()
     rec = cluster.CLUSTER["recording_setup"]
-    trace_root = Path(args.traces) if args.traces else setup_dir(args.profile, rec) / "e2e"
+    trace_root = Path(args.traces) if args.traces else setup_dir(args.profile, rec, args.run) / "e2e"
     if args.first:
         selections = [(f"first{args.first}", manifest[: args.first])]
     else:
         selections = [(f"tier{t}", [e for e in manifest if e["tier"] == int(t)]) for t in args.tiers.split(",")]
     for label, eps in selections:
-        out = Path(args.out) / label if args.out else setup_dir(args.profile, args.setup) / "replay" / label
-        meta = run(args.setup, args.profile, trace_root, eps, out, allow_missing=args.allow_missing)
+        out = Path(args.out) / label if args.out else setup_dir(args.profile, args.setup, args.run) / "replay" / label
+        meta = run(args.setup, args.profile, trace_root, eps, out, allow_missing=args.allow_missing, run_name=args.run)
         say(json.dumps({k: meta.get(k) for k in ("setup", "episodes", "wall_s", "missing_traces")}))
 
 

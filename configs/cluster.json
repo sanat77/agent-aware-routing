@@ -125,7 +125,7 @@
     }
   },
   "recording_setup": "S2",
-  "e2e_max_episodes": 200,
+  "e2e_max_episodes": null,
   "agent": {
     "max_steps": 15,
     "n_predict": 512,
@@ -134,5 +134,6 @@
     "api": "chat",
     "agent_mode": "multi"
   },
-  "results_root": "results/cluster"
+  "results_root": "results/cluster",
+  "recording_setup_note": "S2's end-to-end run records the requests that every setup's replay re-sends (same --run name)",
 }

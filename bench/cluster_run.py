@@ -2,9 +2,10 @@
 
 Usage:
   python -m bench.cluster_run --setup S2 --tiers 0            # episodes 0-49
-  python -m bench.cluster_run --setup S1 --tiers 0,1 --max-episodes 200
+  python -m bench.cluster_run --setup S1 --tiers 0,1,2,3 --run run2
   python -m bench.cluster_run --setup S2 --first 4 --out results/cluster/smoke/S2   (smoke test)
-Results: results/cluster/<profile>/<setup>/e2e/tier<k>/ . Re-running resumes (completed episodes are skipped).
+Results: results/cluster/<profile>/<run>/<setup>/e2e/tier<k>/ . A new --run name never touches earlier results;
+re-running with the same name resumes (completed episodes are kept and skipped).
 """
 import argparse
 import json
@@ -25,8 +26,9 @@ from .util import say
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def setup_dir(profile, setup):
-    return ROOT / cluster.CLUSTER["results_root"] / profile / setup
+def setup_dir(profile, setup, run="run1"):
+    """results/cluster/<profile>/<run>/<setup>. Each run name is a separate, never-overwritten result set."""
+    return ROOT / cluster.CLUSTER["results_root"] / profile / run / setup
 
 
 def start_monitors(out_dir, info):
@@ -54,6 +56,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--setup", required=True, choices=sorted(cluster.CLUSTER["setups"]))
     ap.add_argument("--profile", default="one_mac")
+    ap.add_argument("--run", default="run1", help="result-set name; a new name never touches earlier results")
     ap.add_argument("--tiers", default=None)
     ap.add_argument("--first", type=int, default=None)
     ap.add_argument("--max-episodes", type=int, default=None, help="only manifest episodes with index < N")
@@ -72,9 +75,9 @@ def main():
         if not episodes:
             say(f"[{args.setup} {label}] no episodes selected (max-episodes cap); skipping")
             continue
-        out_dir = Path(args.out) if args.out else setup_dir(args.profile, args.setup) / "e2e" / label
+        out_dir = Path(args.out) if args.out else setup_dir(args.profile, args.setup, args.run) / "e2e" / label
         out_dir.mkdir(parents=True, exist_ok=True)
-        run_id = f"cluster-{args.profile}-{args.setup}-e2e-{label}"
+        run_id = f"cluster-{args.profile}-{args.run}-{args.setup}-e2e-{label}"
         done = {p.stem for p in (out_dir / "episodes").glob("*.json")}
         if done >= {e["episode_id"] for e in episodes} and (out_dir / "run.json").exists():
             say(f"[{run_id}] all {len(episodes)} episodes already complete; skipping")
@@ -108,7 +111,7 @@ def main():
             cluster.stop()
             completed = len(list((out_dir / "episodes").glob("*.json")))
             stack, peak = stack_meta(info, mons)
-            meta = {"run_id": run_id, "setup": args.setup, "profile": args.profile, "label": label,
+            meta = {"run_id": run_id, "run": args.run, "setup": args.setup, "profile": args.profile, "label": label,
                     "episodes": len(episodes), "episodes_completed": completed,
                     "status": status if completed >= len(episodes) else "partial", "stack": stack,
                     "peak_rss_bytes": peak, "agent": cfg["agent"], "model": cfg["model"],
