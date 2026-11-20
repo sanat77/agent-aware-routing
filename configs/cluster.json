@@ -135,5 +135,5 @@
     "agent_mode": "multi"
   },
   "results_root": "results/cluster",
-  "recording_setup_note": "S2's end-to-end run records the requests that every setup's replay re-sends (same --run name)",
+  "recording_setup_note": "S2's end-to-end run records the requests that every setup's replay re-sends (same --run name)"
 }
