@@ -23,12 +23,18 @@ from .stats import compare  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 EXP = json.loads((ROOT / "configs" / "experiments.json").read_text())
 LABELS = {"no_cache": "A no-cache", "native_cache": "B native", "session_affinity": "C affinity",
-          "agent_aware_rust": "D agent-aware"}
-COLORS = {"no_cache": "#9e9e9e", "native_cache": "#1f77b4", "session_affinity": "#ff7f0e", "agent_aware_rust": "#2ca02c"}
+          "agent_aware_rust": "D agent-aware",
+          "S1": "S1 round-robin", "S2": "S2 prefix-aware", "S3": "S3 prefix+session"}
+COLORS = {"no_cache": "#9e9e9e", "native_cache": "#1f77b4", "session_affinity": "#ff7f0e", "agent_aware_rust": "#2ca02c",
+          "S1": "#9e9e9e", "S2": "#1f77b4", "S3": "#2ca02c"}
 WORKLOADS = ("repeated_prefix", "concurrent", "tool_wait", "bursty", "unique_prefix")
+# Optional overrides (used by bench.cluster_report for setups S1-S3 that are not in experiments.json).
+RESULT_DIRS = {}
 
 
 def results_dir(cfg):
+    if cfg in RESULT_DIRS:
+        return RESULT_DIRS[cfg]
     return ROOT / EXP["configs"][cfg]["results_dir"]
 
 
@@ -228,7 +234,7 @@ def charts(summaries, rows, configs, kind, assets, tag):
     fig, ax = plt.subplots(figsize=(7, 3.5))
     for i, c in enumerate(configs):
         u = summaries[c]["17_slot_and_kv_utilization"].get("slot_utilization") or {}
-        keys = sorted(u, key=lambda k: int(k))
+        keys = sorted(u, key=lambda k: (str(k).rsplit(":", 1)[0] if ":" in str(k) else "", int(str(k).rsplit(":", 1)[-1])))
         ax.bar(np.arange(len(keys)) + i * 0.8 / len(configs), [u[k] for k in keys], 0.8 / len(configs),
                label=LABELS[c], color=COLORS[c])
     ax.set_xlabel("slot")
@@ -252,7 +258,8 @@ def write_csv(rows, path):
         w.writerows(rows)
 
 
-def build(configs, name, kinds=("e2e", "replay"), baseline="native_cache", replay_subdir="replay", tiers=None):
+def build(configs, name, kinds=("e2e", "replay"), baseline="native_cache", replay_subdir="replay", tiers=None,
+          pairs=None, extra_sections=None):
     out_md = f"# Generated tables: {name}\n\n" + (f"Tiers included: {', '.join(tiers)}\n\n" if tiers else "")
     all_metrics = {}
     assets = ROOT / "reports" / "assets" / name
@@ -288,7 +295,17 @@ def build(configs, name, kinds=("e2e", "replay"), baseline="native_cache", repla
             f"{LABELS[c]}={summaries[c]['episodes']}" for c in present) + f"; common episode set = {len(common)}\n\n"
         out_md += table(summaries, kind, present) + "\n"
         out_md += "### Per-workload breakdown\n" + workload_table(summaries, kind, present) + "\n"
-        if baseline in present and len(present) > 1:
+        if pairs:
+            pres_all = {}
+            for cand, base_cfg in pairs:
+                if cand in present and base_cfg in present:
+                    both = {r["episode_id"] for r in rows[cand]} & {r["episode_id"] for r in rows[base_cfg]}
+                    pt, pres = paired_table({c: [r for r in rows[c] if r["episode_id"] in both]
+                                             for c in (cand, base_cfg)}, [cand, base_cfg], base_cfg, kind)
+                    out_md += f"### Paired comparison: {LABELS[cand]} vs {LABELS[base_cfg]}\n\n" + pt + "\n"
+                    pres_all[f"{cand}_vs_{base_cfg}"] = pres
+            all_metrics[f"{kind}_paired"] = pres_all
+        elif baseline in present and len(present) > 1:
             pt, pres = paired_table({c: [r for r in rows[c] if r["episode_id"] in common] for c in present},
                                     present, baseline, kind)
             out_md += "### Paired comparison\n\n" + pt + "\n"
@@ -296,6 +313,10 @@ def build(configs, name, kinds=("e2e", "replay"), baseline="native_cache", repla
         files = charts(summaries, rows, present, kind, assets, name)
         out_md += "\n".join(f"![{f.stem}](../assets/{name}/{f.name})" for f in files) + "\n\n"
         all_metrics[kind] = summaries
+        if extra_sections:
+            md, data = extra_sections(kind, present)
+            out_md += md
+            all_metrics[f"{kind}_extra"] = data
     gen = ROOT / "reports" / "generated"
     gen.mkdir(parents=True, exist_ok=True)
     (gen / f"{name}_tables.md").write_text(out_md)

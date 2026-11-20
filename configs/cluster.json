@@ -1,0 +1,138 @@
+{
+  "description": "Multi-server experiment: llm-router (step 1) in front of N llama-servers, each fronted by our Rust gateway (session-aware caching = step 2).",
+  "model": {
+    "path": "models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+    "source": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/main/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
+  },
+  "llama_server": {
+    "binary": "llama-server",
+    "expected_build": "b11669-620d2225c",
+    "common_args": [
+      "-ngl",
+      "99",
+      "-fa",
+      "on",
+      "-ctk",
+      "q8_0",
+      "-ctv",
+      "q8_0",
+      "--metrics",
+      "--slots",
+      "--jinja",
+      "-lv",
+      "4",
+      "--seed",
+      "1234",
+      "-t",
+      "4"
+    ]
+  },
+  "gateway": {
+    "binary": "gateway/target/release/inference-gateway",
+    "save_budget_mb": 4000,
+    "note": "save_budget_mb is per server: at most this much disk is used for saved session caches on each server (oldest files deleted first)"
+  },
+  "router": {
+    "binary": "third_party/llm-router/bin/router",
+    "port": 8300,
+    "metrics_port": 9300,
+    "chunk_size": 32,
+    "min_match_chunks": 2,
+    "saturation_inflight": null,
+    "worker_timeout": "900s",
+    "note": "kv_budget per worker (32-char chunks) = ctx/4: roughly the slot KV plus llama.cpp's host prompt cache. saturation_inflight=null means: the server's slot count (spill to another server once the cache-warm server has no free slot); identical for S2 and S3."
+  },
+  "profiles": {
+    "one_mac": {
+      "description": "Two llama-servers on this Mac. They share one GPU: use it to validate the logic, not for distributed timing claims.",
+      "servers": [
+        {
+          "id": "w0",
+          "host": "127.0.0.1",
+          "llama_port": 8101,
+          "gateway_port": 8201,
+          "ssh": null,
+          "np": 2,
+          "ctx": 16384,
+          "cache_ram_mib": 2048
+        },
+        {
+          "id": "w1",
+          "host": "127.0.0.1",
+          "llama_port": 8102,
+          "gateway_port": 8202,
+          "ssh": null,
+          "np": 2,
+          "ctx": 16384,
+          "cache_ram_mib": 2048
+        }
+      ]
+    },
+    "three_macs": {
+      "description": "One llama-server per Mac. Edit host/ssh/remote_repo for your machines; the controller Mac runs llm-router, the gateways and the agents.",
+      "servers": [
+        {
+          "id": "w0",
+          "host": "127.0.0.1",
+          "llama_port": 8101,
+          "gateway_port": 8201,
+          "ssh": null,
+          "np": 4,
+          "ctx": 32768,
+          "cache_ram_mib": 4096
+        },
+        {
+          "id": "w1",
+          "host": "mac-b.local",
+          "llama_port": 8101,
+          "gateway_port": 8202,
+          "ssh": "user@mac-b.local",
+          "remote_repo": "~/agent-aware-routing-session-cache",
+          "np": 4,
+          "ctx": 32768,
+          "cache_ram_mib": 4096
+        },
+        {
+          "id": "w2",
+          "host": "mac-c.local",
+          "llama_port": 8101,
+          "gateway_port": 8203,
+          "ssh": "user@mac-c.local",
+          "remote_repo": "~/agent-aware-routing-session-cache",
+          "np": 4,
+          "ctx": 32768,
+          "cache_ram_mib": 4096
+        }
+      ]
+    }
+  },
+  "setups": {
+    "S1": {
+      "label": "S1: llm-router round-robin",
+      "router_strategy": "roundrobin",
+      "gateway_policy": "passthrough"
+    },
+    "S2": {
+      "label": "S2: llm-router prefix-aware",
+      "router_strategy": "prefixaware",
+      "gateway_policy": "passthrough"
+    },
+    "S3": {
+      "label": "S3: prefix-aware + session-aware cache",
+      "router_strategy": "prefixaware",
+      "gateway_policy": "session_cache"
+    }
+  },
+  "recording_setup": "S2",
+  "e2e_max_episodes": 200,
+  "agent": {
+    "max_steps": 15,
+    "n_predict": 512,
+    "ctx_tokens": 8192,
+    "episode_timeout_s": 3600,
+    "api": "chat",
+    "agent_mode": "multi"
+  },
+  "results_root": "results/cluster"
+}

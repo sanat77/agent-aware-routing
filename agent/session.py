@@ -19,7 +19,7 @@ from faultlab.injector import build_workspace, evaluate
 
 from .graph import SessionContext, build_graph
 from .llm import GatewayClient
-from .prompts import ACTION_SCHEMA_SHA, SYSTEM_PROMPT_SHA
+from .prompts import ACTION_SCHEMA_SHA, SCHEMA_SHAS, SCHEMAS, SYSTEM_PROMPT_SHA
 from .tools import RepoTools
 
 _EVENT_LOCK = threading.Lock()
@@ -49,38 +49,52 @@ class Recorder:
         with _EVENT_LOCK, open(self.out_dir / "events.jsonl", "a") as f:
             f.write(json.dumps(rec) + "\n")
 
-    def model_call(self, step, prompt, n_predict, response):
+    def model_call(self, step, prompt, n_predict, response, session_id=None, parent_session_id=None, role=None,
+                   schema=None):
         now = time.time()
         timings = response.get("timings") or {}
         gw = response.get("gateway") or {}
         sent_at = now - response.get("client_latency_ms", 0) / 1000
         gap = None if self._last_response_t is None else sent_at - self._last_response_t
+        chars = len(prompt) if isinstance(prompt, str) else sum(len(m.get("content", "")) for m in prompt)
+        schema_name = next((k for k, v in SCHEMAS.items() if v is schema), "action")
         rec = {
             "step": step, "request_id": response.get("request_id"), "sent_offset_s": sent_at - self.t0,
+            "session_id": session_id or self.episode["session_id"], "parent_session_id": parent_session_id,
+            "role": role, "server_id": gw.get("server_id"), "router_backend": response.get("router_backend"),
+            "router_reason": response.get("router_reason"),
             "gap_since_prev_response_s": gap, "client_latency_ms": response.get("client_latency_ms"),
             "attempts": response.get("attempts"), "served_slot": response.get("id_slot"),
-            "prompt_chars": len(prompt), "prompt_n": timings.get("prompt_n"), "cache_n": timings.get("cache_n"),
+            "prompt_chars": chars, "prompt_n": timings.get("prompt_n"), "cache_n": timings.get("cache_n"),
             "prompt_ms": timings.get("prompt_ms"), "predicted_n": timings.get("predicted_n"),
             "predicted_ms": timings.get("predicted_ms"), "stop_type": response.get("stop_type"),
             "ttft_ms": gw.get("ttft_ms"), "gateway_queue_ms": gw.get("gateway_queue_ms"),
             "est_upstream_queue_ms": gw.get("est_upstream_queue_ms"),
             "routing_decision_us": gw.get("routing_decision_us"), "gateway_overhead_ms": gw.get("gateway_overhead_ms"),
+            "gateway_total_ms": gw.get("gateway_total_ms"),
             "decision_reason": gw.get("decision_reason"), "requested_slot": gw.get("requested_slot"),
+            "restored": gw.get("restored"), "save_ms": gw.get("save_ms"), "restore_ms": gw.get("restore_ms"),
         }
         self.model_calls.append(rec)
-        self.trace.append({"step": step, "request_id": rec["request_id"], "sent_offset_s": rec["sent_offset_s"],
-                           "gap_since_prev_response_s": gap, "tool_wait_before_s": self._pending_wait,
-                           "prompt": prompt, "n_predict": n_predict,
-                           "schema_sha": ACTION_SCHEMA_SHA, "recorded_content": response.get("content", ""),
-                           "recorded_predicted_n": timings.get("predicted_n"),
-                           "recorded_prompt_tokens": (timings.get("prompt_n") or 0) + (timings.get("cache_n") or 0)})
+        entry = {"step": step, "request_id": rec["request_id"], "sent_offset_s": rec["sent_offset_s"],
+                 "session_id": rec["session_id"], "parent_session_id": parent_session_id, "role": role,
+                 "gap_since_prev_response_s": gap, "tool_wait_before_s": self._pending_wait,
+                 "n_predict": n_predict, "schema": schema_name, "schema_sha": SCHEMA_SHAS[schema_name],
+                 "recorded_content": response.get("content", ""),
+                 "recorded_predicted_n": timings.get("predicted_n"),
+                 "recorded_prompt_tokens": (timings.get("prompt_n") or 0) + (timings.get("cache_n") or 0)}
+        entry["prompt" if isinstance(prompt, str) else "messages"] = prompt
+        self.trace.append(entry)
         self._pending_wait = 0.0
         self._last_response_t = now
         self._event("model_call", **rec)
 
-    def model_error(self, step, error):
-        self.errors.append({"step": step, "error": error})
-        self._event("model_error", step=step, error=error)
+    def model_error(self, step, error, session_id=None):
+        self.errors.append({"step": step, "error": error, "session_id": session_id})
+        self._event("model_error", step=step, error=error, request_session_id=session_id)
+
+    def lifecycle(self, session_id, event, parent=None, role=None):
+        self._event("lifecycle", request_session_id=session_id, event=event, parent_session_id=parent, role=role)
 
     def tool(self, name, args, ok, seconds, origin, output_chars):
         rec = {"tool": name, "ok": ok, "seconds": seconds, "origin": origin, "output_chars": output_chars,
@@ -104,7 +118,7 @@ def run_episode(episode, *, out_dir, gateway_url, run_id, config_name, workspace
         shutil.rmtree(ws)
     t_start = time.time()
     build_workspace(episode["bug_category"], episode["bug_variation"], ws)
-    client = GatewayClient(gateway_url)
+    client = GatewayClient(gateway_url, api=options.get("api", "completion"))
     recorder = Recorder(episode, out_dir, run_id, config_name)
     tools = RepoTools(ws)
     ctx = SessionContext(episode=episode, tools=tools, client=client, recorder=recorder, options=options)
@@ -137,7 +151,9 @@ def run_episode(episode, *, out_dir, gateway_url, run_id, config_name, workspace
         return {"episode_id": episode["episode_id"], "workload": episode["workload"], "status": "aborted"}
     status = (state or {}).get("status", "failed") if not crash else "failed"
     outcome = (state or {}).get("outcome", "crash" if crash else "unknown")
-    client.event(episode["session_id"], "completed" if status == "completed" else "failed", outcome=outcome)
+    lead_role = "lead" if options.get("agent_mode") == "multi" else None
+    ctx.lifecycle(episode["session_id"], "completed" if status == "completed" else "failed", role=lead_role,
+                  outcome=outcome)
     diff = tools.diff_full()
     evaluation = evaluate(ws, episode["bug_category"], episode["bug_variation"])
     t_end = time.time()
@@ -145,11 +161,13 @@ def run_episode(episode, *, out_dir, gateway_url, run_id, config_name, workspace
     # Session-resumption latency: time from resuming after a tool wait to the first token of the next call.
     resumption = []
     calls = recorder.model_calls
+    lead_calls = [c for c in calls if c.get("session_id") == episode["session_id"]]
     for t_res in resume_latencies:
-        nxt = [c for c in calls if c["sent_offset_s"] + recorder.t0 >= t_res - 0.05]
+        nxt = [c for c in lead_calls if c["sent_offset_s"] + recorder.t0 >= t_res - 0.05]
         if nxt and nxt[0].get("ttft_ms") is not None:
             c = nxt[0]
             resumption.append((c["sent_offset_s"] + recorder.t0 - t_res) * 1000 + c["ttft_ms"])
+    helper_sessions = sorted({c["session_id"] for c in calls if c.get("session_id") != episode["session_id"]})
 
     result = {
         "run_id": run_id, "config": config_name, "episode_id": episode["episode_id"],
@@ -162,6 +180,9 @@ def run_episode(episode, *, out_dir, gateway_url, run_id, config_name, workspace
         "evaluation_s": t_end - t_agent_done,
         "model_calls": len(calls), "tool_calls": len([t for t in recorder.tool_calls if t["origin"] == "agent"]),
         "tool_calls_ok": len([t for t in recorder.tool_calls if t["origin"] == "agent" and t["ok"]]),
+        "helper_sessions": helper_sessions,
+        "helper_model_calls": len(calls) - len(lead_calls),
+        "helper_tool_calls": len([t for t in recorder.tool_calls if t["origin"] == "explorer"]),
         "tool_seconds": sum(t["seconds"] for t in recorder.tool_calls),
         "tool_wait_seconds": sum(recorder.waits), "interrupts": interrupts,
         "resumption_latency_ms": resumption,

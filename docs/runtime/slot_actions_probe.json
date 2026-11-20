@@ -1,0 +1,84 @@
+{
+ "apply_template": {
+  "status": 200,
+  "ms": 29.815791989676654,
+  "prompt_head": "<|im_start|>system\nYou are a careful assistant. Remember the facts. Remember the facts. Remember the facts. Remember the"
+ },
+ "1_cold_on_slot0": {
+  "status": 200,
+  "ms": 6068.4,
+  "cache_n": 0,
+  "prompt_n": 1223,
+  "id_slot": 0
+ },
+ "2_save_slot0": {
+  "status": 200,
+  "ms": 44.7,
+  "body": {
+   "id_slot": 0,
+   "filename": "probe_session.bin",
+   "n_saved": 1226,
+   "n_written": 96060472,
+   "timings": {
+    "save_ms": 42.675
+   }
+  }
+ },
+ "3_erase_slot0": {
+  "status": 200,
+  "ms": 0.9,
+  "body": {
+   "id_slot": 0,
+   "n_erased": 1226
+  }
+ },
+ "4_restore_into_slot1": {
+  "status": 200,
+  "ms": 15.3,
+  "body": {
+   "id_slot": 1,
+   "filename": "probe_session.bin",
+   "n_restored": 1226,
+   "n_read": 96060472,
+   "timings": {
+    "restore_ms": 14.557
+   }
+  }
+ },
+ "5_request_on_slot1_after_restore": {
+  "status": 200,
+  "ms": 212.6,
+  "cache_n": 1222,
+  "prompt_n": 1,
+  "id_slot": 1
+ },
+ "6_request_on_slot0_after_erase": {
+  "status": 200,
+  "ms": 6161.9,
+  "cache_n": 0,
+  "prompt_n": 1223,
+  "id_slot": 0
+ },
+ "7_slots": [
+  {
+   "id": 0,
+   "is_processing": false,
+   "n_prompt_tokens": 1226
+  },
+  {
+   "id": 1,
+   "is_processing": false,
+   "n_prompt_tokens": 1226
+  }
+ ],
+ "8_chat_keys": [
+  "choices",
+  "created",
+  "id",
+  "model",
+  "object",
+  "system_fingerprint",
+  "timings",
+  "usage"
+ ]
+}

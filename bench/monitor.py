@@ -16,11 +16,13 @@ import psutil
 
 
 class Monitor:
-    def __init__(self, log_dir, llama_url, pids, interval=0.5):
-        self.path = Path(log_dir) / "monitor.jsonl"
+    def __init__(self, log_dir, llama_url, pids, interval=0.5, name="monitor", slot_prefix=None, track_bench=True):
+        self.path = Path(log_dir) / f"{name}.jsonl"
         self.llama_url = llama_url
-        self.pids = dict(pids)
-        self.pids.setdefault("bench", os.getpid())
+        self.slot_prefix = slot_prefix
+        self.pids = {k: v for k, v in dict(pids).items() if v}
+        if track_bench:
+            self.pids.setdefault("bench", os.getpid())
         self.interval = interval
         self._stop = threading.Event()
         self._thread = threading.Thread(target=self._run, daemon=True)
@@ -75,7 +77,8 @@ class Monitor:
                 slots = None
                 try:
                     data = client.get(f"{self.llama_url}/slots").json()
-                    slots = [{"id": s["id"], "busy": bool(s.get("is_processing")),
+                    slots = [{"id": f"{self.slot_prefix}:{s['id']}" if self.slot_prefix else s["id"],
+                              "busy": bool(s.get("is_processing")),
                               "n_prompt_tokens": s.get("n_prompt_tokens"), "n_ctx": s.get("n_ctx"),
                               "id_task": s.get("id_task")} for s in data]
                 except (httpx.HTTPError, ValueError, KeyError, TypeError):

@@ -93,6 +93,36 @@ fn find_line_end(buf: &[u8]) -> Option<usize> {
     buf.iter().position(|b| *b == b'\n')
 }
 
+/// Render chat messages with the model's own chat template (llama-server `POST /apply-template`).
+pub async fn apply_template(client: &reqwest::Client, base: &str, messages: &Value) -> Result<String, String> {
+    let resp = client.post(format!("{base}/apply-template"))
+        .json(&serde_json::json!({"messages": messages}))
+        .send().await.map_err(|e| format!("apply-template: {e}"))?;
+    let status = resp.status();
+    let v: Value = resp.json().await.map_err(|e| format!("apply-template body: {e}"))?;
+    if !status.is_success() {
+        return Err(format!("apply-template status {status}: {}", truncate(&v.to_string(), 300)));
+    }
+    v["prompt"].as_str().map(|s| s.to_string()).ok_or_else(|| "apply-template: no prompt".into())
+}
+
+/// llama-server slot command: `erase`, `save` or `restore` (save/restore need --slot-save-path).
+pub async fn slot_action(client: &reqwest::Client, base: &str, slot: usize, action: &str,
+                         filename: Option<&str>) -> Result<Value, String> {
+    let mut req = client.post(format!("{base}/slots/{slot}?action={action}"));
+    req = match filename {
+        Some(f) => req.json(&serde_json::json!({"filename": f})),
+        None => req.json(&serde_json::json!({})),
+    };
+    let resp = req.send().await.map_err(|e| format!("slot {action}: {e}"))?;
+    let status = resp.status();
+    let v: Value = resp.json().await.unwrap_or(Value::Null);
+    if !status.is_success() {
+        return Err(format!("slot {action} status {status}: {}", truncate(&v.to_string(), 300)));
+    }
+    Ok(v)
+}
+
 pub fn ms(t: Instant) -> f64 {
     t.elapsed().as_secs_f64() * 1000.0
 }

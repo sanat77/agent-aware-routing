@@ -23,9 +23,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def episode_options(ep, agent_cfg):
-    return {"max_steps": agent_cfg["max_steps"], "n_predict": agent_cfg["n_predict"],
+    opts = {"max_steps": agent_cfg["max_steps"], "n_predict": agent_cfg["n_predict"],
             "ctx_tokens": agent_cfg["ctx_tokens"], "episode_timeout_s": agent_cfg["episode_timeout_s"],
             "context_mode": ep["context_mode"], "resumable": ep["resumable"]}
+    # cluster experiments: OpenAI chat API through llm-router, and multi-agent mode
+    opts.update({k: agent_cfg[k] for k in ("api", "agent_mode") if k in agent_cfg})
+    return opts
 
 
 def groups_in_order(episodes):

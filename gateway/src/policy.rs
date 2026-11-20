@@ -34,6 +34,8 @@ pub fn decide_baseline(kind: PolicyKind, session_id: Option<&str>, n_slots: usiz
             },
             None => Decision { slot: None, cache_prompt: None, reason: "no_session_header" },
         },
+        // Slot choice for session_cache is made by sessions::Manager; nothing to force here.
+        PolicyKind::SessionCache => Decision { slot: None, cache_prompt: None, reason: "session_cache" },
     }
 }
 

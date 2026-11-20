@@ -172,8 +172,11 @@ def monitor_metrics(monitor_rows, n_ctx_total):
 def gateway_requests(run_dir, keep_request_ids=None):
     """Gateway request records. If a run was interrupted and resumed, an episode may have been retried:
     duplicates are removed by request_id (last wins), and for e2e runs only requests belonging to completed
-    episodes (keep_request_ids) are kept."""
-    rows = _jsonl(Path(run_dir) / "logs" / "gateway" / "requests.jsonl")
+    episodes (keep_request_ids) are kept. Multi-server runs have one gateway log per server
+    (logs/gateway_<id>/); slots are then qualified as "<server>:<slot>"."""
+    rows = []
+    for path in sorted((Path(run_dir) / "logs").glob("gateway*/requests.jsonl")):
+        rows.extend(_jsonl(path))
     latest = {}
     for r in rows:
         latest[r.get("request_id")] = r
@@ -181,16 +184,44 @@ def gateway_requests(run_dir, keep_request_ids=None):
     for rid, r in latest.items():
         if keep_request_ids is not None and rid not in keep_request_ids:
             continue
+        slot = r.get("served_slot")
+        if r.get("server_id") is not None and slot is not None:
+            slot = f"{r['server_id']}:{slot}"
         out.append({
             "session_id": r.get("session_id"), "episode_id": r.get("episode_id"), "step": r.get("step"),
             "arrival": r.get("arrival_unix_ms"), "prompt_n": r.get("prompt_n"), "cache_n": r.get("cache_n"),
             "prompt_tokens": r.get("prompt_tokens"), "prompt_ms": r.get("prompt_ms"), "ttft_ms": r.get("ttft_ms"),
             "predicted_n": r.get("predicted_n"), "gateway_queue_ms": r.get("gateway_queue_ms"),
-            "est_upstream_queue_ms": r.get("est_upstream_queue_ms"), "slot": r.get("served_slot"),
+            "est_upstream_queue_ms": r.get("est_upstream_queue_ms"), "slot": slot,
+            "server_id": r.get("server_id"), "gateway_total_ms": r.get("gateway_total_ms"),
             "routing_decision_us": r.get("routing_decision_us"), "gateway_overhead_ms": r.get("gateway_overhead_ms"),
             "error": r.get("error"), "decision_reason": r.get("decision_reason"),
+            "agent_role": r.get("agent_role"), "parent_session_id": r.get("parent_session_id"),
+            "restored": r.get("restored"), "save_ms": r.get("save_ms"), "restore_ms": r.get("restore_ms"),
         })
     return out
+
+
+def _monitor_rows(d):
+    rows = []
+    for path in sorted((Path(d) / "logs").glob("monitor*.jsonl")):
+        rows.extend(_jsonl(path))
+    return rows
+
+
+def _llama_logs(d):
+    return [parse_llama_log(p) for p in sorted((Path(d) / "logs").glob("llama-server*.log"))]
+
+
+def _helper_modes(ctx_mode, reqs):
+    """Helper sub-agent sessions (<lead>-<role><n>) inherit the context mode of their lead session."""
+    for r in reqs:
+        sid = r.get("session_id")
+        if sid and sid not in ctx_mode:
+            lead = sid.rsplit("-", 1)[0]
+            if lead in ctx_mode:
+                ctx_mode[sid] = ctx_mode[lead]
+    return ctx_mode
 
 
 def analyze_e2e(base, tiers=None):
@@ -205,9 +236,10 @@ def analyze_e2e(base, tiers=None):
         episodes.extend(tier_eps)
         keep = {c["request_id"] for e in tier_eps for c in e.get("calls", [])}
         reqs.extend(gateway_requests(d, keep_request_ids=keep))
-        mon.extend(_jsonl(d / "logs" / "monitor.jsonl"))
-        logs.append(parse_llama_log(d / "logs" / "llama-server.log"))
+        mon.extend(_monitor_rows(d))
+        logs.extend(_llama_logs(d))
     ctx_mode = {e["session_id"]: e.get("options", {}).get("context_mode", "append") for e in episodes}
+    ctx_mode = _helper_modes(ctx_mode, reqs)
     waits = _waits_from_events(dirs)
     return summarize(episodes, reqs, mon, waits, run_meta, logs, wall, ctx_mode, kind="e2e")
 
@@ -373,11 +405,12 @@ def analyze_replay(base, subdir="replay", tiers=None):
                     waits[(s["session_id"], r["step"])] = r["tool_wait_before_s"]
         keep = {r["request_id"] for s in sessions for r in s["records"]}
         reqs.extend(gateway_requests(d, keep_request_ids=keep))
-        mon.extend(_jsonl(d / "logs" / "monitor.jsonl"))
-        logs.append(parse_llama_log(d / "logs" / "llama-server.log"))
+        mon.extend(_monitor_rows(d))
+        logs.extend(_llama_logs(d))
     from .manifest import load
     man = {e["session_id"]: e for e in load()}
     ctx_mode = {sid: man[sid]["context_mode"] for sid in {s["session_id"] for s in sessions} if sid in man}
+    ctx_mode = _helper_modes(ctx_mode, reqs)
     return summarize(sessions, reqs, mon, waits, run_meta, logs, wall, ctx_mode, kind="replay")
 
 
@@ -389,12 +422,12 @@ def per_episode_table(base, kind="e2e", tiers=None):
             tier_eps = [json.loads(p.read_text()) for p in sorted((d / "episodes").glob("*.json"))]
             keep = {c["request_id"] for e in tier_eps for c in e.get("calls", [])}
             reqs = gateway_requests(d, keep_request_ids=keep)
-            by_sid = defaultdict(list)
+            by_ep = defaultdict(list)
             for r in reqs:
-                by_sid[r["session_id"]].append(r)
+                by_ep[r["episode_id"]].append(r)
             for e in tier_eps:
                 ev = e.get("evaluation") or {}
-                rs = by_sid.get(e["session_id"], [])
+                rs = by_ep.get(e["episode_id"], [])
                 rows.append({
                     "episode_id": e["episode_id"], "workload": e["workload"], "bug_category": e["bug_category"],
                     "fault_id": e.get("fault_id"), "status": e.get("status"), "outcome": e.get("outcome"),

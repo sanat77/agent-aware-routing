@@ -10,6 +10,9 @@ pub enum PolicyKind {
     Passthrough,
     /// Baseline C: pin every session to `fnv1a(session_id) % n_slots`.
     SessionAffinity,
+    /// Step 2 (setup S3): session-aware slot management. Finished sessions are erased first, paused
+    /// sessions are saved to disk before their slot is reused and restored when they return.
+    SessionCache,
 }
 
 #[derive(Parser, Debug, Clone)]
@@ -32,4 +35,20 @@ pub struct Config {
     /// Upstream request timeout (seconds).
     #[arg(long, default_value_t = 900)]
     pub upstream_timeout_s: u64,
+    /// Identifier of the inference server this gateway fronts (reported in every response).
+    #[arg(long, default_value = "w0")]
+    pub server_id: String,
+    /// URL at which agents reach this gateway for lifecycle events (defaults to http://<listen>).
+    #[arg(long)]
+    pub public_url: Option<String>,
+    /// Local directory that llama-server uses for --slot-save-path. When set, the gateway deletes
+    /// stale session files and enforces --save-budget-mb.
+    #[arg(long)]
+    pub slot_save_dir: Option<String>,
+    /// Upper bound for bytes of saved session caches kept on disk (session_cache policy).
+    #[arg(long, default_value_t = 12000)]
+    pub save_budget_mb: u64,
+    /// Interval for slot-occupancy snapshots written to occupancy.jsonl (0 disables).
+    #[arg(long, default_value_t = 1000)]
+    pub snapshot_interval_ms: u64,
 }

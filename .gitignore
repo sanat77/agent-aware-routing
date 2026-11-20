@@ -7,3 +7,6 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 *.tmp
+third_party/
+/.venv
+/models

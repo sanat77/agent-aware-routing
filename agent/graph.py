@@ -18,8 +18,10 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
+from .helpers import run_explorer, run_reviewer
 from .llm import ModelCallError
-from .prompts import ACTION_SCHEMA, SYSTEM_PROMPT, initial_user_message, render_chatml, tool_result_message
+from .prompts import (ACTION_SCHEMA, SYSTEM_PROMPT, chat_messages, initial_user_message, render_chatml,
+                      tool_result_message)
 
 
 class AgentState(TypedDict, total=False):
@@ -32,6 +34,7 @@ class AgentState(TypedDict, total=False):
     outcome: str
     final_summary: str
     verify_attempts: int
+    reviews: int
     last_prompt_tokens: int
     seen_calls: list
     log: Annotated[list, operator.add]
@@ -47,14 +50,48 @@ class SessionContext:
         self.recorder = recorder
         self.opt = options
         self.started = time.time()
+        self.turns = {}
+
+    def header(self, session_id):
+        if self.opt.get("context_mode") != "rewrite_header":
+            return None
+        elapsed = int(time.time() - self.started)
+        turn = self.turns.get(session_id, 0) + 1
+        return f"[session {session_id} | nonce {self.episode['prompt_nonce']} | turn {turn} | elapsed {elapsed}s]"
+
+    def model_call(self, *, session_id, role, step, system, messages, schema, n_predict):
+        """One inference request for any agent in this episode (lead or helper). Raises ModelCallError."""
+        header = self.header(session_id)
+        lead = self.episode["session_id"]
+        parent = None if session_id == lead else lead
+        kw = dict(session_id=session_id, episode_id=self.episode["episode_id"], step=step, n_predict=n_predict,
+                  json_schema=schema, parent_session_id=parent, agent_role=role)
+        if self.opt.get("api") == "chat":
+            payload = chat_messages(system, messages, header=header)
+            try:
+                resp = self.client.complete(messages=payload, **kw)
+            except ModelCallError as exc:
+                self.recorder.model_error(step=step, error=str(exc), session_id=session_id)
+                raise
+        else:
+            payload = render_chatml(system, messages, header=header)
+            try:
+                resp = self.client.complete(payload, **kw)
+            except ModelCallError as exc:
+                self.recorder.model_error(step=step, error=str(exc), session_id=session_id)
+                raise
+        self.turns[session_id] = self.turns.get(session_id, 0) + 1
+        self.recorder.model_call(step=step, prompt=payload, n_predict=n_predict, response=resp,
+                                 session_id=session_id, parent_session_id=parent, role=role, schema=schema)
+        return resp
+
+    def lifecycle(self, session_id, event, parent=None, role=None, **fields):
+        self.client.event(session_id, event, parent_session_id=parent, agent_role=role, **fields)
+        self.recorder.lifecycle(session_id=session_id, event=event, parent=parent, role=role)
 
 
 def _header(ctx, state):
-    if ctx.opt.get("context_mode") != "rewrite_header":
-        return None
-    elapsed = int(time.time() - ctx.started)
-    return (f"[session {ctx.episode['session_id']} | nonce {ctx.episode['prompt_nonce']} | "
-            f"turn {state.get('step', 0) + 1} | elapsed {elapsed}s]")
+    return ctx.header(ctx.episode["session_id"])
 
 
 def build_graph(ctx):
@@ -65,6 +102,8 @@ def build_graph(ctx):
     deadline_s = opt.get("episode_timeout_s", 1200)
     delays = ctx.episode.get("tool_delays_s", [])
     visible = ctx.episode["visible_test"]
+    multi = opt.get("agent_mode") == "multi"
+    lead_role = "lead" if multi else None
 
     def run_tool(name, args, origin):
         ok, text, secs = ctx.tools.execute(name, args)
@@ -77,6 +116,12 @@ def build_graph(ctx):
         _, source = run_tool("read_file", {"path": test_file, "start_line": 1, "end_line": 80}, "bootstrap")
         _, test_out = run_tool("run_tests", {"target": visible}, "bootstrap")
         first = initial_user_message(ctx.episode["issue"], listing, visible, source, test_out)
+        if multi:
+            context = first.rsplit("\n\nStart by locating", 1)[0]
+            summary, _ = run_explorer(ctx, context, 0)
+            if summary:
+                first = first.replace("\n\nStart by locating",
+                                      f"\n\n# Explorer sub-agent findings\n{summary.strip()}\n\nStart by locating", 1)
         return {"messages": [{"role": "user", "content": first}], "step": 0, "tool_index": 0,
                 "status": "running", "verify_attempts": 0, "pending": None, "pending_wait_s": 0.0,
                 "seen_calls": []}
@@ -89,17 +134,14 @@ def build_graph(ctx):
             return {"status": "failed", "outcome": "episode_timeout"}
         if state.get("last_prompt_tokens", 0) + n_predict > ctx_limit:
             return {"status": "failed", "outcome": "context_exhausted"}
-        prompt = render_chatml(SYSTEM_PROMPT, state["messages"], header=_header(ctx, state))
         try:
-            resp = ctx.client.complete(prompt, session_id=ctx.episode["session_id"],
-                                       episode_id=ctx.episode["episode_id"], step=step,
-                                       n_predict=n_predict, json_schema=ACTION_SCHEMA)
-        except ModelCallError as exc:
-            ctx.recorder.model_error(step=step, error=str(exc))
+            resp = ctx.model_call(session_id=ctx.episode["session_id"], role=lead_role, step=step,
+                                  system=SYSTEM_PROMPT, messages=state["messages"], schema=ACTION_SCHEMA,
+                                  n_predict=n_predict)
+        except ModelCallError:
             return {"status": "failed", "outcome": "model_error", "step": step + 1}
         content = resp.get("content", "")
         timings = resp.get("timings") or {}
-        ctx.recorder.model_call(step=step, prompt=prompt, n_predict=n_predict, response=resp)
         prompt_tokens = int(timings.get("prompt_n", 0)) + int(timings.get("cache_n", 0))
         msgs = state["messages"] + [{"role": "assistant", "content": content}]
         update = {"messages": msgs, "step": step + 1,
@@ -150,13 +192,13 @@ def build_graph(ctx):
         sid = ctx.episode["session_id"]
         if opt.get("resumable", False):
             # Pause the graph; the session runner sleeps for `wait` seconds and resumes us.
-            ctx.client.event(sid, "tool_wait_start", expected_wait_ms=wait * 1000, mode="interrupt")
+            ctx.lifecycle(sid, "tool_wait_start", role=lead_role, expected_wait_ms=wait * 1000, mode="interrupt")
             resumed = interrupt({"wait_s": wait, "reason": "tool_delay"})
-            ctx.client.event(sid, "tool_wait_end", waited_ms=(resumed or {}).get("waited_ms"))
+            ctx.lifecycle(sid, "tool_wait_end", role=lead_role, waited_ms=(resumed or {}).get("waited_ms"))
         else:
-            ctx.client.event(sid, "tool_wait_start", expected_wait_ms=wait * 1000, mode="inline")
+            ctx.lifecycle(sid, "tool_wait_start", role=lead_role, expected_wait_ms=wait * 1000, mode="inline")
             time.sleep(wait)
-            ctx.client.event(sid, "tool_wait_end", waited_ms=wait * 1000)
+            ctx.lifecycle(sid, "tool_wait_end", role=lead_role, waited_ms=wait * 1000)
         ctx.recorder.wait(seconds=wait)
         return {"pending_wait_s": 0.0}
 
@@ -172,8 +214,17 @@ def build_graph(ctx):
         attempts = state.get("verify_attempts", 0) + 1
         if repro_ok and suite_ok:
             _, diff = run_tool("git_diff", {}, "verify")
+            reviews = state.get("reviews", 0)
+            if multi and reviews < 1:
+                decision, feedback, _ = run_reviewer(ctx, ctx.episode["issue"], diff, suite, reviews)
+                if decision == "revise" and feedback and state.get("step", 0) < max_steps:
+                    note = (f"Reviewer sub-agent requested changes before accepting the fix:\n{feedback}\n"
+                            f"Address the feedback (or call finish again if the fix is already correct).")
+                    msgs = state["messages"] + [{"role": "user", "content": tool_result_message("review", note)}]
+                    return {"messages": msgs, "verify_attempts": attempts, "reviews": reviews + 1, "pending": None}
+                reviews += 1
             return {"status": "completed", "outcome": "verified", "verify_attempts": attempts,
-                    "final_summary": p["args"].get("summary", ""), "pending": None}
+                    "final_summary": p["args"].get("summary", ""), "pending": None, "reviews": reviews}
         msg = ("Verification failed: the reproduction test still fails.\n" + repro if not repro_ok
                else "Verification failed: the full test suite has failures.\n" + suite)
         msgs = state["messages"] + [{"role": "user", "content": tool_result_message("finish", msg)}]
