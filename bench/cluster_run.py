@@ -21,6 +21,7 @@ from .manifest import load
 from .monitor import Monitor
 from .provenance import install_termination_handler, write_run_json
 from .run_e2e import groups_in_order, run_group
+from .heartbeat import Heartbeat
 from .util import say
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -82,8 +83,14 @@ def main():
         if done >= {e["episode_id"] for e in episodes} and (out_dir / "run.json").exists():
             say(f"[{run_id}] all {len(episodes)} episodes already complete; skipping")
             continue
+        say(f"[{run_id}] starting the stack: 2 model servers, 2 gateways, llm-router ({len(episodes)} episodes, "
+            f"{len(done)} already done)")
         info = cluster.start(args.setup, out_dir / "logs", run_id=run_id, profile=args.profile)
         mons = start_monitors(out_dir, info)
+        say(f"[{run_id}] stack ready; agents starting. A progress line prints when each episode starts and "
+            f"finishes, and a 'still running' line every minute.")
+        beat = Heartbeat(run_id, info, lambda: len(list((out_dir / 'episodes').glob('*.json'))), len(episodes),
+                         events_path=out_dir / 'events.jsonl').start()
         t_start = time.time()
         n_done = [len(done)]
         finalized = []
@@ -101,6 +108,7 @@ def main():
         def finalize(status):
             if finalized:
                 return finalized[0]
+            beat.stop()
             for m in mons:
                 m.stop()
             try:
@@ -122,7 +130,7 @@ def main():
         install_termination_handler(lambda status: (ABORT.set(), finalize(status)))
         try:
             for group in groups_in_order(episodes):
-                run_group(group, out_dir=out_dir, info={"gateway_url": info["router_url"]}, config_name=args.setup,
+                run_group(group, out_dir=out_dir, info={"gateway_url": info["router_url"], "announce_starts": True}, config_name=args.setup,
                           agent_cfg=cfg["agent"], run_id=run_id, log=log)
             meta = finalize("complete")
         except BaseException:

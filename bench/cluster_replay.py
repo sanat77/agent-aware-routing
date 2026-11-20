@@ -25,6 +25,7 @@ from .cluster_run import setup_dir, stack_meta, start_monitors
 from .manifest import load
 from .provenance import install_termination_handler, write_run_json
 from .run_e2e import groups_in_order
+from .heartbeat import Heartbeat
 from .util import say
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -123,8 +124,11 @@ def run(setup, profile, trace_root, episodes, out, tag="0", allow_missing=False,
         say(f"[replay {setup} {out.name}] all {len(episodes)} sessions already complete; skipping")
         return json.loads((out / "run.json").read_text())
     run_id = f"cluster-{profile}-{run_name}-{setup}-replay-{out.name}"
+    say(f"[{run_id}] starting the stack ({len(episodes)} sessions to replay, {len(done)} already done)")
     info = cluster.start(setup, out / "logs", run_id=run_id, profile=profile)
     mons = start_monitors(out, info)
+    say(f"[{run_id}] stack ready; replaying. A 'still running' line prints every minute.")
+    beat = Heartbeat(run_id, info, lambda: n[0], len(episodes)).start()
     lock = threading.RLock()
     t_run = time.time()
     n = [len(done)]
@@ -133,6 +137,7 @@ def run(setup, profile, trace_root, episodes, out, tag="0", allow_missing=False,
     def finalize(status):
         if finalized:
             return finalized[0]
+        beat.stop()
         for m in mons:
             m.stop()
         try:

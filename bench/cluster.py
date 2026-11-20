@@ -19,6 +19,8 @@ from pathlib import Path
 
 import httpx
 
+from .util import say
+
 ROOT = Path(__file__).resolve().parents[1]
 RUN = ROOT / ".run" / "cluster"
 CLUSTER = json.loads((ROOT / "configs" / "cluster.json").read_text())
@@ -118,7 +120,9 @@ def start(setup_name, log_dir, run_id="cluster", profile="one_mac"):
             (RUN / "remote.json").write_text(json.dumps(remote))
     for s in servers:
         url = f"http://{s['host']}:{s['llama_port']}"
+        say(f"  starting model server {s['id']} ({url}); loading the model takes ~10-30 s")
         startup = _wait(f"{url}/health", procs.get(s["id"]))
+        say(f"  model server {s['id']} ready in {startup:.0f} s")
         props = httpx.get(f"{url}/props", timeout=5).json()
         if props.get("build_info") != CLUSTER["llama_server"]["expected_build"]:
             print(f"WARNING: {s['id']} llama-server build {props.get('build_info')} differs from the frozen build",
@@ -141,6 +145,7 @@ def start(setup_name, log_dir, run_id="cluster", profile="one_mac"):
         p = subprocess.Popen(args, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
         (RUN / f"gateway_{s['id']}.pid").write_text(str(p.pid))
         _wait(f"http://{listen}/health", p, timeout=30)
+        say(f"  gateway {s['id']} ready ({setup['gateway_policy']}) at http://{listen}")
         si["gateway_url"] = f"http://{listen}"
         si["gateway_pid"] = p.pid
     # 3. llm-router
@@ -165,6 +170,7 @@ def start(setup_name, log_dir, run_id="cluster", profile="one_mac"):
                          start_new_session=True)
     (RUN / "router.pid").write_text(str(p.pid))
     _wait(f"http://127.0.0.1:{rc['port']}/healthz", p, timeout=30)
+    say(f"  llm-router ready ({setup['router_strategy']}) at http://127.0.0.1:{rc['port']}")
     info.update(router_url=f"http://127.0.0.1:{rc['port']}", router_pid=p.pid,
                 router_metrics_url=f"http://127.0.0.1:{rc['metrics_port']}/metrics",
                 router_commit=_router_commit(), router_saturation_inflight=saturation,

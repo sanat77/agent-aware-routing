@@ -44,6 +44,11 @@ def groups_in_order(episodes):
 
 
 def _safe_run(e, *, out_dir, info, run_id, config_name, ws_root, agent_cfg, scheduled_start):
+    if info.get("announce_starts"):
+        try:
+            print(f"[{run_id}] starting {e['episode_id']} ({e['workload']}, {e['bug_category']})", flush=True)
+        except (BrokenPipeError, OSError, ValueError):
+            pass
     try:
         return run_episode(e, out_dir=out_dir, gateway_url=info["gateway_url"], run_id=run_id,
                            config_name=config_name, workspace_root=ws_root,
