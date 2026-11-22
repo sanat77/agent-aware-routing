@@ -1,0 +1,991 @@
+[2026-11-20 13:40:53] setups: S1  run: run1  tiers: 0,1  profile: one_mac  (log: results/cluster/one_mac/run1/run_cluster_S1_20261120_134053.log)
+model ok, manifest ok (41f699b67124), 38 GB free, servers: w0@127.0.0.1, w1@127.0.0.1
+[2026-11-20 13:40:55] === START S1 tier0: real agents
+[cluster-one_mac-run1-S1-e2e-tier0] starting the stack: 2 model servers, 2 gateways, llm-router (50 episodes, 0 already done)
+  starting model server w0 (http://127.0.0.1:8101); loading the model takes ~10-30 s
+  model server w0 ready in 2 s
+  starting model server w1 (http://127.0.0.1:8102); loading the model takes ~10-30 s
+  model server w1 ready in 0 s
+  gateway w0 ready (passthrough) at http://127.0.0.1:8201
+  gateway w1 ready (passthrough) at http://127.0.0.1:8202
+  llm-router ready (roundrobin) at http://127.0.0.1:8300
+[cluster-one_mac-run1-S1-e2e-tier0] stack ready; agents starting. A progress line prints when each episode starts and finishes, and a 'still running' line every minute.
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0000 (repeated_prefix, boundary_conditions)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (1 min): 0/50 done | w0: 4 requests, 1 in flight, 2 slots; w1: 4 requests, 0 in flight, 2 slots | last agent activity: ep0000 tool read_file (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (2 min): 0/50 done | w0: 6 requests, 1 in flight, 2 slots; w1: 6 requests, 0 in flight, 2 slots | last agent activity: ep0000 tool apply_patch (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (3 min): 0/50 done | w0: 8 requests, 0 in flight, 2 slots; w1: 7 requests, 1 in flight, 2 slots | last agent activity: ep0000 tool apply_patch (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 1/50 ep0000 repeated_prefix failed/context_exhausted success=True calls=18 helpers=1 t=236s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0005 (repeated_prefix, retry_logic_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (4 min): 1/50 done | w0: 9 requests, 1 in flight, 2 slots; w1: 9 requests, 0 in flight, 2 slots | last agent activity: ep0005 session_start explorer (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (5 min): 1/50 done | w0: 12 requests, 1 in flight, 2 slots; w1: 12 requests, 0 in flight, 2 slots | last agent activity: ep0005 tool apply_patch (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (6 min): 1/50 done | w0: 15 requests, 0 in flight, 2 slots; w1: 14 requests, 1 in flight, 2 slots | last agent activity: ep0005 tool apply_patch (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (7 min): 1/50 done | w0: 16 requests, 1 in flight, 2 slots; w1: 16 requests, 0 in flight, 2 slots | last agent activity: ep0005 tool run_tests (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (8 min): 1/50 done | w0: 17 requests, 1 in flight, 2 slots; w1: 17 requests, 0 in flight, 2 slots | last agent activity: ep0005 tool apply_patch (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 2/50 ep0005 repeated_prefix failed/step_budget_exhausted success=False calls=18 helpers=1 t=277s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0010 (repeated_prefix, incorrect_defaults)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (9 min): 2/50 done | w0: 20 requests, 0 in flight, 2 slots; w1: 19 requests, 1 in flight, 2 slots | last agent activity: ep0010 completed explorer (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (10 min): 2/50 done | w0: 22 requests, 0 in flight, 2 slots; w1: 21 requests, 1 in flight, 2 slots | last agent activity: ep0010 tool apply_patch (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (11 min): 2/50 done | w0: 24 requests, 0 in flight, 2 slots; w1: 23 requests, 1 in flight, 2 slots | last agent activity: ep0010 tool read_file (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (12 min): 2/50 done | w0: 25 requests, 1 in flight, 2 slots; w1: 25 requests, 0 in flight, 2 slots | last agent activity: ep0010 tool apply_patch (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 3/50 ep0010 repeated_prefix failed/context_exhausted success=False calls=16 helpers=1 t=238s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0015 (repeated_prefix, incorrect_fallback)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (13 min): 3/50 done | w0: 28 requests, 0 in flight, 2 slots; w1: 27 requests, 1 in flight, 2 slots | last agent activity: ep0015 tool read_file (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 4/50 ep0015 repeated_prefix completed/verified success=True calls=10 helpers=2 t=90s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0020 (repeated_prefix, state_transition_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (14 min): 4/50 done | w0: 31 requests, 0 in flight, 2 slots; w1: 31 requests, 0 in flight, 2 slots | last agent activity: ep0020 tool read_file (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (15 min): 4/50 done | w0: 34 requests, 1 in flight, 2 slots; w1: 34 requests, 0 in flight, 2 slots | last agent activity: ep0020 tool read_file (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (16 min): 4/50 done | w0: 36 requests, 1 in flight, 2 slots; w1: 36 requests, 0 in flight, 2 slots | last agent activity: ep0020 tool run_tests (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (17 min): 4/50 done | w0: 38 requests, 1 in flight, 2 slots; w1: 38 requests, 0 in flight, 2 slots | last agent activity: ep0020 tool run_tests (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (18 min): 4/50 done | w0: 39 requests, 1 in flight, 2 slots; w1: 39 requests, 0 in flight, 2 slots | last agent activity: ep0020 tool apply_patch (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 5/50 ep0020 repeated_prefix failed/context_exhausted success=False calls=18 helpers=1 t=253s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0025 (repeated_prefix, authentication_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (19 min): 5/50 done | w0: 43 requests, 0 in flight, 2 slots; w1: 42 requests, 1 in flight, 2 slots | last agent activity: ep0025 tool search_code (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (20 min): 5/50 done | w0: 45 requests, 0 in flight, 2 slots; w1: 45 requests, 0 in flight, 2 slots | last agent activity: ep0025 tool apply_patch (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (21 min): 5/50 done | w0: 47 requests, 1 in flight, 2 slots; w1: 47 requests, 0 in flight, 2 slots | last agent activity: ep0025 tool run_tests (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (22 min): 5/50 done | w0: 48 requests, 1 in flight, 2 slots; w1: 48 requests, 0 in flight, 2 slots | last agent activity: ep0025 tool run_tests (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 6/50 ep0025 repeated_prefix failed/context_exhausted success=False calls=17 helpers=1 t=228s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0030 (repeated_prefix, incorrect_pagination)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (23 min): 6/50 done | w0: 52 requests, 0 in flight, 2 slots; w1: 51 requests, 1 in flight, 2 slots | last agent activity: ep0030 tool apply_patch (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (24 min): 6/50 done | w0: 53 requests, 1 in flight, 2 slots; w1: 53 requests, 0 in flight, 2 slots | last agent activity: ep0030 tool <parse_error> (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (25 min): 6/50 done | w0: 54 requests, 1 in flight, 2 slots; w1: 54 requests, 0 in flight, 2 slots | last agent activity: ep0030 tool read_file (33s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (26 min): 6/50 done | w0: 57 requests, 0 in flight, 2 slots; w1: 56 requests, 1 in flight, 2 slots | last agent activity: ep0030 tool read_file (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 7/50 ep0030 repeated_prefix failed/model_error success=False calls=17 helpers=1 t=255s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0035 (repeated_prefix, input_validation_failures)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (27 min): 7/50 done | w0: 61 requests, 1 in flight, 2 slots; w1: 61 requests, 0 in flight, 2 slots | last agent activity: ep0035 tool search_code (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (28 min): 7/50 done | w0: 64 requests, 1 in flight, 2 slots; w1: 64 requests, 0 in flight, 2 slots | last agent activity: ep0035 tool apply_patch (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (29 min): 7/50 done | w0: 66 requests, 0 in flight, 2 slots; w1: 65 requests, 1 in flight, 2 slots | last agent activity: ep0035 tool read_file (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (30 min): 7/50 done | w0: 68 requests, 0 in flight, 2 slots; w1: 67 requests, 1 in flight, 2 slots | last agent activity: ep0035 tool read_file (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 8/50 ep0035 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=255s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0040 (repeated_prefix, permission_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (31 min): 8/50 done | w0: 70 requests, 1 in flight, 2 slots; w1: 70 requests, 0 in flight, 2 slots | last agent activity: ep0040 completed explorer (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (32 min): 8/50 done | w0: 75 requests, 0 in flight, 2 slots; w1: 74 requests, 1 in flight, 2 slots | last agent activity: ep0040 tool read_file (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (33 min): 8/50 done | w0: 77 requests, 1 in flight, 2 slots; w1: 77 requests, 0 in flight, 2 slots | last agent activity: ep0040 tool read_file (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 9/50 ep0040 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=157s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0045 (repeated_prefix, file_path_handling)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (34 min): 9/50 done | w0: 79 requests, 0 in flight, 2 slots; w1: 78 requests, 1 in flight, 2 slots | last agent activity: ep0045 model call (step 1, explorer) (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (35 min): 9/50 done | w0: 81 requests, 0 in flight, 2 slots; w1: 80 requests, 1 in flight, 2 slots | last agent activity: ep0045 tool read_file (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (36 min): 9/50 done | w0: 84 requests, 0 in flight, 2 slots; w1: 83 requests, 1 in flight, 2 slots | last agent activity: ep0045 tool read_file (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (37 min): 9/50 done | w0: 86 requests, 1 in flight, 2 slots; w1: 86 requests, 0 in flight, 2 slots | last agent activity: ep0045 tool run_tests (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 10/50 ep0045 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=259s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0001 (concurrent, input_validation_failures)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0006 (concurrent, incorrect_defaults)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (38 min): 10/50 done | w0: 88 requests, 2 in flight, 2 slots; w1: 89 requests, 0 in flight, 2 slots | last agent activity: ep0006 tool read_file (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (39 min): 10/50 done | w0: 93 requests, 1 in flight, 2 slots; w1: 92 requests, 1 in flight, 2 slots | last agent activity: ep0006 tool_wait (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 11/50 ep0001 concurrent completed/verified success=True calls=10 helpers=2 t=139s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (40 min): 11/50 done | w0: 98 requests, 0 in flight, 2 slots; w1: 97 requests, 1 in flight, 2 slots | last agent activity: ep0006 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 12/50 ep0006 concurrent completed/verified success=True calls=14 helpers=2 t=180s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0011 (concurrent, database_query_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0016 (concurrent, incorrect_pagination)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0021 (concurrent, error_propagation_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0026 (concurrent, retry_logic_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (41 min): 12/50 done | w0: 100 requests, 2 in flight, 2 slots; w1: 99 requests, 2 in flight, 2 slots | last agent activity: ep0011 tool search_code (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (42 min): 12/50 done | w0: 105 requests, 2 in flight, 2 slots; w1: 104 requests, 2 in flight, 2 slots | last agent activity: ep0016 tool read_file (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (43 min): 12/50 done | w0: 109 requests, 2 in flight, 2 slots; w1: 109 requests, 2 in flight, 2 slots | last agent activity: ep0016 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (44 min): 12/50 done | w0: 114 requests, 2 in flight, 2 slots; w1: 114 requests, 1 in flight, 2 slots | last agent activity: ep0016 tool_wait_start lead (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (45 min): 12/50 done | w0: 118 requests, 2 in flight, 2 slots; w1: 118 requests, 2 in flight, 2 slots | last agent activity: ep0026 tool_wait (18s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (46 min): 12/50 done | w0: 122 requests, 2 in flight, 2 slots; w1: 122 requests, 2 in flight, 2 slots | last agent activity: ep0026 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (47 min): 12/50 done | w0: 125 requests, 2 in flight, 2 slots; w1: 124 requests, 2 in flight, 2 slots | last agent activity: ep0011 tool_wait (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (48 min): 12/50 done | w0: 129 requests, 1 in flight, 2 slots; w1: 126 requests, 3 in flight, 2 slots | last agent activity: ep0021 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (49 min): 12/50 done | w0: 130 requests, 3 in flight, 2 slots; w1: 131 requests, 1 in flight, 2 slots | last agent activity: ep0011 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 13/50 ep0021 concurrent failed/step_budget_exhausted success=False calls=19 helpers=1 t=539s
+[cluster-one_mac-run1-S1-e2e-tier0] 14/50 ep0016 concurrent failed/context_exhausted success=False calls=17 helpers=1 t=566s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (50 min): 14/50 done | w0: 133 requests, 2 in flight, 2 slots; w1: 134 requests, 0 in flight, 2 slots | last agent activity: ep0016 failed lead (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 15/50 ep0026 concurrent completed/verified success=True calls=17 helpers=2 t=595s
+[cluster-one_mac-run1-S1-e2e-tier0] 16/50 ep0011 concurrent failed/step_budget_exhausted success=False calls=19 helpers=1 t=602s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0031 (concurrent, file_path_handling)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0036 (concurrent, state_transition_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0041 (concurrent, exception_handling_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0046 (concurrent, permission_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (51 min): 16/50 done | w0: 135 requests, 3 in flight, 2 slots; w1: 136 requests, 1 in flight, 2 slots | last agent activity: ep0041 tool search_code (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (52 min): 16/50 done | w0: 141 requests, 2 in flight, 2 slots; w1: 140 requests, 2 in flight, 2 slots | last agent activity: ep0036 tool search_code (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (53 min): 16/50 done | w0: 145 requests, 1 in flight, 2 slots; w1: 143 requests, 3 in flight, 2 slots | last agent activity: ep0036 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (54 min): 16/50 done | w0: 147 requests, 2 in flight, 2 slots; w1: 146 requests, 2 in flight, 2 slots | last agent activity: ep0036 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (55 min): 16/50 done | w0: 150 requests, 2 in flight, 2 slots; w1: 149 requests, 2 in flight, 2 slots | last agent activity: ep0041 tool_wait (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (56 min): 16/50 done | w0: 152 requests, 2 in flight, 2 slots; w1: 151 requests, 2 in flight, 2 slots | last agent activity: ep0046 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (57 min): 16/50 done | w0: 156 requests, 1 in flight, 2 slots; w1: 154 requests, 3 in flight, 2 slots | last agent activity: ep0031 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (58 min): 16/50 done | w0: 159 requests, 1 in flight, 2 slots; w1: 156 requests, 3 in flight, 2 slots | last agent activity: ep0046 tool_wait (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 17/50 ep0041 concurrent failed/context_exhausted success=False calls=14 helpers=1 t=492s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (59 min): 17/50 done | w0: 160 requests, 1 in flight, 2 slots; w1: 159 requests, 2 in flight, 2 slots | last agent activity: ep0036 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (60 min): 17/50 done | w0: 162 requests, 1 in flight, 2 slots; w1: 160 requests, 2 in flight, 2 slots | last agent activity: ep0031 tool_wait (31s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (61 min): 17/50 done | w0: 163 requests, 1 in flight, 2 slots; w1: 162 requests, 2 in flight, 2 slots | last agent activity: ep0046 tool_wait (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (62 min): 17/50 done | w0: 164 requests, 2 in flight, 2 slots; w1: 165 requests, 1 in flight, 2 slots | last agent activity: ep0031 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 18/50 ep0046 concurrent failed/step_budget_exhausted success=False calls=19 helpers=1 t=712s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (63 min): 18/50 done | w0: 166 requests, 1 in flight, 2 slots; w1: 166 requests, 1 in flight, 2 slots | last agent activity: ep0036 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (64 min): 18/50 done | w0: 168 requests, 1 in flight, 2 slots; w1: 167 requests, 1 in flight, 2 slots | last agent activity: ep0036 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 19/50 ep0031 concurrent failed/context_exhausted success=False calls=17 helpers=1 t=837s
+[cluster-one_mac-run1-S1-e2e-tier0] 20/50 ep0036 concurrent failed/context_exhausted success=False calls=17 helpers=1 t=848s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0002 (tool_wait, concurrency_defects)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0007 (tool_wait, exception_handling_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0012 (tool_wait, state_transition_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0017 (tool_wait, cache_invalidation_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (65 min): 20/50 done | w0: 169 requests, 2 in flight, 2 slots; w1: 168 requests, 2 in flight, 2 slots | last agent activity: ep0017 session_start explorer (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (66 min): 20/50 done | w0: 175 requests, 1 in flight, 2 slots; w1: 172 requests, 3 in flight, 2 slots | last agent activity: ep0007 tool read_file (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (67 min): 20/50 done | w0: 178 requests, 2 in flight, 2 slots; w1: 178 requests, 2 in flight, 2 slots | last agent activity: ep0017 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (68 min): 20/50 done | w0: 182 requests, 1 in flight, 2 slots; w1: 181 requests, 2 in flight, 2 slots | last agent activity: ep0002 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (69 min): 20/50 done | w0: 186 requests, 1 in flight, 2 slots; w1: 184 requests, 3 in flight, 2 slots | last agent activity: ep0012 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 21/50 ep0002 tool_wait completed/verified success=True calls=10 helpers=2 t=308s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (70 min): 21/50 done | w0: 188 requests, 2 in flight, 2 slots; w1: 188 requests, 1 in flight, 2 slots | last agent activity: ep0012 tool_wait (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (71 min): 21/50 done | w0: 191 requests, 1 in flight, 2 slots; w1: 190 requests, 2 in flight, 2 slots | last agent activity: ep0012 tool_wait (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (72 min): 21/50 done | w0: 193 requests, 2 in flight, 2 slots; w1: 193 requests, 1 in flight, 2 slots | last agent activity: ep0012 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 22/50 ep0007 tool_wait failed/context_exhausted success=False calls=15 helpers=1 t=489s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (73 min): 22/50 done | w0: 195 requests, 1 in flight, 2 slots; w1: 195 requests, 1 in flight, 2 slots | last agent activity: ep0017 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 23/50 ep0017 tool_wait failed/step_budget_exhausted success=False calls=19 helpers=1 t=552s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (74 min): 23/50 done | w0: 197 requests, 1 in flight, 2 slots; w1: 197 requests, 0 in flight, 2 slots | last agent activity: ep0012 tool_wait (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (75 min): 23/50 done | w0: 198 requests, 1 in flight, 2 slots; w1: 198 requests, 0 in flight, 2 slots | last agent activity: ep0012 tool_wait (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (76 min): 23/50 done | w0: 200 requests, 0 in flight, 2 slots; w1: 199 requests, 0 in flight, 2 slots | last agent activity: ep0012 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 24/50 ep0012 tool_wait failed/step_budget_exhausted success=False calls=18 helpers=1 t=679s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0022 (tool_wait, incorrect_fallback)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0027 (tool_wait, input_validation_failures)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0032 (tool_wait, type_conversion_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0037 (tool_wait, incorrect_defaults)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (77 min): 24/50 done | w0: 203 requests, 1 in flight, 2 slots; w1: 201 requests, 3 in flight, 2 slots | last agent activity: ep0037 tool read_file (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (78 min): 24/50 done | w0: 206 requests, 2 in flight, 2 slots; w1: 205 requests, 2 in flight, 2 slots | last agent activity: ep0027 tool search_code (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (79 min): 24/50 done | w0: 209 requests, 2 in flight, 2 slots; w1: 210 requests, 1 in flight, 2 slots | last agent activity: ep0027 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (80 min): 24/50 done | w0: 213 requests, 2 in flight, 2 slots; w1: 213 requests, 1 in flight, 2 slots | last agent activity: ep0037 tool_wait_start lead (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 25/50 ep0032 tool_wait completed/verified success=True calls=12 helpers=2 t=257s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (81 min): 25/50 done | w0: 218 requests, 1 in flight, 2 slots; w1: 217 requests, 2 in flight, 2 slots | last agent activity: ep0027 tool_wait (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (82 min): 25/50 done | w0: 220 requests, 0 in flight, 2 slots; w1: 218 requests, 2 in flight, 2 slots | last agent activity: ep0027 tool_wait_start lead (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (83 min): 25/50 done | w0: 223 requests, 1 in flight, 2 slots; w1: 222 requests, 1 in flight, 2 slots | last agent activity: ep0027 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 26/50 ep0022 tool_wait completed/verified success=True calls=12 helpers=2 t=465s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (84 min): 26/50 done | w0: 226 requests, 0 in flight, 2 slots; w1: 225 requests, 1 in flight, 2 slots | last agent activity: ep0037 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (85 min): 26/50 done | w0: 227 requests, 1 in flight, 2 slots; w1: 227 requests, 0 in flight, 2 slots | last agent activity: ep0027 tool_wait_start lead (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 27/50 ep0027 tool_wait failed/step_budget_exhausted success=False calls=19 helpers=1 t=540s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (86 min): 27/50 done | w0: 229 requests, 0 in flight, 2 slots; w1: 228 requests, 0 in flight, 2 slots | last agent activity: ep0037 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 28/50 ep0037 tool_wait failed/context_exhausted success=False calls=16 helpers=1 t=631s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0042 (tool_wait, retry_logic_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0047 (tool_wait, boundary_conditions)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (87 min): 28/50 done | w0: 230 requests, 1 in flight, 2 slots; w1: 229 requests, 1 in flight, 2 slots | last agent activity: ep0042 tool search_code (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (88 min): 28/50 done | w0: 232 requests, 1 in flight, 2 slots; w1: 232 requests, 0 in flight, 2 slots | last agent activity: ep0047 model call (step 1, explorer) (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (89 min): 28/50 done | w0: 235 requests, 1 in flight, 2 slots; w1: 234 requests, 1 in flight, 2 slots | last agent activity: ep0047 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (90 min): 28/50 done | w0: 237 requests, 1 in flight, 2 slots; w1: 237 requests, 1 in flight, 2 slots | last agent activity: ep0047 tool_wait (20s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 29/50 ep0042 tool_wait completed/verified success=True calls=11 helpers=2 t=221s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (91 min): 29/50 done | w0: 240 requests, 1 in flight, 2 slots; w1: 240 requests, 0 in flight, 2 slots | last agent activity: ep0047 session_start reviewer (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 30/50 ep0047 tool_wait completed/verified success=True calls=15 helpers=2 t=306s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0003 (bursty, incorrect_defaults)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0008 (bursty, error_propagation_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0013 (bursty, type_conversion_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0018 (bursty, incorrect_fallback)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0023 (bursty, retry_logic_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0028 (bursty, concurrency_defects)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0033 (bursty, incorrect_aggregation)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0038 (bursty, datetime_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (92 min): 30/50 done | w0: 242 requests, 4 in flight, 2 slots; w1: 242 requests, 4 in flight, 2 slots | last agent activity: ep0038 session_start explorer (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (93 min): 30/50 done | w0: 245 requests, 5 in flight, 2 slots; w1: 246 requests, 3 in flight, 2 slots | last agent activity: ep0033 tool search_code (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (94 min): 30/50 done | w0: 250 requests, 4 in flight, 2 slots; w1: 250 requests, 4 in flight, 2 slots | last agent activity: ep0033 tool search_code (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (95 min): 30/50 done | w0: 253 requests, 4 in flight, 2 slots; w1: 253 requests, 4 in flight, 2 slots | last agent activity: ep0033 tool list_files (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (96 min): 30/50 done | w0: 256 requests, 5 in flight, 2 slots; w1: 257 requests, 3 in flight, 2 slots | last agent activity: ep0013 completed explorer (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (97 min): 30/50 done | w0: 260 requests, 4 in flight, 2 slots; w1: 260 requests, 4 in flight, 2 slots | last agent activity: ep0003 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (98 min): 30/50 done | w0: 263 requests, 4 in flight, 2 slots; w1: 263 requests, 4 in flight, 2 slots | last agent activity: ep0038 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (99 min): 30/50 done | w0: 267 requests, 4 in flight, 2 slots; w1: 267 requests, 4 in flight, 2 slots | last agent activity: ep0018 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (100 min): 30/50 done | w0: 271 requests, 4 in flight, 2 slots; w1: 271 requests, 4 in flight, 2 slots | last agent activity: ep0018 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (101 min): 30/50 done | w0: 274 requests, 5 in flight, 2 slots; w1: 275 requests, 3 in flight, 2 slots | last agent activity: ep0028 tool_wait (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (102 min): 30/50 done | w0: 278 requests, 4 in flight, 2 slots; w1: 278 requests, 4 in flight, 2 slots | last agent activity: ep0023 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 31/50 ep0038 bursty completed/verified success=True calls=9 helpers=2 t=635s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0043 (bursty, database_query_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (103 min): 31/50 done | w0: 282 requests, 3 in flight, 2 slots; w1: 280 requests, 5 in flight, 2 slots | last agent activity: ep0008 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (104 min): 31/50 done | w0: 285 requests, 4 in flight, 2 slots; w1: 284 requests, 4 in flight, 2 slots | last agent activity: ep0018 tool_wait (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (105 min): 31/50 done | w0: 288 requests, 4 in flight, 2 slots; w1: 287 requests, 4 in flight, 2 slots | last agent activity: ep0043 tool search_code (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 32/50 ep0013 bursty completed/verified success=True calls=13 helpers=2 t=826s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0048 (bursty, filtering_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (106 min): 32/50 done | w0: 292 requests, 3 in flight, 2 slots; w1: 290 requests, 5 in flight, 2 slots | last agent activity: ep0043 tool search_code (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (107 min): 32/50 done | w0: 295 requests, 3 in flight, 2 slots; w1: 293 requests, 5 in flight, 2 slots | last agent activity: ep0033 tool_wait (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (108 min): 32/50 done | w0: 296 requests, 4 in flight, 2 slots; w1: 296 requests, 4 in flight, 2 slots | last agent activity: ep0018 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 33/50 ep0003 bursty completed/verified success=True calls=14 helpers=2 t=986s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (109 min): 33/50 done | w0: 299 requests, 4 in flight, 2 slots; w1: 299 requests, 3 in flight, 2 slots | last agent activity: ep0033 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (110 min): 33/50 done | w0: 302 requests, 3 in flight, 2 slots; w1: 301 requests, 4 in flight, 2 slots | last agent activity: ep0018 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (111 min): 33/50 done | w0: 303 requests, 3 in flight, 2 slots; w1: 302 requests, 4 in flight, 2 slots | last agent activity: ep0033 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (112 min): 33/50 done | w0: 306 requests, 3 in flight, 2 slots; w1: 305 requests, 4 in flight, 2 slots | last agent activity: ep0033 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 34/50 ep0008 bursty failed/context_exhausted success=False calls=18 helpers=1 t=1219s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (113 min): 34/50 done | w0: 309 requests, 2 in flight, 2 slots; w1: 307 requests, 4 in flight, 2 slots | last agent activity: ep0023 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 35/50 ep0033 bursty failed/step_budget_exhausted success=False calls=19 helpers=1 t=1302s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (114 min): 35/50 done | w0: 310 requests, 3 in flight, 2 slots; w1: 311 requests, 2 in flight, 2 slots | last agent activity: ep0043 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 36/50 ep0023 bursty failed/step_budget_exhausted success=False calls=18 helpers=1 t=1376s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (115 min): 36/50 done | w0: 312 requests, 3 in flight, 2 slots; w1: 314 requests, 1 in flight, 2 slots | last agent activity: ep0023 failed lead (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 37/50 ep0028 bursty failed/step_budget_exhausted success=False calls=18 helpers=1 t=1405s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (116 min): 37/50 done | w0: 317 requests, 2 in flight, 2 slots; w1: 317 requests, 1 in flight, 2 slots | last agent activity: ep0048 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (117 min): 37/50 done | w0: 319 requests, 1 in flight, 2 slots; w1: 317 requests, 2 in flight, 2 slots | last agent activity: ep0048 tool_wait (30s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (118 min): 37/50 done | w0: 320 requests, 2 in flight, 2 slots; w1: 320 requests, 1 in flight, 2 slots | last agent activity: ep0048 tool <parse_error> (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 38/50 ep0018 bursty failed/step_budget_exhausted success=False calls=19 helpers=1 t=1587s
+[cluster-one_mac-run1-S1-e2e-tier0] 39/50 ep0043 bursty failed/step_budget_exhausted success=False calls=19 helpers=1 t=958s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (119 min): 39/50 done | w0: 322 requests, 1 in flight, 2 slots; w1: 322 requests, 0 in flight, 2 slots | last agent activity: ep0048 tool_wait (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (120 min): 39/50 done | w0: 323 requests, 0 in flight, 2 slots; w1: 322 requests, 1 in flight, 2 slots | last agent activity: ep0048 tool_wait (41s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 40/50 ep0048 bursty failed/context_exhausted success=False calls=16 helpers=1 t=910s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0004 (unique_prefix, boundary_conditions)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0009 (unique_prefix, resource_cleanup_issues)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0014 (unique_prefix, sorting_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0019 (unique_prefix, type_conversion_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (121 min): 40/50 done | w0: 324 requests, 2 in flight, 2 slots; w1: 323 requests, 2 in flight, 2 slots | last agent activity: ep0019 session_start explorer (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (122 min): 40/50 done | w0: 327 requests, 2 in flight, 2 slots; w1: 326 requests, 2 in flight, 2 slots | last agent activity: ep0014 tool search_code (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (123 min): 40/50 done | w0: 330 requests, 2 in flight, 2 slots; w1: 330 requests, 2 in flight, 2 slots | last agent activity: ep0014 completed explorer (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (124 min): 40/50 done | w0: 334 requests, 2 in flight, 2 slots; w1: 333 requests, 2 in flight, 2 slots | last agent activity: ep0014 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (125 min): 40/50 done | w0: 337 requests, 1 in flight, 2 slots; w1: 334 requests, 3 in flight, 2 slots | last agent activity: ep0014 tool_wait (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (126 min): 40/50 done | w0: 339 requests, 1 in flight, 2 slots; w1: 336 requests, 3 in flight, 2 slots | last agent activity: ep0019 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (127 min): 40/50 done | w0: 340 requests, 1 in flight, 2 slots; w1: 337 requests, 3 in flight, 2 slots | last agent activity: ep0019 tool_wait (25s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (128 min): 40/50 done | w0: 341 requests, 1 in flight, 2 slots; w1: 339 requests, 3 in flight, 2 slots | last agent activity: ep0014 tool_wait (37s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (129 min): 40/50 done | w0: 343 requests, 1 in flight, 2 slots; w1: 340 requests, 3 in flight, 2 slots | last agent activity: ep0019 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (130 min): 40/50 done | w0: 343 requests, 2 in flight, 2 slots; w1: 342 requests, 2 in flight, 2 slots | last agent activity: ep0009 tool_wait (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (131 min): 40/50 done | w0: 345 requests, 1 in flight, 2 slots; w1: 343 requests, 3 in flight, 2 slots | last agent activity: ep0014 tool_wait (26s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (132 min): 40/50 done | w0: 346 requests, 1 in flight, 2 slots; w1: 343 requests, 3 in flight, 2 slots | last agent activity: ep0009 tool_wait (27s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (133 min): 40/50 done | w0: 347 requests, 1 in flight, 2 slots; w1: 345 requests, 3 in flight, 2 slots | last agent activity: ep0019 tool_wait (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (134 min): 40/50 done | w0: 348 requests, 1 in flight, 2 slots; w1: 346 requests, 3 in flight, 2 slots | last agent activity: ep0009 session_start reviewer (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (135 min): 40/50 done | w0: 350 requests, 1 in flight, 2 slots; w1: 347 requests, 3 in flight, 2 slots | last agent activity: ep0019 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (136 min): 40/50 done | w0: 350 requests, 1 in flight, 2 slots; w1: 348 requests, 3 in flight, 2 slots | last agent activity: ep0009 completed reviewer (31s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (137 min): 40/50 done | w0: 351 requests, 1 in flight, 2 slots; w1: 349 requests, 3 in flight, 2 slots | last agent activity: ep0014 tool_wait (29s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (138 min): 40/50 done | w0: 352 requests, 1 in flight, 2 slots; w1: 350 requests, 3 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (33s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (139 min): 40/50 done | w0: 353 requests, 1 in flight, 2 slots; w1: 351 requests, 3 in flight, 2 slots | last agent activity: ep0014 tool_wait (23s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (140 min): 40/50 done | w0: 353 requests, 2 in flight, 2 slots; w1: 352 requests, 2 in flight, 2 slots | last agent activity: ep0009 tool_wait (51s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 41/50 ep0014 unique_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=1179s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (141 min): 41/50 done | w0: 355 requests, 1 in flight, 2 slots; w1: 353 requests, 2 in flight, 2 slots | last agent activity: ep0019 tool_wait (26s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 42/50 ep0009 unique_prefix completed/verified success=True calls=18 helpers=2 t=1272s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (142 min): 42/50 done | w0: 355 requests, 1 in flight, 2 slots; w1: 354 requests, 1 in flight, 2 slots | last agent activity: ep0009 completed lead (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 43/50 ep0019 unique_prefix failed/step_budget_exhausted success=True calls=19 helpers=1 t=1286s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (143 min): 43/50 done | w0: 356 requests, 1 in flight, 2 slots; w1: 356 requests, 0 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (144 min): 43/50 done | w0: 357 requests, 0 in flight, 2 slots; w1: 356 requests, 1 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (145 min): 43/50 done | w0: 357 requests, 1 in flight, 2 slots; w1: 357 requests, 0 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (146 min): 43/50 done | w0: 358 requests, 0 in flight, 2 slots; w1: 357 requests, 1 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (147 min): 43/50 done | w0: 358 requests, 1 in flight, 2 slots; w1: 358 requests, 0 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (148 min): 43/50 done | w0: 358 requests, 1 in flight, 2 slots; w1: 358 requests, 0 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (67s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (149 min): 43/50 done | w0: 359 requests, 0 in flight, 2 slots; w1: 358 requests, 1 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (57s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (150 min): 43/50 done | w0: 359 requests, 1 in flight, 2 slots; w1: 359 requests, 0 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (42s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (151 min): 43/50 done | w0: 360 requests, 0 in flight, 2 slots; w1: 359 requests, 1 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (22s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (152 min): 43/50 done | w0: 360 requests, 0 in flight, 2 slots; w1: 359 requests, 1 in flight, 2 slots | last agent activity: ep0004 tool <parse_error> (82s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 44/50 ep0004 unique_prefix failed/context_exhausted success=False calls=17 helpers=1 t=1883s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0024 (unique_prefix, serialization_bugs)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0029 (unique_prefix, null_empty_handling)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0034 (unique_prefix, input_validation_failures)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0039 (unique_prefix, state_transition_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (153 min): 44/50 done | w0: 362 requests, 2 in flight, 2 slots; w1: 362 requests, 2 in flight, 2 slots | last agent activity: ep0024 tool search_code (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (154 min): 44/50 done | w0: 364 requests, 3 in flight, 2 slots; w1: 366 requests, 1 in flight, 2 slots | last agent activity: ep0039 tool search_code (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (155 min): 44/50 done | w0: 367 requests, 3 in flight, 2 slots; w1: 369 requests, 1 in flight, 2 slots | last agent activity: ep0024 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (156 min): 44/50 done | w0: 371 requests, 3 in flight, 2 slots; w1: 372 requests, 1 in flight, 2 slots | last agent activity: ep0029 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (157 min): 44/50 done | w0: 373 requests, 2 in flight, 2 slots; w1: 373 requests, 2 in flight, 2 slots | last agent activity: ep0024 tool_wait (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (158 min): 44/50 done | w0: 375 requests, 2 in flight, 2 slots; w1: 375 requests, 2 in flight, 2 slots | last agent activity: ep0024 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (159 min): 44/50 done | w0: 377 requests, 2 in flight, 2 slots; w1: 377 requests, 2 in flight, 2 slots | last agent activity: ep0034 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (160 min): 44/50 done | w0: 378 requests, 2 in flight, 2 slots; w1: 378 requests, 2 in flight, 2 slots | last agent activity: ep0024 tool_wait (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (161 min): 44/50 done | w0: 379 requests, 2 in flight, 2 slots; w1: 379 requests, 2 in flight, 2 slots | last agent activity: ep0034 tool_wait (41s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (162 min): 44/50 done | w0: 381 requests, 2 in flight, 2 slots; w1: 381 requests, 2 in flight, 2 slots | last agent activity: ep0029 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (163 min): 44/50 done | w0: 381 requests, 3 in flight, 2 slots; w1: 382 requests, 1 in flight, 2 slots | last agent activity: ep0024 tool_wait (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (164 min): 44/50 done | w0: 382 requests, 3 in flight, 2 slots; w1: 383 requests, 1 in flight, 2 slots | last agent activity: ep0034 session_start reviewer (47s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 45/50 ep0034 unique_prefix completed/verified success=True calls=12 helpers=2 t=748s
+[cluster-one_mac-run1-S1-e2e-tier0] 46/50 ep0024 unique_prefix completed/verified success=False calls=14 helpers=2 t=757s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (165 min): 46/50 done | w0: 386 requests, 0 in flight, 2 slots; w1: 384 requests, 2 in flight, 2 slots | last agent activity: ep0029 tool_wait (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (166 min): 46/50 done | w0: 386 requests, 1 in flight, 2 slots; w1: 385 requests, 1 in flight, 2 slots | last agent activity: ep0039 tool_wait (18s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (167 min): 46/50 done | w0: 386 requests, 1 in flight, 2 slots; w1: 386 requests, 1 in flight, 2 slots | last agent activity: ep0029 tool_wait (49s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (168 min): 46/50 done | w0: 387 requests, 1 in flight, 2 slots; w1: 387 requests, 1 in flight, 2 slots | last agent activity: ep0029 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (169 min): 46/50 done | w0: 388 requests, 1 in flight, 2 slots; w1: 387 requests, 1 in flight, 2 slots | last agent activity: ep0039 tool_wait (56s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (170 min): 46/50 done | w0: 389 requests, 0 in flight, 2 slots; w1: 387 requests, 2 in flight, 2 slots | last agent activity: ep0039 tool_wait (37s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 47/50 ep0029 unique_prefix failed/context_exhausted success=True calls=16 helpers=1 t=1097s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (171 min): 47/50 done | w0: 389 requests, 1 in flight, 2 slots; w1: 389 requests, 0 in flight, 2 slots | last agent activity: ep0029 failed lead (39s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (172 min): 47/50 done | w0: 390 requests, 0 in flight, 2 slots; w1: 390 requests, 0 in flight, 2 slots | last agent activity: ep0039 model call (step 13, lead) (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 48/50 ep0039 unique_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=1242s
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0044 (unique_prefix, cache_invalidation_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0049 (unique_prefix, datetime_errors)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (173 min): 48/50 done | w0: 391 requests, 1 in flight, 2 slots; w1: 390 requests, 1 in flight, 2 slots | last agent activity: ep0049 session_start explorer (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (174 min): 48/50 done | w0: 394 requests, 1 in flight, 2 slots; w1: 393 requests, 1 in flight, 2 slots | last agent activity: ep0049 tool search_code (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (175 min): 48/50 done | w0: 396 requests, 1 in flight, 2 slots; w1: 396 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (176 min): 48/50 done | w0: 398 requests, 1 in flight, 2 slots; w1: 398 requests, 1 in flight, 2 slots | last agent activity: ep0049 tool_wait (27s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (177 min): 48/50 done | w0: 400 requests, 1 in flight, 2 slots; w1: 400 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (178 min): 48/50 done | w0: 402 requests, 1 in flight, 2 slots; w1: 402 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (179 min): 48/50 done | w0: 402 requests, 2 in flight, 2 slots; w1: 403 requests, 0 in flight, 2 slots | last agent activity: ep0044 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (180 min): 48/50 done | w0: 404 requests, 1 in flight, 2 slots; w1: 403 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (29s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (181 min): 48/50 done | w0: 405 requests, 1 in flight, 2 slots; w1: 404 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (26s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (182 min): 48/50 done | w0: 406 requests, 1 in flight, 2 slots; w1: 405 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 49/50 ep0049 unique_prefix completed/verified success=True calls=16 helpers=2 t=582s
+[cluster-one_mac-run1-S1-e2e-tier0] still running (183 min): 49/50 done | w0: 407 requests, 1 in flight, 2 slots; w1: 407 requests, 0 in flight, 2 slots | last agent activity: ep0044 tool_wait (19s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (184 min): 49/50 done | w0: 408 requests, 0 in flight, 2 slots; w1: 407 requests, 1 in flight, 2 slots | last agent activity: ep0044 tool_wait (39s ago)
+[cluster-one_mac-run1-S1-e2e-tier0] 50/50 ep0044 unique_prefix completed/verified success=True calls=20 helpers=2 t=684s
+[cluster-one_mac-run1-S1-e2e-tier0] 50/50 episodes complete; this invocation 185.2 min, total 188.0 min
+[2026-11-20 16:46:11] === DONE  S1 tier0: real agents in 185 min
+[2026-11-20 16:46:16]     report: reports/generated/cluster_one_mac_run1_tables.md
+[2026-11-20 16:46:16] === START S1 tier0: replay
+[cluster-one_mac-run1-S1-replay-tier0] starting the stack (50 sessions to replay, 0 already done)
+  starting model server w0 (http://127.0.0.1:8101); loading the model takes ~10-30 s
+  model server w0 ready in 2 s
+  starting model server w1 (http://127.0.0.1:8102); loading the model takes ~10-30 s
+  model server w1 ready in 0 s
+  gateway w0 ready (passthrough) at http://127.0.0.1:8201
+  gateway w1 ready (passthrough) at http://127.0.0.1:8202
+  llm-router ready (roundrobin) at http://127.0.0.1:8300
+[cluster-one_mac-run1-S1-replay-tier0] stack ready; replaying. A 'still running' line prints every minute.
+[cluster-one_mac-run1-S1-replay-tier0] still running (1 min): 0/50 done | w0: 4 requests, 1 in flight, 2 slots; w1: 4 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (2 min): 0/50 done | w0: 7 requests, 0 in flight, 2 slots; w1: 6 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (3 min): 0/50 done | w0: 9 requests, 1 in flight, 2 slots; w1: 9 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (4 min): 1/50 done | w0: 12 requests, 0 in flight, 2 slots; w1: 11 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (5 min): 1/50 done | w0: 15 requests, 0 in flight, 2 slots; w1: 14 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (6 min): 1/50 done | w0: 17 requests, 1 in flight, 2 slots; w1: 17 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (7 min): 2/50 done | w0: 20 requests, 0 in flight, 2 slots; w1: 19 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (8 min): 3/50 done | w0: 23 requests, 1 in flight, 2 slots; w1: 23 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (9 min): 3/50 done | w0: 27 requests, 0 in flight, 2 slots; w1: 26 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (10 min): 4/50 done | w0: 30 requests, 0 in flight, 2 slots; w1: 29 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (11 min): 4/50 done | w0: 33 requests, 0 in flight, 2 slots; w1: 32 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (12 min): 4/50 done | w0: 35 requests, 1 in flight, 2 slots; w1: 35 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (13 min): 5/50 done | w0: 39 requests, 0 in flight, 2 slots; w1: 38 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (14 min): 5/50 done | w0: 41 requests, 1 in flight, 2 slots; w1: 41 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (15 min): 5/50 done | w0: 43 requests, 0 in flight, 2 slots; w1: 42 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (16 min): 5/50 done | w0: 44 requests, 1 in flight, 2 slots; w1: 44 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (17 min): 6/50 done | w0: 47 requests, 1 in flight, 2 slots; w1: 47 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (18 min): 6/50 done | w0: 51 requests, 0 in flight, 2 slots; w1: 50 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (19 min): 6/50 done | w0: 53 requests, 1 in flight, 2 slots; w1: 53 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (20 min): 7/50 done | w0: 56 requests, 0 in flight, 2 slots; w1: 55 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (21 min): 8/50 done | w0: 59 requests, 0 in flight, 2 slots; w1: 58 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (22 min): 8/50 done | w0: 64 requests, 0 in flight, 2 slots; w1: 63 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (23 min): 8/50 done | w0: 67 requests, 1 in flight, 2 slots; w1: 67 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (24 min): 9/50 done | w0: 69 requests, 0 in flight, 2 slots; w1: 68 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (25 min): 9/50 done | w0: 71 requests, 0 in flight, 2 slots; w1: 70 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (26 min): 9/50 done | w0: 73 requests, 1 in flight, 2 slots; w1: 73 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (27 min): 9/50 done | w0: 76 requests, 0 in flight, 2 slots; w1: 75 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (28 min): 10/50 done | w0: 78 requests, 1 in flight, 2 slots; w1: 77 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (29 min): 10/50 done | w0: 81 requests, 1 in flight, 2 slots; w1: 80 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (30 min): 10/50 done | w0: 85 requests, 1 in flight, 2 slots; w1: 84 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (31 min): 10/50 done | w0: 88 requests, 1 in flight, 2 slots; w1: 88 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (32 min): 11/50 done | w0: 90 requests, 1 in flight, 2 slots; w1: 90 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (33 min): 11/50 done | w0: 92 requests, 1 in flight, 2 slots; w1: 92 requests, 0 in flight, 2 slots
+[replay S1 tier0] 12/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (34 min): 12/50 done | w0: 94 requests, 2 in flight, 2 slots; w1: 94 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (35 min): 12/50 done | w0: 98 requests, 2 in flight, 2 slots; w1: 98 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (36 min): 12/50 done | w0: 103 requests, 2 in flight, 2 slots; w1: 103 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (37 min): 12/50 done | w0: 107 requests, 2 in flight, 2 slots; w1: 106 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (38 min): 12/50 done | w0: 110 requests, 2 in flight, 2 slots; w1: 110 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (39 min): 12/50 done | w0: 113 requests, 2 in flight, 2 slots; w1: 113 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (40 min): 12/50 done | w0: 116 requests, 2 in flight, 2 slots; w1: 116 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (41 min): 12/50 done | w0: 118 requests, 2 in flight, 2 slots; w1: 118 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (42 min): 12/50 done | w0: 120 requests, 3 in flight, 2 slots; w1: 121 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (43 min): 12/50 done | w0: 121 requests, 3 in flight, 2 slots; w1: 122 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (44 min): 14/50 done | w0: 124 requests, 1 in flight, 2 slots; w1: 124 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (45 min): 15/50 done | w0: 127 requests, 0 in flight, 2 slots; w1: 126 requests, 1 in flight, 2 slots
+[replay S1 tier0] 16/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (46 min): 16/50 done | w0: 128 requests, 2 in flight, 2 slots; w1: 127 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (47 min): 16/50 done | w0: 132 requests, 2 in flight, 2 slots; w1: 131 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (48 min): 16/50 done | w0: 137 requests, 1 in flight, 2 slots; w1: 135 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (49 min): 16/50 done | w0: 141 requests, 1 in flight, 2 slots; w1: 139 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (50 min): 16/50 done | w0: 145 requests, 1 in flight, 2 slots; w1: 143 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (51 min): 16/50 done | w0: 148 requests, 1 in flight, 2 slots; w1: 146 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (52 min): 16/50 done | w0: 150 requests, 2 in flight, 2 slots; w1: 150 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (53 min): 16/50 done | w0: 152 requests, 3 in flight, 2 slots; w1: 153 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (54 min): 16/50 done | w0: 154 requests, 3 in flight, 2 slots; w1: 155 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (55 min): 16/50 done | w0: 155 requests, 3 in flight, 2 slots; w1: 157 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (56 min): 16/50 done | w0: 158 requests, 2 in flight, 2 slots; w1: 158 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (57 min): 18/50 done | w0: 161 requests, 1 in flight, 2 slots; w1: 161 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (58 min): 18/50 done | w0: 162 requests, 1 in flight, 2 slots; w1: 162 requests, 1 in flight, 2 slots
+[replay S1 tier0] 20/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (59 min): 20/50 done | w0: 164 requests, 0 in flight, 2 slots; w1: 163 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (60 min): 20/50 done | w0: 168 requests, 1 in flight, 2 slots; w1: 165 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (61 min): 20/50 done | w0: 171 requests, 1 in flight, 2 slots; w1: 169 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (62 min): 20/50 done | w0: 175 requests, 1 in flight, 2 slots; w1: 174 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (63 min): 20/50 done | w0: 178 requests, 1 in flight, 2 slots; w1: 178 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (64 min): 20/50 done | w0: 182 requests, 0 in flight, 2 slots; w1: 180 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (65 min): 20/50 done | w0: 185 requests, 1 in flight, 2 slots; w1: 183 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (66 min): 20/50 done | w0: 187 requests, 2 in flight, 2 slots; w1: 187 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (67 min): 21/50 done | w0: 189 requests, 1 in flight, 2 slots; w1: 189 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (68 min): 22/50 done | w0: 192 requests, 1 in flight, 2 slots; w1: 191 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (69 min): 22/50 done | w0: 193 requests, 1 in flight, 2 slots; w1: 192 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (70 min): 23/50 done | w0: 194 requests, 1 in flight, 2 slots; w1: 194 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (71 min): 23/50 done | w0: 196 requests, 0 in flight, 2 slots; w1: 195 requests, 0 in flight, 2 slots
+[replay S1 tier0] 24/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (72 min): 24/50 done | w0: 197 requests, 2 in flight, 2 slots; w1: 197 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (73 min): 24/50 done | w0: 200 requests, 3 in flight, 2 slots; w1: 202 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (74 min): 24/50 done | w0: 204 requests, 3 in flight, 2 slots; w1: 205 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (75 min): 24/50 done | w0: 208 requests, 2 in flight, 2 slots; w1: 208 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (76 min): 24/50 done | w0: 212 requests, 2 in flight, 2 slots; w1: 211 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (77 min): 24/50 done | w0: 215 requests, 2 in flight, 2 slots; w1: 215 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (78 min): 24/50 done | w0: 217 requests, 2 in flight, 2 slots; w1: 218 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (79 min): 24/50 done | w0: 221 requests, 2 in flight, 2 slots; w1: 221 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (80 min): 24/50 done | w0: 224 requests, 1 in flight, 2 slots; w1: 222 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (81 min): 25/50 done | w0: 227 requests, 0 in flight, 2 slots; w1: 224 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (82 min): 27/50 done | w0: 228 requests, 0 in flight, 2 slots; w1: 227 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (83 min): 27/50 done | w0: 228 requests, 1 in flight, 2 slots; w1: 228 requests, 0 in flight, 2 slots
+[replay S1 tier0] 28/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (84 min): 28/50 done | w0: 231 requests, 0 in flight, 2 slots; w1: 229 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (85 min): 28/50 done | w0: 232 requests, 1 in flight, 2 slots; w1: 232 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (86 min): 28/50 done | w0: 235 requests, 0 in flight, 2 slots; w1: 235 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (87 min): 28/50 done | w0: 236 requests, 2 in flight, 2 slots; w1: 237 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (88 min): 29/50 done | w0: 240 requests, 0 in flight, 2 slots; w1: 239 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (89 min): 29/50 done | w0: 241 requests, 0 in flight, 2 slots; w1: 240 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (90 min): 29/50 done | w0: 242 requests, 0 in flight, 2 slots; w1: 241 requests, 1 in flight, 2 slots
+[replay S1 tier0] 30/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (91 min): 30/50 done | w0: 243 requests, 4 in flight, 2 slots; w1: 242 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (92 min): 30/50 done | w0: 247 requests, 5 in flight, 2 slots; w1: 248 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (93 min): 30/50 done | w0: 251 requests, 4 in flight, 2 slots; w1: 251 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (94 min): 30/50 done | w0: 254 requests, 4 in flight, 2 slots; w1: 254 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (95 min): 30/50 done | w0: 256 requests, 5 in flight, 2 slots; w1: 258 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (96 min): 30/50 done | w0: 260 requests, 5 in flight, 2 slots; w1: 261 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (97 min): 30/50 done | w0: 264 requests, 4 in flight, 2 slots; w1: 264 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (98 min): 30/50 done | w0: 268 requests, 4 in flight, 2 slots; w1: 268 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (99 min): 30/50 done | w0: 271 requests, 4 in flight, 2 slots; w1: 270 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (100 min): 30/50 done | w0: 275 requests, 4 in flight, 2 slots; w1: 274 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (101 min): 30/50 done | w0: 279 requests, 2 in flight, 2 slots; w1: 276 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (102 min): 31/50 done | w0: 281 requests, 3 in flight, 2 slots; w1: 279 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (103 min): 31/50 done | w0: 283 requests, 4 in flight, 2 slots; w1: 282 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (104 min): 31/50 done | w0: 286 requests, 4 in flight, 2 slots; w1: 285 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (105 min): 31/50 done | w0: 290 requests, 3 in flight, 2 slots; w1: 287 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (106 min): 32/50 done | w0: 294 requests, 3 in flight, 2 slots; w1: 291 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (107 min): 32/50 done | w0: 298 requests, 3 in flight, 2 slots; w1: 295 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (108 min): 32/50 done | w0: 300 requests, 3 in flight, 2 slots; w1: 297 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (109 min): 32/50 done | w0: 301 requests, 3 in flight, 2 slots; w1: 299 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (110 min): 33/50 done | w0: 302 requests, 4 in flight, 2 slots; w1: 302 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (111 min): 33/50 done | w0: 305 requests, 3 in flight, 2 slots; w1: 304 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (112 min): 33/50 done | w0: 308 requests, 2 in flight, 2 slots; w1: 305 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (113 min): 34/50 done | w0: 310 requests, 2 in flight, 2 slots; w1: 308 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (114 min): 34/50 done | w0: 311 requests, 3 in flight, 2 slots; w1: 310 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (115 min): 34/50 done | w0: 313 requests, 3 in flight, 2 slots; w1: 312 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (116 min): 34/50 done | w0: 313 requests, 3 in flight, 2 slots; w1: 312 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (117 min): 35/50 done | w0: 314 requests, 3 in flight, 2 slots; w1: 314 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (118 min): 38/50 done | w0: 317 requests, 2 in flight, 2 slots; w1: 318 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (119 min): 39/50 done | w0: 321 requests, 0 in flight, 2 slots; w1: 320 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (120 min): 39/50 done | w0: 323 requests, 0 in flight, 2 slots; w1: 322 requests, 1 in flight, 2 slots
+[replay S1 tier0] 40/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (121 min): 40/50 done | w0: 326 requests, 1 in flight, 2 slots; w1: 324 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (122 min): 40/50 done | w0: 329 requests, 1 in flight, 2 slots; w1: 327 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (123 min): 40/50 done | w0: 332 requests, 1 in flight, 2 slots; w1: 330 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (124 min): 40/50 done | w0: 335 requests, 1 in flight, 2 slots; w1: 333 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (125 min): 40/50 done | w0: 336 requests, 2 in flight, 2 slots; w1: 336 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (126 min): 40/50 done | w0: 338 requests, 2 in flight, 2 slots; w1: 338 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (127 min): 40/50 done | w0: 340 requests, 2 in flight, 2 slots; w1: 340 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (128 min): 40/50 done | w0: 342 requests, 2 in flight, 2 slots; w1: 341 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (129 min): 40/50 done | w0: 344 requests, 2 in flight, 2 slots; w1: 343 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (130 min): 40/50 done | w0: 346 requests, 2 in flight, 2 slots; w1: 345 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (131 min): 41/50 done | w0: 346 requests, 2 in flight, 2 slots; w1: 347 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (132 min): 41/50 done | w0: 347 requests, 2 in flight, 2 slots; w1: 348 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (133 min): 41/50 done | w0: 349 requests, 2 in flight, 2 slots; w1: 350 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (134 min): 41/50 done | w0: 351 requests, 1 in flight, 2 slots; w1: 350 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (135 min): 41/50 done | w0: 352 requests, 1 in flight, 2 slots; w1: 351 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (136 min): 41/50 done | w0: 352 requests, 2 in flight, 2 slots; w1: 353 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (137 min): 41/50 done | w0: 353 requests, 2 in flight, 2 slots; w1: 354 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (138 min): 41/50 done | w0: 353 requests, 2 in flight, 2 slots; w1: 354 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (139 min): 41/50 done | w0: 354 requests, 2 in flight, 2 slots; w1: 355 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (140 min): 41/50 done | w0: 355 requests, 2 in flight, 2 slots; w1: 356 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (141 min): 43/50 done | w0: 357 requests, 0 in flight, 2 slots; w1: 356 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (142 min): 43/50 done | w0: 357 requests, 1 in flight, 2 slots; w1: 357 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (143 min): 43/50 done | w0: 358 requests, 0 in flight, 2 slots; w1: 357 requests, 1 in flight, 2 slots
+[replay S1 tier0] 44/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (144 min): 44/50 done | w0: 359 requests, 3 in flight, 2 slots; w1: 360 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (145 min): 44/50 done | w0: 362 requests, 3 in flight, 2 slots; w1: 363 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (146 min): 44/50 done | w0: 364 requests, 2 in flight, 2 slots; w1: 364 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (147 min): 44/50 done | w0: 368 requests, 2 in flight, 2 slots; w1: 367 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (148 min): 44/50 done | w0: 370 requests, 2 in flight, 2 slots; w1: 369 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (149 min): 44/50 done | w0: 374 requests, 1 in flight, 2 slots; w1: 371 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (150 min): 44/50 done | w0: 375 requests, 1 in flight, 2 slots; w1: 373 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (151 min): 44/50 done | w0: 377 requests, 1 in flight, 2 slots; w1: 375 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (152 min): 44/50 done | w0: 378 requests, 1 in flight, 2 slots; w1: 376 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (153 min): 44/50 done | w0: 379 requests, 1 in flight, 2 slots; w1: 377 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (154 min): 44/50 done | w0: 379 requests, 2 in flight, 2 slots; w1: 379 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (155 min): 44/50 done | w0: 380 requests, 2 in flight, 2 slots; w1: 380 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (156 min): 44/50 done | w0: 381 requests, 3 in flight, 2 slots; w1: 382 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (157 min): 44/50 done | w0: 383 requests, 3 in flight, 2 slots; w1: 384 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (158 min): 44/50 done | w0: 383 requests, 3 in flight, 2 slots; w1: 384 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (159 min): 44/50 done | w0: 385 requests, 2 in flight, 2 slots; w1: 385 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (160 min): 44/50 done | w0: 385 requests, 2 in flight, 2 slots; w1: 385 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (161 min): 44/50 done | w0: 386 requests, 3 in flight, 2 slots; w1: 387 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (162 min): 44/50 done | w0: 387 requests, 2 in flight, 2 slots; w1: 387 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (163 min): 45/50 done | w0: 390 requests, 0 in flight, 2 slots; w1: 387 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (164 min): 45/50 done | w0: 390 requests, 1 in flight, 2 slots; w1: 388 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (165 min): 45/50 done | w0: 391 requests, 1 in flight, 2 slots; w1: 389 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (166 min): 45/50 done | w0: 391 requests, 1 in flight, 2 slots; w1: 389 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (167 min): 46/50 done | w0: 392 requests, 0 in flight, 2 slots; w1: 390 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (168 min): 47/50 done | w0: 392 requests, 1 in flight, 2 slots; w1: 392 requests, 0 in flight, 2 slots
+[replay S1 tier0] 48/50 sessions
+[cluster-one_mac-run1-S1-replay-tier0] still running (169 min): 48/50 done | w0: 394 requests, 1 in flight, 2 slots; w1: 394 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (170 min): 48/50 done | w0: 398 requests, 1 in flight, 2 slots; w1: 397 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (171 min): 48/50 done | w0: 400 requests, 1 in flight, 2 slots; w1: 399 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (172 min): 48/50 done | w0: 402 requests, 1 in flight, 2 slots; w1: 401 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (173 min): 48/50 done | w0: 403 requests, 1 in flight, 2 slots; w1: 402 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (174 min): 48/50 done | w0: 405 requests, 0 in flight, 2 slots; w1: 403 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (175 min): 48/50 done | w0: 405 requests, 1 in flight, 2 slots; w1: 405 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (176 min): 48/50 done | w0: 406 requests, 1 in flight, 2 slots; w1: 406 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (177 min): 48/50 done | w0: 407 requests, 1 in flight, 2 slots; w1: 406 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (178 min): 49/50 done | w0: 409 requests, 0 in flight, 2 slots; w1: 408 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (179 min): 49/50 done | w0: 409 requests, 0 in flight, 2 slots; w1: 408 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier0] still running (180 min): 49/50 done | w0: 409 requests, 1 in flight, 2 slots; w1: 409 requests, 0 in flight, 2 slots
+[replay S1 tier0] 50/50 sessions
+{"setup": "S1", "episodes": 50, "wall_s": 10863.735975980759, "missing_traces": []}
+[2026-11-20 19:47:23] === DONE  S1 tier0: replay in 181 min
+[2026-11-20 19:47:28]     report: reports/generated/cluster_one_mac_run1_tables.md
+[2026-11-20 19:47:28] === START S1 tier1: real agents
+[cluster-one_mac-run1-S1-e2e-tier1] starting the stack: 2 model servers, 2 gateways, llm-router (50 episodes, 0 already done)
+  starting model server w0 (http://127.0.0.1:8101); loading the model takes ~10-30 s
+  model server w0 ready in 2 s
+  starting model server w1 (http://127.0.0.1:8102); loading the model takes ~10-30 s
+  model server w1 ready in 0 s
+  gateway w0 ready (passthrough) at http://127.0.0.1:8201
+  gateway w1 ready (passthrough) at http://127.0.0.1:8202
+  llm-router ready (roundrobin) at http://127.0.0.1:8300
+[cluster-one_mac-run1-S1-e2e-tier1] stack ready; agents starting. A progress line prints when each episode starts and finishes, and a 'still running' line every minute.
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0050 (repeated_prefix, cache_invalidation_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (1 min): 0/50 done | w0: 3 requests, 1 in flight, 2 slots; w1: 3 requests, 0 in flight, 2 slots | last agent activity: ep0050 tool search_code (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (2 min): 0/50 done | w0: 6 requests, 0 in flight, 2 slots; w1: 5 requests, 1 in flight, 2 slots | last agent activity: ep0050 tool run_tests (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 1/50 ep0050 repeated_prefix completed/verified success=True calls=14 helpers=2 t=145s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0055 (repeated_prefix, incorrect_status_codes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (3 min): 1/50 done | w0: 9 requests, 0 in flight, 2 slots; w1: 8 requests, 1 in flight, 2 slots | last agent activity: ep0055 tool read_file (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (4 min): 1/50 done | w0: 12 requests, 1 in flight, 2 slots; w1: 12 requests, 0 in flight, 2 slots | last agent activity: ep0055 tool read_file (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (5 min): 1/50 done | w0: 14 requests, 1 in flight, 2 slots; w1: 14 requests, 0 in flight, 2 slots | last agent activity: ep0055 tool run_tests (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (6 min): 1/50 done | w0: 15 requests, 1 in flight, 2 slots; w1: 15 requests, 0 in flight, 2 slots | last agent activity: ep0055 tool run_tests (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 2/50 ep0055 repeated_prefix failed/context_exhausted success=True calls=18 helpers=1 t=250s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0060 (repeated_prefix, duplicate_request_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (7 min): 2/50 done | w0: 17 requests, 1 in flight, 2 slots; w1: 17 requests, 0 in flight, 2 slots | last agent activity: ep0060 tool read_file (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (8 min): 2/50 done | w0: 20 requests, 1 in flight, 2 slots; w1: 20 requests, 0 in flight, 2 slots | last agent activity: ep0060 tool read_file (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (9 min): 2/50 done | w0: 23 requests, 0 in flight, 2 slots; w1: 22 requests, 1 in flight, 2 slots | last agent activity: ep0060 tool read_file (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 3/50 ep0060 repeated_prefix failed/context_exhausted success=False calls=16 helpers=1 t=200s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0065 (repeated_prefix, error_propagation_bugs)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (10 min): 3/50 done | w0: 24 requests, 1 in flight, 2 slots; w1: 24 requests, 0 in flight, 2 slots | last agent activity: ep0065 session_start explorer (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (11 min): 3/50 done | w0: 29 requests, 0 in flight, 2 slots; w1: 28 requests, 1 in flight, 2 slots | last agent activity: ep0065 tool read_file (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (12 min): 3/50 done | w0: 31 requests, 1 in flight, 2 slots; w1: 31 requests, 0 in flight, 2 slots | last agent activity: ep0065 tool read_file (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 4/50 ep0065 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=181s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0070 (repeated_prefix, resource_cleanup_issues)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (13 min): 4/50 done | w0: 34 requests, 0 in flight, 2 slots; w1: 33 requests, 1 in flight, 2 slots | last agent activity: ep0070 session_start explorer (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (14 min): 4/50 done | w0: 39 requests, 0 in flight, 2 slots; w1: 38 requests, 1 in flight, 2 slots | last agent activity: ep0070 tool read_file (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (15 min): 4/50 done | w0: 42 requests, 0 in flight, 2 slots; w1: 41 requests, 1 in flight, 2 slots | last agent activity: ep0070 tool run_tests (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 5/50 ep0070 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=149s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0075 (repeated_prefix, exception_handling_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (16 min): 5/50 done | w0: 45 requests, 1 in flight, 2 slots; w1: 45 requests, 0 in flight, 2 slots | last agent activity: ep0075 completed explorer (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (17 min): 5/50 done | w0: 48 requests, 0 in flight, 2 slots; w1: 47 requests, 1 in flight, 2 slots | last agent activity: ep0075 tool read_file (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (18 min): 5/50 done | w0: 49 requests, 1 in flight, 2 slots; w1: 49 requests, 0 in flight, 2 slots | last agent activity: ep0075 tool apply_patch (19s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 6/50 ep0075 repeated_prefix failed/context_exhausted success=False calls=15 helpers=1 t=199s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0080 (repeated_prefix, database_query_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (19 min): 6/50 done | w0: 51 requests, 1 in flight, 2 slots; w1: 51 requests, 0 in flight, 2 slots | last agent activity: ep0080 tool search_code (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (20 min): 6/50 done | w0: 57 requests, 0 in flight, 2 slots; w1: 56 requests, 1 in flight, 2 slots | last agent activity: ep0080 tool search_code (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 7/50 ep0080 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=112s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0085 (repeated_prefix, datetime_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (21 min): 7/50 done | w0: 61 requests, 1 in flight, 2 slots; w1: 61 requests, 0 in flight, 2 slots | last agent activity: ep0085 tool search_code (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (22 min): 7/50 done | w0: 64 requests, 0 in flight, 2 slots; w1: 63 requests, 1 in flight, 2 slots | last agent activity: ep0085 tool apply_patch (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (23 min): 7/50 done | w0: 65 requests, 0 in flight, 2 slots; w1: 64 requests, 1 in flight, 2 slots | last agent activity: ep0085 tool apply_patch (22s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (24 min): 7/50 done | w0: 66 requests, 1 in flight, 2 slots; w1: 66 requests, 0 in flight, 2 slots | last agent activity: ep0085 tool apply_patch (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 8/50 ep0085 repeated_prefix failed/context_exhausted success=False calls=14 helpers=1 t=261s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0090 (repeated_prefix, sorting_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (25 min): 8/50 done | w0: 67 requests, 1 in flight, 2 slots; w1: 67 requests, 0 in flight, 2 slots | last agent activity: ep0090 session_start explorer (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (26 min): 8/50 done | w0: 72 requests, 0 in flight, 2 slots; w1: 71 requests, 1 in flight, 2 slots | last agent activity: ep0090 tool read_file (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (27 min): 8/50 done | w0: 75 requests, 0 in flight, 2 slots; w1: 74 requests, 1 in flight, 2 slots | last agent activity: ep0090 tool read_file (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 9/50 ep0090 repeated_prefix failed/step_budget_exhausted success=True calls=19 helpers=1 t=174s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0095 (repeated_prefix, null_empty_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (28 min): 9/50 done | w0: 77 requests, 1 in flight, 2 slots; w1: 77 requests, 0 in flight, 2 slots | last agent activity: ep0095 tool search_code (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (29 min): 9/50 done | w0: 81 requests, 0 in flight, 2 slots; w1: 80 requests, 1 in flight, 2 slots | last agent activity: ep0095 tool read_file (18s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (30 min): 9/50 done | w0: 84 requests, 0 in flight, 2 slots; w1: 83 requests, 1 in flight, 2 slots | last agent activity: ep0095 tool read_file (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (31 min): 9/50 done | w0: 85 requests, 1 in flight, 2 slots; w1: 85 requests, 0 in flight, 2 slots | last agent activity: ep0095 tool run_tests (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 10/50 ep0095 repeated_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=207s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0051 (concurrent, incorrect_fallback)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0056 (concurrent, boundary_conditions)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (32 min): 10/50 done | w0: 88 requests, 1 in flight, 2 slots; w1: 88 requests, 1 in flight, 2 slots | last agent activity: ep0051 completed explorer (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (33 min): 10/50 done | w0: 92 requests, 1 in flight, 2 slots; w1: 92 requests, 1 in flight, 2 slots | last agent activity: ep0056 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (34 min): 10/50 done | w0: 96 requests, 1 in flight, 2 slots; w1: 95 requests, 1 in flight, 2 slots | last agent activity: ep0056 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 11/50 ep0051 concurrent completed/verified success=True calls=9 helpers=2 t=164s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (35 min): 11/50 done | w0: 97 requests, 1 in flight, 2 slots; w1: 97 requests, 0 in flight, 2 slots | last agent activity: ep0056 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (36 min): 11/50 done | w0: 98 requests, 1 in flight, 2 slots; w1: 98 requests, 0 in flight, 2 slots | last agent activity: ep0056 tool_wait (42s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 12/50 ep0056 concurrent failed/context_exhausted success=False calls=16 helpers=1 t=288s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0061 (concurrent, resource_cleanup_issues)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0066 (concurrent, filtering_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0071 (concurrent, cache_invalidation_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0076 (concurrent, type_conversion_bugs)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (37 min): 12/50 done | w0: 101 requests, 2 in flight, 2 slots; w1: 100 requests, 2 in flight, 2 slots | last agent activity: ep0061 tool search_code (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (38 min): 12/50 done | w0: 106 requests, 2 in flight, 2 slots; w1: 105 requests, 2 in flight, 2 slots | last agent activity: ep0066 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (39 min): 12/50 done | w0: 110 requests, 3 in flight, 2 slots; w1: 111 requests, 1 in flight, 2 slots | last agent activity: ep0066 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (40 min): 12/50 done | w0: 115 requests, 2 in flight, 2 slots; w1: 115 requests, 1 in flight, 2 slots | last agent activity: ep0066 model call (step 4, lead) (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (41 min): 12/50 done | w0: 119 requests, 2 in flight, 2 slots; w1: 118 requests, 2 in flight, 2 slots | last agent activity: ep0061 tool_wait (18s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 13/50 ep0066 concurrent completed/verified success=True calls=10 helpers=2 t=300s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (42 min): 13/50 done | w0: 120 requests, 2 in flight, 2 slots; w1: 121 requests, 1 in flight, 2 slots | last agent activity: ep0061 tool_wait (33s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 14/50 ep0076 concurrent completed/verified success=True calls=14 helpers=2 t=371s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (43 min): 14/50 done | w0: 125 requests, 1 in flight, 2 slots; w1: 124 requests, 1 in flight, 2 slots | last agent activity: ep0071 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (44 min): 14/50 done | w0: 127 requests, 1 in flight, 2 slots; w1: 126 requests, 1 in flight, 2 slots | last agent activity: ep0061 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (45 min): 14/50 done | w0: 128 requests, 1 in flight, 2 slots; w1: 127 requests, 1 in flight, 2 slots | last agent activity: ep0071 tool_wait (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 15/50 ep0061 concurrent failed/step_budget_exhausted success=False calls=19 helpers=1 t=552s
+[cluster-one_mac-run1-S1-e2e-tier1] 16/50 ep0071 concurrent failed/step_budget_exhausted success=False calls=19 helpers=1 t=572s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0081 (concurrent, incorrect_aggregation)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0086 (concurrent, datetime_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0091 (concurrent, concurrency_defects)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0096 (concurrent, authentication_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (46 min): 16/50 done | w0: 130 requests, 2 in flight, 2 slots; w1: 129 requests, 2 in flight, 2 slots | last agent activity: ep0096 session_start explorer (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (47 min): 16/50 done | w0: 133 requests, 2 in flight, 2 slots; w1: 133 requests, 2 in flight, 2 slots | last agent activity: ep0081 completed explorer (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (48 min): 16/50 done | w0: 137 requests, 1 in flight, 2 slots; w1: 135 requests, 3 in flight, 2 slots | last agent activity: ep0081 tool_wait (16s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (49 min): 16/50 done | w0: 141 requests, 1 in flight, 2 slots; w1: 139 requests, 3 in flight, 2 slots | last agent activity: ep0086 tool_wait (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 17/50 ep0081 concurrent completed/verified success=True calls=8 helpers=2 t=230s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (50 min): 17/50 done | w0: 144 requests, 1 in flight, 2 slots; w1: 143 requests, 2 in flight, 2 slots | last agent activity: ep0091 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (51 min): 17/50 done | w0: 148 requests, 2 in flight, 2 slots; w1: 148 requests, 1 in flight, 2 slots | last agent activity: ep0096 tool_wait (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 18/50 ep0086 concurrent completed/verified success=True calls=10 helpers=2 t=336s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (52 min): 18/50 done | w0: 151 requests, 1 in flight, 2 slots; w1: 151 requests, 0 in flight, 2 slots | last agent activity: ep0096 tool_wait_start lead (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 19/50 ep0096 concurrent completed/verified success=True calls=14 helpers=2 t=405s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (53 min): 19/50 done | w0: 154 requests, 1 in flight, 2 slots; w1: 154 requests, 0 in flight, 2 slots | last agent activity: ep0091 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 20/50 ep0091 concurrent failed/step_budget_exhausted success=True calls=20 helpers=2 t=476s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0052 (tool_wait, error_propagation_bugs)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0057 (tool_wait, duplicate_request_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0062 (tool_wait, filtering_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0067 (tool_wait, database_query_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (54 min): 20/50 done | w0: 156 requests, 2 in flight, 2 slots; w1: 155 requests, 2 in flight, 2 slots | last agent activity: ep0067 session_start explorer (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (55 min): 20/50 done | w0: 161 requests, 2 in flight, 2 slots; w1: 160 requests, 2 in flight, 2 slots | last agent activity: ep0062 tool read_file (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (56 min): 20/50 done | w0: 164 requests, 2 in flight, 2 slots; w1: 164 requests, 1 in flight, 2 slots | last agent activity: ep0067 tool_wait_start lead (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (57 min): 20/50 done | w0: 170 requests, 0 in flight, 2 slots; w1: 168 requests, 2 in flight, 2 slots | last agent activity: ep0067 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (58 min): 20/50 done | w0: 173 requests, 2 in flight, 2 slots; w1: 173 requests, 2 in flight, 2 slots | last agent activity: ep0067 tool_wait (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (59 min): 20/50 done | w0: 177 requests, 2 in flight, 2 slots; w1: 178 requests, 0 in flight, 2 slots | last agent activity: ep0067 tool run_tests (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 21/50 ep0067 tool_wait completed/verified success=True calls=13 helpers=2 t=326s
+[cluster-one_mac-run1-S1-e2e-tier1] 22/50 ep0057 tool_wait completed/verified success=True calls=12 helpers=2 t=346s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (60 min): 22/50 done | w0: 181 requests, 1 in flight, 2 slots; w1: 181 requests, 1 in flight, 2 slots | last agent activity: ep0052 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (61 min): 22/50 done | w0: 182 requests, 2 in flight, 2 slots; w1: 183 requests, 0 in flight, 2 slots | last agent activity: ep0052 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (62 min): 22/50 done | w0: 185 requests, 0 in flight, 2 slots; w1: 183 requests, 1 in flight, 2 slots | last agent activity: ep0052 failed lead (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 23/50 ep0052 tool_wait failed/step_budget_exhausted success=False calls=19 helpers=1 t=503s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (63 min): 23/50 done | w0: 185 requests, 1 in flight, 2 slots; w1: 185 requests, 0 in flight, 2 slots | last agent activity: ep0062 tool <parse_error> (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (64 min): 23/50 done | w0: 186 requests, 0 in flight, 2 slots; w1: 185 requests, 1 in flight, 2 slots | last agent activity: ep0062 tool <parse_error> (20s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (65 min): 23/50 done | w0: 186 requests, 1 in flight, 2 slots; w1: 186 requests, 0 in flight, 2 slots | last agent activity: ep0062 tool <parse_error> (33s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 24/50 ep0062 tool_wait failed/context_exhausted success=False calls=18 helpers=1 t=695s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0072 (tool_wait, null_empty_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0077 (tool_wait, serialization_bugs)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0082 (tool_wait, sorting_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0087 (tool_wait, authentication_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (66 min): 24/50 done | w0: 189 requests, 2 in flight, 2 slots; w1: 188 requests, 2 in flight, 2 slots | last agent activity: ep0077 tool search_code (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (67 min): 24/50 done | w0: 194 requests, 2 in flight, 2 slots; w1: 193 requests, 2 in flight, 2 slots | last agent activity: ep0082 completed explorer (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (68 min): 24/50 done | w0: 199 requests, 1 in flight, 2 slots; w1: 197 requests, 3 in flight, 2 slots | last agent activity: ep0077 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (69 min): 24/50 done | w0: 202 requests, 1 in flight, 2 slots; w1: 201 requests, 2 in flight, 2 slots | last agent activity: ep0087 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (70 min): 24/50 done | w0: 204 requests, 2 in flight, 2 slots; w1: 204 requests, 2 in flight, 2 slots | last agent activity: ep0077 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (71 min): 24/50 done | w0: 206 requests, 1 in flight, 2 slots; w1: 206 requests, 1 in flight, 2 slots | last agent activity: ep0087 tool_wait_start lead (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (72 min): 24/50 done | w0: 207 requests, 3 in flight, 2 slots; w1: 208 requests, 1 in flight, 2 slots | last agent activity: ep0087 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (73 min): 24/50 done | w0: 209 requests, 2 in flight, 2 slots; w1: 209 requests, 2 in flight, 2 slots | last agent activity: ep0072 tool_wait (32s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (74 min): 24/50 done | w0: 211 requests, 2 in flight, 2 slots; w1: 211 requests, 2 in flight, 2 slots | last agent activity: ep0077 tool_wait (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (75 min): 24/50 done | w0: 214 requests, 1 in flight, 2 slots; w1: 214 requests, 1 in flight, 2 slots | last agent activity: ep0082 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 25/50 ep0072 tool_wait failed/context_exhausted success=False calls=16 helpers=1 t=587s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (76 min): 25/50 done | w0: 215 requests, 1 in flight, 2 slots; w1: 214 requests, 2 in flight, 2 slots | last agent activity: ep0087 tool_wait (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (77 min): 25/50 done | w0: 216 requests, 2 in flight, 2 slots; w1: 217 requests, 1 in flight, 2 slots | last agent activity: ep0082 tool_wait (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (78 min): 25/50 done | w0: 218 requests, 2 in flight, 2 slots; w1: 218 requests, 1 in flight, 2 slots | last agent activity: ep0082 tool_wait (25s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (79 min): 25/50 done | w0: 220 requests, 2 in flight, 2 slots; w1: 220 requests, 1 in flight, 2 slots | last agent activity: ep0087 tool_wait (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 26/50 ep0082 tool_wait completed/verified success=True calls=20 helpers=2 t=848s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (80 min): 26/50 done | w0: 222 requests, 1 in flight, 2 slots; w1: 222 requests, 1 in flight, 2 slots | last agent activity: ep0077 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 27/50 ep0087 tool_wait failed/step_budget_exhausted success=False calls=19 helpers=1 t=886s
+[cluster-one_mac-run1-S1-e2e-tier1] 28/50 ep0077 tool_wait failed/step_budget_exhausted success=False calls=19 helpers=1 t=927s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0092 (tool_wait, permission_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0097 (tool_wait, incorrect_aggregation)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (81 min): 28/50 done | w0: 224 requests, 1 in flight, 2 slots; w1: 223 requests, 1 in flight, 2 slots | last agent activity: ep0097 session_start explorer (11s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (82 min): 28/50 done | w0: 228 requests, 1 in flight, 2 slots; w1: 228 requests, 1 in flight, 2 slots | last agent activity: ep0092 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (83 min): 28/50 done | w0: 233 requests, 0 in flight, 2 slots; w1: 232 requests, 0 in flight, 2 slots | last agent activity: ep0097 tool_wait_start lead (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (84 min): 28/50 done | w0: 236 requests, 0 in flight, 2 slots; w1: 235 requests, 0 in flight, 2 slots | last agent activity: ep0097 tool_wait_start lead (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (85 min): 28/50 done | w0: 237 requests, 1 in flight, 2 slots; w1: 236 requests, 1 in flight, 2 slots | last agent activity: ep0092 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 29/50 ep0097 tool_wait failed/context_exhausted success=False calls=13 helpers=1 t=293s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (86 min): 29/50 done | w0: 238 requests, 0 in flight, 2 slots; w1: 238 requests, 0 in flight, 2 slots | last agent activity: ep0092 tool_wait (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (87 min): 29/50 done | w0: 240 requests, 0 in flight, 2 slots; w1: 239 requests, 0 in flight, 2 slots | last agent activity: ep0092 failed lead (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 30/50 ep0092 tool_wait failed/step_budget_exhausted success=False calls=19 helpers=1 t=375s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0053 (bursty, resource_cleanup_issues)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0058 (bursty, authentication_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0063 (bursty, sorting_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0068 (bursty, exception_handling_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0073 (bursty, incorrect_status_codes)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0078 (bursty, incorrect_pagination)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0083 (bursty, state_transition_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0088 (bursty, permission_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (88 min): 30/50 done | w0: 242 requests, 4 in flight, 2 slots; w1: 242 requests, 4 in flight, 2 slots | last agent activity: ep0083 tool search_code (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (89 min): 30/50 done | w0: 248 requests, 4 in flight, 2 slots; w1: 247 requests, 4 in flight, 2 slots | last agent activity: ep0088 tool search_code (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (90 min): 30/50 done | w0: 252 requests, 4 in flight, 2 slots; w1: 252 requests, 4 in flight, 2 slots | last agent activity: ep0073 tool search_code (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (91 min): 30/50 done | w0: 256 requests, 4 in flight, 2 slots; w1: 256 requests, 4 in flight, 2 slots | last agent activity: ep0063 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (92 min): 30/50 done | w0: 260 requests, 4 in flight, 2 slots; w1: 260 requests, 4 in flight, 2 slots | last agent activity: ep0063 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (93 min): 30/50 done | w0: 267 requests, 4 in flight, 2 slots; w1: 267 requests, 4 in flight, 2 slots | last agent activity: ep0078 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (94 min): 30/50 done | w0: 272 requests, 3 in flight, 2 slots; w1: 270 requests, 5 in flight, 2 slots | last agent activity: ep0063 tool_wait (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (95 min): 30/50 done | w0: 274 requests, 4 in flight, 2 slots; w1: 274 requests, 4 in flight, 2 slots | last agent activity: ep0083 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (96 min): 30/50 done | w0: 276 requests, 5 in flight, 2 slots; w1: 277 requests, 3 in flight, 2 slots | last agent activity: ep0058 tool_wait (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (97 min): 30/50 done | w0: 279 requests, 5 in flight, 2 slots; w1: 281 requests, 3 in flight, 2 slots | last agent activity: ep0063 tool_wait (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (98 min): 30/50 done | w0: 283 requests, 5 in flight, 2 slots; w1: 284 requests, 3 in flight, 2 slots | last agent activity: ep0063 tool_wait (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (99 min): 30/50 done | w0: 286 requests, 4 in flight, 2 slots; w1: 286 requests, 4 in flight, 2 slots | last agent activity: ep0058 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (100 min): 30/50 done | w0: 287 requests, 5 in flight, 2 slots; w1: 288 requests, 3 in flight, 2 slots | last agent activity: ep0073 tool_wait (23s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (101 min): 30/50 done | w0: 289 requests, 5 in flight, 2 slots; w1: 290 requests, 3 in flight, 2 slots | last agent activity: ep0088 tool_wait (24s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (102 min): 30/50 done | w0: 290 requests, 5 in flight, 2 slots; w1: 292 requests, 3 in flight, 2 slots | last agent activity: ep0063 tool_wait (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (103 min): 30/50 done | w0: 292 requests, 5 in flight, 2 slots; w1: 293 requests, 3 in flight, 2 slots | last agent activity: ep0078 tool_wait (6s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (104 min): 30/50 done | w0: 294 requests, 5 in flight, 2 slots; w1: 296 requests, 3 in flight, 2 slots | last agent activity: ep0058 tool_wait (18s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (105 min): 30/50 done | w0: 297 requests, 5 in flight, 2 slots; w1: 299 requests, 3 in flight, 2 slots | last agent activity: ep0078 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (106 min): 30/50 done | w0: 299 requests, 5 in flight, 2 slots; w1: 300 requests, 3 in flight, 2 slots | last agent activity: ep0053 tool_wait (41s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (107 min): 30/50 done | w0: 300 requests, 5 in flight, 2 slots; w1: 302 requests, 3 in flight, 2 slots | last agent activity: ep0078 tool_wait (20s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 31/50 ep0063 bursty failed/step_budget_exhausted success=False calls=19 helpers=1 t=1215s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0093 (bursty, file_path_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (108 min): 31/50 done | w0: 302 requests, 6 in flight, 2 slots; w1: 306 requests, 2 in flight, 2 slots | last agent activity: ep0058 tool_wait (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 32/50 ep0058 bursty failed/step_budget_exhausted success=False calls=18 helpers=1 t=1284s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0098 (bursty, null_empty_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (109 min): 32/50 done | w0: 305 requests, 6 in flight, 2 slots; w1: 308 requests, 2 in flight, 2 slots | last agent activity: ep0093 tool search_code (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 33/50 ep0078 bursty failed/step_budget_exhausted success=False calls=18 helpers=1 t=1374s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (110 min): 33/50 done | w0: 305 requests, 6 in flight, 2 slots; w1: 309 requests, 1 in flight, 2 slots | last agent activity: ep0078 failed lead (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (111 min): 33/50 done | w0: 306 requests, 5 in flight, 2 slots; w1: 309 requests, 2 in flight, 2 slots | last agent activity: ep0083 tool_wait (52s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 34/50 ep0083 bursty failed/step_budget_exhausted success=False calls=18 helpers=1 t=1469s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (112 min): 34/50 done | w0: 308 requests, 5 in flight, 2 slots; w1: 312 requests, 1 in flight, 2 slots | last agent activity: ep0068 tool_wait (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (113 min): 34/50 done | w0: 309 requests, 5 in flight, 2 slots; w1: 312 requests, 1 in flight, 2 slots | last agent activity: ep0088 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (114 min): 34/50 done | w0: 310 requests, 4 in flight, 2 slots; w1: 312 requests, 2 in flight, 2 slots | last agent activity: ep0093 tool read_file (56s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 35/50 ep0068 bursty failed/context_exhausted success=False calls=17 helpers=1 t=1637s
+[cluster-one_mac-run1-S1-e2e-tier1] 36/50 ep0053 bursty failed/step_budget_exhausted success=False calls=18 helpers=1 t=1659s
+[cluster-one_mac-run1-S1-e2e-tier1] 37/50 ep0073 bursty failed/step_budget_exhausted success=True calls=19 helpers=1 t=1673s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (115 min): 37/50 done | w0: 313 requests, 2 in flight, 2 slots; w1: 314 requests, 1 in flight, 2 slots | last agent activity: ep0073 failed lead (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (116 min): 37/50 done | w0: 315 requests, 2 in flight, 2 slots; w1: 315 requests, 1 in flight, 2 slots | last agent activity: ep0093 tool_wait (46s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 38/50 ep0088 bursty failed/step_budget_exhausted success=False calls=19 helpers=1 t=1761s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (117 min): 38/50 done | w0: 318 requests, 1 in flight, 2 slots; w1: 317 requests, 1 in flight, 2 slots | last agent activity: ep0098 completed explorer (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (118 min): 38/50 done | w0: 319 requests, 1 in flight, 2 slots; w1: 319 requests, 1 in flight, 2 slots | last agent activity: ep0093 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (119 min): 38/50 done | w0: 322 requests, 0 in flight, 2 slots; w1: 320 requests, 2 in flight, 2 slots | last agent activity: ep0098 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (120 min): 38/50 done | w0: 323 requests, 1 in flight, 2 slots; w1: 322 requests, 1 in flight, 2 slots | last agent activity: ep0093 tool_wait (3s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (121 min): 38/50 done | w0: 323 requests, 2 in flight, 2 slots; w1: 324 requests, 0 in flight, 2 slots | last agent activity: ep0098 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (122 min): 38/50 done | w0: 325 requests, 1 in flight, 2 slots; w1: 325 requests, 1 in flight, 2 slots | last agent activity: ep0093 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 39/50 ep0098 bursty failed/context_exhausted success=False calls=15 helpers=1 t=823s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (123 min): 39/50 done | w0: 326 requests, 1 in flight, 2 slots; w1: 326 requests, 0 in flight, 2 slots | last agent activity: ep0093 tool_wait (26s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 40/50 ep0093 bursty failed/context_exhausted success=False calls=13 helpers=1 t=948s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0054 (unique_prefix, database_query_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0059 (unique_prefix, authentication_mistakes)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0064 (unique_prefix, error_propagation_bugs)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0069 (unique_prefix, incorrect_status_codes)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (124 min): 40/50 done | w0: 329 requests, 2 in flight, 2 slots; w1: 328 requests, 2 in flight, 2 slots | last agent activity: ep0054 tool search_code (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (125 min): 40/50 done | w0: 331 requests, 2 in flight, 2 slots; w1: 331 requests, 2 in flight, 2 slots | last agent activity: ep0059 model call (step 0, explorer) (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (126 min): 40/50 done | w0: 335 requests, 1 in flight, 2 slots; w1: 333 requests, 3 in flight, 2 slots | last agent activity: ep0069 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (127 min): 40/50 done | w0: 338 requests, 1 in flight, 2 slots; w1: 336 requests, 3 in flight, 2 slots | last agent activity: ep0069 tool_wait (10s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (128 min): 40/50 done | w0: 339 requests, 2 in flight, 2 slots; w1: 339 requests, 2 in flight, 2 slots | last agent activity: ep0054 tool_wait (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (129 min): 40/50 done | w0: 342 requests, 2 in flight, 2 slots; w1: 341 requests, 2 in flight, 2 slots | last agent activity: ep0064 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 41/50 ep0054 unique_prefix completed/verified success=True calls=10 helpers=2 t=379s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (130 min): 41/50 done | w0: 344 requests, 2 in flight, 2 slots; w1: 344 requests, 1 in flight, 2 slots | last agent activity: ep0064 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (131 min): 41/50 done | w0: 346 requests, 1 in flight, 2 slots; w1: 345 requests, 2 in flight, 2 slots | last agent activity: ep0059 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (132 min): 41/50 done | w0: 347 requests, 1 in flight, 2 slots; w1: 346 requests, 2 in flight, 2 slots | last agent activity: ep0059 tool_wait (25s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (133 min): 41/50 done | w0: 348 requests, 2 in flight, 2 slots; w1: 349 requests, 1 in flight, 2 slots | last agent activity: ep0059 session_start reviewer (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (134 min): 41/50 done | w0: 349 requests, 2 in flight, 2 slots; w1: 350 requests, 1 in flight, 2 slots | last agent activity: ep0069 tool_wait (23s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (135 min): 41/50 done | w0: 350 requests, 2 in flight, 2 slots; w1: 351 requests, 1 in flight, 2 slots | last agent activity: ep0069 tool_wait (35s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (136 min): 41/50 done | w0: 351 requests, 2 in flight, 2 slots; w1: 352 requests, 1 in flight, 2 slots | last agent activity: ep0069 tool_wait (47s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (137 min): 41/50 done | w0: 353 requests, 2 in flight, 2 slots; w1: 353 requests, 1 in flight, 2 slots | last agent activity: ep0064 tool_wait (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (138 min): 41/50 done | w0: 354 requests, 1 in flight, 2 slots; w1: 353 requests, 2 in flight, 2 slots | last agent activity: ep0059 tool_wait (31s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (139 min): 41/50 done | w0: 355 requests, 1 in flight, 2 slots; w1: 354 requests, 2 in flight, 2 slots | last agent activity: ep0069 tool_wait (52s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (140 min): 41/50 done | w0: 355 requests, 2 in flight, 2 slots; w1: 356 requests, 1 in flight, 2 slots | last agent activity: ep0069 tool_wait (40s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (141 min): 41/50 done | w0: 356 requests, 2 in flight, 2 slots; w1: 357 requests, 1 in flight, 2 slots | last agent activity: ep0069 tool_wait (17s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 42/50 ep0059 unique_prefix completed/verified success=True calls=16 helpers=2 t=1093s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (142 min): 42/50 done | w0: 358 requests, 1 in flight, 2 slots; w1: 357 requests, 1 in flight, 2 slots | last agent activity: ep0064 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 43/50 ep0069 unique_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=1138s
+[cluster-one_mac-run1-S1-e2e-tier1] 44/50 ep0064 unique_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=1178s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0074 (unique_prefix, file_path_handling)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0079 (unique_prefix, concurrency_defects)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0084 (unique_prefix, filtering_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0089 (unique_prefix, permission_errors)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (143 min): 44/50 done | w0: 359 requests, 2 in flight, 2 slots; w1: 358 requests, 2 in flight, 2 slots | last agent activity: ep0089 session_start explorer (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (144 min): 44/50 done | w0: 363 requests, 1 in flight, 2 slots; w1: 360 requests, 3 in flight, 2 slots | last agent activity: ep0089 tool search_code (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (145 min): 44/50 done | w0: 366 requests, 1 in flight, 2 slots; w1: 363 requests, 3 in flight, 2 slots | last agent activity: ep0089 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (146 min): 44/50 done | w0: 369 requests, 0 in flight, 2 slots; w1: 366 requests, 3 in flight, 2 slots | last agent activity: ep0079 tool_wait_start lead (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (147 min): 44/50 done | w0: 370 requests, 1 in flight, 2 slots; w1: 368 requests, 3 in flight, 2 slots | last agent activity: ep0089 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (148 min): 44/50 done | w0: 373 requests, 1 in flight, 2 slots; w1: 370 requests, 3 in flight, 2 slots | last agent activity: ep0084 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (149 min): 44/50 done | w0: 375 requests, 1 in flight, 2 slots; w1: 372 requests, 3 in flight, 2 slots | last agent activity: ep0084 tool_wait (19s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (150 min): 44/50 done | w0: 376 requests, 2 in flight, 2 slots; w1: 375 requests, 2 in flight, 2 slots | last agent activity: ep0079 tool_wait (4s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (151 min): 44/50 done | w0: 377 requests, 2 in flight, 2 slots; w1: 376 requests, 2 in flight, 2 slots | last agent activity: ep0079 tool_wait (15s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (152 min): 44/50 done | w0: 379 requests, 1 in flight, 2 slots; w1: 377 requests, 3 in flight, 2 slots | last agent activity: ep0079 tool_wait (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (153 min): 44/50 done | w0: 381 requests, 1 in flight, 2 slots; w1: 379 requests, 3 in flight, 2 slots | last agent activity: ep0089 tool_wait (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (154 min): 44/50 done | w0: 383 requests, 1 in flight, 2 slots; w1: 380 requests, 3 in flight, 2 slots | last agent activity: ep0074 tool_wait (21s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (155 min): 44/50 done | w0: 384 requests, 1 in flight, 2 slots; w1: 381 requests, 3 in flight, 2 slots | last agent activity: ep0074 tool_wait (26s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (156 min): 44/50 done | w0: 385 requests, 1 in flight, 2 slots; w1: 383 requests, 3 in flight, 2 slots | last agent activity: ep0079 tool_wait (13s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 45/50 ep0084 unique_prefix completed/verified success=True calls=16 helpers=2 t=844s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (157 min): 45/50 done | w0: 387 requests, 0 in flight, 2 slots; w1: 385 requests, 2 in flight, 2 slots | last agent activity: ep0079 model call (step 9, lead) (1s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (158 min): 45/50 done | w0: 388 requests, 1 in flight, 2 slots; w1: 386 requests, 2 in flight, 2 slots | last agent activity: ep0079 session_start reviewer (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (159 min): 45/50 done | w0: 389 requests, 1 in flight, 2 slots; w1: 387 requests, 2 in flight, 2 slots | last agent activity: ep0074 tool_wait (35s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 46/50 ep0089 unique_prefix failed/step_budget_exhausted success=False calls=19 helpers=1 t=977s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (160 min): 46/50 done | w0: 390 requests, 1 in flight, 2 slots; w1: 389 requests, 1 in flight, 2 slots | last agent activity: ep0074 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (161 min): 46/50 done | w0: 390 requests, 1 in flight, 2 slots; w1: 390 requests, 1 in flight, 2 slots | last agent activity: ep0079 tool_wait (47s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 47/50 ep0079 unique_prefix completed/verified success=True calls=18 helpers=2 t=1113s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (162 min): 47/50 done | w0: 391 requests, 1 in flight, 2 slots; w1: 391 requests, 0 in flight, 2 slots | last agent activity: ep0074 tool_wait (44s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (163 min): 47/50 done | w0: 392 requests, 0 in flight, 2 slots; w1: 391 requests, 1 in flight, 2 slots | last agent activity: ep0074 tool_wait (50s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (164 min): 47/50 done | w0: 392 requests, 1 in flight, 2 slots; w1: 392 requests, 0 in flight, 2 slots | last agent activity: ep0074 tool_wait (53s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (165 min): 47/50 done | w0: 393 requests, 0 in flight, 2 slots; w1: 392 requests, 1 in flight, 2 slots | last agent activity: ep0074 tool_wait (48s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 48/50 ep0074 unique_prefix failed/context_exhausted success=False calls=16 helpers=1 t=1349s
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0094 (unique_prefix, retry_logic_bugs)
+[cluster-one_mac-run1-S1-e2e-tier1] starting ep0099 (unique_prefix, incorrect_aggregation)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (166 min): 48/50 done | w0: 395 requests, 1 in flight, 2 slots; w1: 395 requests, 1 in flight, 2 slots | last agent activity: ep0094 tool read_file (7s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (167 min): 48/50 done | w0: 397 requests, 1 in flight, 2 slots; w1: 397 requests, 1 in flight, 2 slots | last agent activity: ep0094 tool_wait (12s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (168 min): 48/50 done | w0: 400 requests, 1 in flight, 2 slots; w1: 399 requests, 1 in flight, 2 slots | last agent activity: ep0099 tool_wait (0s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (169 min): 48/50 done | w0: 401 requests, 1 in flight, 2 slots; w1: 400 requests, 1 in flight, 2 slots | last agent activity: ep0094 tool_wait (5s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (170 min): 48/50 done | w0: 401 requests, 2 in flight, 2 slots; w1: 402 requests, 0 in flight, 2 slots | last agent activity: ep0099 tool_wait (23s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 49/50 ep0099 unique_prefix completed/verified success=True calls=12 helpers=2 t=316s
+[cluster-one_mac-run1-S1-e2e-tier1] still running (171 min): 49/50 done | w0: 404 requests, 0 in flight, 2 slots; w1: 403 requests, 1 in flight, 2 slots | last agent activity: ep0094 tool_wait (14s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (172 min): 49/50 done | w0: 404 requests, 1 in flight, 2 slots; w1: 404 requests, 0 in flight, 2 slots | last agent activity: ep0094 tool_wait (35s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (173 min): 49/50 done | w0: 405 requests, 1 in flight, 2 slots; w1: 405 requests, 0 in flight, 2 slots | last agent activity: ep0094 tool_wait (2s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (174 min): 49/50 done | w0: 406 requests, 0 in flight, 2 slots; w1: 405 requests, 1 in flight, 2 slots | last agent activity: ep0094 tool_wait (8s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] still running (175 min): 49/50 done | w0: 406 requests, 1 in flight, 2 slots; w1: 406 requests, 0 in flight, 2 slots | last agent activity: ep0094 tool_wait (9s ago)
+[cluster-one_mac-run1-S1-e2e-tier1] 50/50 ep0094 unique_prefix failed/context_exhausted success=False calls=15 helpers=1 t=644s
+[cluster-one_mac-run1-S1-e2e-tier1] 50/50 episodes complete; this invocation 176.9 min, total 176.9 min
+[2026-11-20 22:44:25] === DONE  S1 tier1: real agents in 176 min
+[2026-11-20 22:44:31]     report: reports/generated/cluster_one_mac_run1_tables.md
+[2026-11-20 22:44:31] === START S1 tier1: replay
+[cluster-one_mac-run1-S1-replay-tier1] starting the stack (50 sessions to replay, 0 already done)
+  starting model server w0 (http://127.0.0.1:8101); loading the model takes ~10-30 s
+  model server w0 ready in 1 s
+  starting model server w1 (http://127.0.0.1:8102); loading the model takes ~10-30 s
+  model server w1 ready in 0 s
+  gateway w0 ready (passthrough) at http://127.0.0.1:8201
+  gateway w1 ready (passthrough) at http://127.0.0.1:8202
+  llm-router ready (roundrobin) at http://127.0.0.1:8300
+[cluster-one_mac-run1-S1-replay-tier1] stack ready; replaying. A 'still running' line prints every minute.
+[cluster-one_mac-run1-S1-replay-tier1] still running (1 min): 0/50 done | w0: 3 requests, 0 in flight, 2 slots; w1: 2 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (2 min): 0/50 done | w0: 5 requests, 1 in flight, 2 slots; w1: 5 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (3 min): 1/50 done | w0: 9 requests, 0 in flight, 2 slots; w1: 8 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (4 min): 2/50 done | w0: 12 requests, 1 in flight, 2 slots; w1: 12 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (5 min): 2/50 done | w0: 16 requests, 0 in flight, 2 slots; w1: 15 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (6 min): 3/50 done | w0: 20 requests, 0 in flight, 2 slots; w1: 19 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (7 min): 3/50 done | w0: 23 requests, 1 in flight, 2 slots; w1: 23 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (8 min): 3/50 done | w0: 25 requests, 1 in flight, 2 slots; w1: 25 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (9 min): 4/50 done | w0: 28 requests, 0 in flight, 2 slots; w1: 27 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (10 min): 4/50 done | w0: 31 requests, 1 in flight, 2 slots; w1: 31 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (11 min): 4/50 done | w0: 33 requests, 0 in flight, 2 slots; w1: 32 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (12 min): 4/50 done | w0: 34 requests, 1 in flight, 2 slots; w1: 34 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (13 min): 4/50 done | w0: 35 requests, 1 in flight, 2 slots; w1: 35 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (14 min): 5/50 done | w0: 39 requests, 1 in flight, 2 slots; w1: 39 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (15 min): 5/50 done | w0: 42 requests, 0 in flight, 2 slots; w1: 41 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (16 min): 5/50 done | w0: 43 requests, 1 in flight, 2 slots; w1: 43 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (17 min): 6/50 done | w0: 46 requests, 0 in flight, 2 slots; w1: 45 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (18 min): 6/50 done | w0: 50 requests, 0 in flight, 2 slots; w1: 49 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (19 min): 6/50 done | w0: 51 requests, 1 in flight, 2 slots; w1: 51 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (20 min): 7/50 done | w0: 54 requests, 0 in flight, 2 slots; w1: 53 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (21 min): 7/50 done | w0: 56 requests, 1 in flight, 2 slots; w1: 56 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (22 min): 7/50 done | w0: 58 requests, 0 in flight, 2 slots; w1: 57 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (23 min): 7/50 done | w0: 59 requests, 0 in flight, 2 slots; w1: 58 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (24 min): 8/50 done | w0: 61 requests, 1 in flight, 2 slots; w1: 61 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (25 min): 8/50 done | w0: 65 requests, 1 in flight, 2 slots; w1: 65 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (26 min): 8/50 done | w0: 68 requests, 1 in flight, 2 slots; w1: 68 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (27 min): 9/50 done | w0: 72 requests, 1 in flight, 2 slots; w1: 72 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (28 min): 9/50 done | w0: 75 requests, 0 in flight, 2 slots; w1: 74 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (29 min): 9/50 done | w0: 77 requests, 0 in flight, 2 slots; w1: 76 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (30 min): 10/50 done | w0: 80 requests, 1 in flight, 2 slots; w1: 79 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (31 min): 10/50 done | w0: 84 requests, 0 in flight, 2 slots; w1: 82 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (32 min): 10/50 done | w0: 86 requests, 1 in flight, 2 slots; w1: 86 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (33 min): 11/50 done | w0: 89 requests, 0 in flight, 2 slots; w1: 88 requests, 1 in flight, 2 slots
+[replay S1 tier1] 12/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (34 min): 12/50 done | w0: 90 requests, 3 in flight, 2 slots; w1: 91 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (35 min): 12/50 done | w0: 97 requests, 1 in flight, 2 slots; w1: 95 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (36 min): 12/50 done | w0: 100 requests, 2 in flight, 2 slots; w1: 99 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (37 min): 12/50 done | w0: 104 requests, 2 in flight, 2 slots; w1: 103 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (38 min): 12/50 done | w0: 106 requests, 3 in flight, 2 slots; w1: 107 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (39 min): 12/50 done | w0: 108 requests, 3 in flight, 2 slots; w1: 110 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (40 min): 12/50 done | w0: 111 requests, 3 in flight, 2 slots; w1: 113 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (41 min): 12/50 done | w0: 113 requests, 3 in flight, 2 slots; w1: 115 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (42 min): 12/50 done | w0: 116 requests, 2 in flight, 2 slots; w1: 116 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (43 min): 12/50 done | w0: 118 requests, 2 in flight, 2 slots; w1: 118 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (44 min): 12/50 done | w0: 120 requests, 2 in flight, 2 slots; w1: 120 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (45 min): 13/50 done | w0: 122 requests, 2 in flight, 2 slots; w1: 123 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (46 min): 14/50 done | w0: 124 requests, 2 in flight, 2 slots; w1: 125 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (47 min): 14/50 done | w0: 126 requests, 1 in flight, 2 slots; w1: 126 requests, 1 in flight, 2 slots
+[replay S1 tier1] 16/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (48 min): 16/50 done | w0: 128 requests, 2 in flight, 2 slots; w1: 127 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (49 min): 16/50 done | w0: 132 requests, 2 in flight, 2 slots; w1: 131 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (50 min): 16/50 done | w0: 135 requests, 2 in flight, 2 slots; w1: 135 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (51 min): 16/50 done | w0: 138 requests, 2 in flight, 2 slots; w1: 139 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (52 min): 17/50 done | w0: 142 requests, 2 in flight, 2 slots; w1: 143 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (53 min): 17/50 done | w0: 147 requests, 2 in flight, 2 slots; w1: 147 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (54 min): 17/50 done | w0: 151 requests, 2 in flight, 2 slots; w1: 151 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (55 min): 17/50 done | w0: 154 requests, 2 in flight, 2 slots; w1: 155 requests, 1 in flight, 2 slots
+[replay S1 tier1] 20/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (56 min): 20/50 done | w0: 158 requests, 2 in flight, 2 slots; w1: 157 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (57 min): 20/50 done | w0: 163 requests, 2 in flight, 2 slots; w1: 162 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (58 min): 20/50 done | w0: 167 requests, 1 in flight, 2 slots; w1: 166 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (59 min): 20/50 done | w0: 172 requests, 1 in flight, 2 slots; w1: 169 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (60 min): 20/50 done | w0: 176 requests, 0 in flight, 2 slots; w1: 173 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (61 min): 20/50 done | w0: 178 requests, 1 in flight, 2 slots; w1: 176 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (62 min): 20/50 done | w0: 180 requests, 2 in flight, 2 slots; w1: 179 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (63 min): 20/50 done | w0: 182 requests, 1 in flight, 2 slots; w1: 181 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (64 min): 20/50 done | w0: 183 requests, 2 in flight, 2 slots; w1: 182 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (65 min): 20/50 done | w0: 186 requests, 0 in flight, 2 slots; w1: 184 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (66 min): 21/50 done | w0: 188 requests, 1 in flight, 2 slots; w1: 186 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (67 min): 23/50 done | w0: 190 requests, 0 in flight, 2 slots; w1: 189 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (68 min): 23/50 done | w0: 190 requests, 1 in flight, 2 slots; w1: 190 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (69 min): 23/50 done | w0: 191 requests, 0 in flight, 2 slots; w1: 190 requests, 1 in flight, 2 slots
+[replay S1 tier1] 24/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (70 min): 24/50 done | w0: 195 requests, 2 in flight, 2 slots; w1: 194 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (71 min): 24/50 done | w0: 200 requests, 1 in flight, 2 slots; w1: 199 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (72 min): 24/50 done | w0: 203 requests, 2 in flight, 2 slots; w1: 202 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (73 min): 24/50 done | w0: 206 requests, 1 in flight, 2 slots; w1: 204 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (74 min): 24/50 done | w0: 209 requests, 0 in flight, 2 slots; w1: 207 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (75 min): 24/50 done | w0: 211 requests, 1 in flight, 2 slots; w1: 209 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (76 min): 24/50 done | w0: 212 requests, 3 in flight, 2 slots; w1: 213 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (77 min): 24/50 done | w0: 216 requests, 1 in flight, 2 slots; w1: 213 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (78 min): 24/50 done | w0: 218 requests, 1 in flight, 2 slots; w1: 216 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (79 min): 25/50 done | w0: 220 requests, 1 in flight, 2 slots; w1: 218 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (80 min): 25/50 done | w0: 221 requests, 2 in flight, 2 slots; w1: 222 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (81 min): 26/50 done | w0: 224 requests, 0 in flight, 2 slots; w1: 222 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (82 min): 26/50 done | w0: 225 requests, 1 in flight, 2 slots; w1: 224 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (83 min): 27/50 done | w0: 227 requests, 0 in flight, 2 slots; w1: 226 requests, 1 in flight, 2 slots
+[replay S1 tier1] 28/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (84 min): 28/50 done | w0: 228 requests, 1 in flight, 2 slots; w1: 227 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (85 min): 28/50 done | w0: 233 requests, 0 in flight, 2 slots; w1: 232 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (86 min): 29/50 done | w0: 236 requests, 0 in flight, 2 slots; w1: 236 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (87 min): 29/50 done | w0: 238 requests, 0 in flight, 2 slots; w1: 238 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (88 min): 29/50 done | w0: 240 requests, 1 in flight, 2 slots; w1: 240 requests, 0 in flight, 2 slots
+[replay S1 tier1] 30/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (89 min): 30/50 done | w0: 243 requests, 4 in flight, 2 slots; w1: 242 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (90 min): 30/50 done | w0: 247 requests, 4 in flight, 2 slots; w1: 246 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (91 min): 30/50 done | w0: 249 requests, 6 in flight, 2 slots; w1: 252 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (92 min): 30/50 done | w0: 255 requests, 4 in flight, 2 slots; w1: 256 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (93 min): 30/50 done | w0: 257 requests, 5 in flight, 2 slots; w1: 259 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (94 min): 30/50 done | w0: 260 requests, 6 in flight, 2 slots; w1: 263 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (95 min): 30/50 done | w0: 263 requests, 6 in flight, 2 slots; w1: 266 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (96 min): 30/50 done | w0: 267 requests, 6 in flight, 2 slots; w1: 270 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (97 min): 30/50 done | w0: 270 requests, 6 in flight, 2 slots; w1: 274 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (98 min): 30/50 done | w0: 274 requests, 6 in flight, 2 slots; w1: 278 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (99 min): 30/50 done | w0: 277 requests, 6 in flight, 2 slots; w1: 280 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (100 min): 30/50 done | w0: 281 requests, 6 in flight, 2 slots; w1: 285 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (101 min): 30/50 done | w0: 284 requests, 6 in flight, 2 slots; w1: 287 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (102 min): 30/50 done | w0: 289 requests, 4 in flight, 2 slots; w1: 289 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (103 min): 30/50 done | w0: 292 requests, 5 in flight, 2 slots; w1: 293 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (104 min): 30/50 done | w0: 294 requests, 4 in flight, 2 slots; w1: 294 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (105 min): 30/50 done | w0: 297 requests, 3 in flight, 2 slots; w1: 295 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (106 min): 31/50 done | w0: 301 requests, 3 in flight, 2 slots; w1: 298 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (107 min): 32/50 done | w0: 304 requests, 3 in flight, 2 slots; w1: 302 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (108 min): 32/50 done | w0: 306 requests, 3 in flight, 2 slots; w1: 303 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (109 min): 32/50 done | w0: 307 requests, 3 in flight, 2 slots; w1: 304 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (110 min): 32/50 done | w0: 308 requests, 3 in flight, 2 slots; w1: 306 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (111 min): 33/50 done | w0: 309 requests, 2 in flight, 2 slots; w1: 306 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (112 min): 33/50 done | w0: 310 requests, 2 in flight, 2 slots; w1: 307 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (113 min): 33/50 done | w0: 311 requests, 2 in flight, 2 slots; w1: 308 requests, 5 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (114 min): 34/50 done | w0: 312 requests, 2 in flight, 2 slots; w1: 310 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (115 min): 34/50 done | w0: 313 requests, 2 in flight, 2 slots; w1: 311 requests, 4 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (116 min): 35/50 done | w0: 316 requests, 2 in flight, 2 slots; w1: 314 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (117 min): 37/50 done | w0: 318 requests, 1 in flight, 2 slots; w1: 316 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (118 min): 37/50 done | w0: 320 requests, 1 in flight, 2 slots; w1: 319 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (119 min): 38/50 done | w0: 321 requests, 1 in flight, 2 slots; w1: 321 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (120 min): 38/50 done | w0: 322 requests, 2 in flight, 2 slots; w1: 323 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (121 min): 38/50 done | w0: 325 requests, 1 in flight, 2 slots; w1: 325 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (122 min): 38/50 done | w0: 326 requests, 1 in flight, 2 slots; w1: 326 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (123 min): 38/50 done | w0: 328 requests, 1 in flight, 2 slots; w1: 327 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (124 min): 39/50 done | w0: 329 requests, 0 in flight, 2 slots; w1: 328 requests, 1 in flight, 2 slots
+[replay S1 tier1] 40/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (125 min): 40/50 done | w0: 331 requests, 2 in flight, 2 slots; w1: 330 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (126 min): 40/50 done | w0: 335 requests, 1 in flight, 2 slots; w1: 332 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (127 min): 40/50 done | w0: 338 requests, 1 in flight, 2 slots; w1: 335 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (128 min): 40/50 done | w0: 340 requests, 1 in flight, 2 slots; w1: 337 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (129 min): 40/50 done | w0: 342 requests, 1 in flight, 2 slots; w1: 340 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (130 min): 40/50 done | w0: 345 requests, 1 in flight, 2 slots; w1: 342 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (131 min): 40/50 done | w0: 347 requests, 1 in flight, 2 slots; w1: 344 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (132 min): 40/50 done | w0: 347 requests, 2 in flight, 2 slots; w1: 346 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (133 min): 40/50 done | w0: 349 requests, 2 in flight, 2 slots; w1: 348 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (134 min): 40/50 done | w0: 352 requests, 1 in flight, 2 slots; w1: 350 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (135 min): 40/50 done | w0: 353 requests, 1 in flight, 2 slots; w1: 350 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (136 min): 40/50 done | w0: 354 requests, 1 in flight, 2 slots; w1: 352 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (137 min): 40/50 done | w0: 355 requests, 1 in flight, 2 slots; w1: 353 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (138 min): 40/50 done | w0: 356 requests, 1 in flight, 2 slots; w1: 354 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (139 min): 40/50 done | w0: 357 requests, 1 in flight, 2 slots; w1: 355 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (140 min): 40/50 done | w0: 357 requests, 2 in flight, 2 slots; w1: 356 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (141 min): 40/50 done | w0: 358 requests, 2 in flight, 2 slots; w1: 357 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (142 min): 40/50 done | w0: 359 requests, 2 in flight, 2 slots; w1: 358 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (143 min): 40/50 done | w0: 361 requests, 1 in flight, 2 slots; w1: 359 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (144 min): 40/50 done | w0: 361 requests, 2 in flight, 2 slots; w1: 360 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (145 min): 41/50 done | w0: 363 requests, 0 in flight, 2 slots; w1: 360 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (146 min): 41/50 done | w0: 363 requests, 1 in flight, 2 slots; w1: 361 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (147 min): 43/50 done | w0: 364 requests, 1 in flight, 2 slots; w1: 364 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (148 min): 43/50 done | w0: 365 requests, 0 in flight, 2 slots; w1: 364 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (149 min): 43/50 done | w0: 365 requests, 1 in flight, 2 slots; w1: 365 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (150 min): 43/50 done | w0: 366 requests, 1 in flight, 2 slots; w1: 366 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (151 min): 43/50 done | w0: 367 requests, 0 in flight, 2 slots; w1: 366 requests, 1 in flight, 2 slots
+[replay S1 tier1] 44/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (152 min): 44/50 done | w0: 367 requests, 2 in flight, 2 slots; w1: 367 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (153 min): 44/50 done | w0: 369 requests, 3 in flight, 2 slots; w1: 371 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (154 min): 44/50 done | w0: 372 requests, 3 in flight, 2 slots; w1: 374 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (155 min): 44/50 done | w0: 375 requests, 3 in flight, 2 slots; w1: 377 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (156 min): 44/50 done | w0: 378 requests, 3 in flight, 2 slots; w1: 379 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (157 min): 44/50 done | w0: 381 requests, 2 in flight, 2 slots; w1: 381 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (158 min): 44/50 done | w0: 383 requests, 2 in flight, 2 slots; w1: 382 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (159 min): 44/50 done | w0: 386 requests, 2 in flight, 2 slots; w1: 385 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (160 min): 44/50 done | w0: 388 requests, 1 in flight, 2 slots; w1: 386 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (161 min): 44/50 done | w0: 389 requests, 1 in flight, 2 slots; w1: 387 requests, 3 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (162 min): 45/50 done | w0: 390 requests, 1 in flight, 2 slots; w1: 389 requests, 2 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (163 min): 45/50 done | w0: 391 requests, 2 in flight, 2 slots; w1: 391 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (164 min): 45/50 done | w0: 392 requests, 2 in flight, 2 slots; w1: 392 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (165 min): 45/50 done | w0: 392 requests, 2 in flight, 2 slots; w1: 393 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (166 min): 47/50 done | w0: 395 requests, 0 in flight, 2 slots; w1: 394 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (167 min): 47/50 done | w0: 395 requests, 1 in flight, 2 slots; w1: 395 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (168 min): 47/50 done | w0: 396 requests, 1 in flight, 2 slots; w1: 396 requests, 0 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (169 min): 47/50 done | w0: 397 requests, 0 in flight, 2 slots; w1: 396 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (170 min): 47/50 done | w0: 397 requests, 1 in flight, 2 slots; w1: 397 requests, 0 in flight, 2 slots
+[replay S1 tier1] 48/50 sessions
+[cluster-one_mac-run1-S1-replay-tier1] still running (171 min): 48/50 done | w0: 400 requests, 1 in flight, 2 slots; w1: 399 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (172 min): 48/50 done | w0: 401 requests, 1 in flight, 2 slots; w1: 401 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (173 min): 48/50 done | w0: 403 requests, 1 in flight, 2 slots; w1: 403 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (174 min): 48/50 done | w0: 405 requests, 1 in flight, 2 slots; w1: 404 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (175 min): 49/50 done | w0: 407 requests, 0 in flight, 2 slots; w1: 406 requests, 1 in flight, 2 slots
+[cluster-one_mac-run1-S1-replay-tier1] still running (176 min): 49/50 done | w0: 408 requests, 1 in flight, 2 slots; w1: 408 requests, 0 in flight, 2 slots
+[replay S1 tier1] 50/50 sessions
+{"setup": "S1", "episodes": 50, "wall_s": 10654.463686943054, "missing_traces": []}
+[2026-11-21 01:42:08] === DONE  S1 tier1: replay in 177 min
+[2026-11-21 01:42:15]     report: reports/generated/cluster_one_mac_run1_tables.md
+[2026-11-21 01:42:21]     report: reports/generated/cluster_one_mac_run1_tables.md
+[2026-11-21 01:42:21] DONE: S1 (run run1) - report: reports/generated/cluster_one_mac_run1_tables.md

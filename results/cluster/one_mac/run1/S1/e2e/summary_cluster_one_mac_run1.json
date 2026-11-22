@@ -1,0 +1,1749 @@
+{
+ "kind": "e2e",
+ "episodes": 100,
+ "wall_minutes": 364.91776769161226,
+ "1_task_success_rate": {
+  "value": 0.38,
+  "num": 38,
+  "n": 100
+ },
+ "2_hidden_test_pass_rate": {
+  "value": 0.65,
+  "num": 7215,
+  "n": 11100
+ },
+ "3_regression_free_patch_rate": {
+  "value": 0.35,
+  "num": 35,
+  "n": 100
+ },
+ "3b_regression_free_given_success": {
+  "value": 0.9210526315789473,
+  "num": 35,
+  "n": 38
+ },
+ "4_tool_call_success_rate": {
+  "value": 0.9366018596787827,
+  "num": 1108,
+  "n": 1183
+ },
+ "5_end_to_end_task_latency_s": {
+  "n": 100,
+  "mean": 682.1443781065941,
+  "median": 574.9693385362625,
+  "p95": 1588.3019617319105,
+  "min": 88.24951601028442,
+  "max": 1880.5747759342194,
+  "sum": 68214.43781065941,
+  "p99": 1760.2788274788863
+ },
+ "10_completed_tasks_per_minute": {
+  "value": 0.10413304959191068,
+  "successful_tasks": 38,
+  "wall_minutes": 364.91776769161226
+ },
+ "agent_completed_status_rate": {
+  "value": 0.32,
+  "num": 32,
+  "n": 100
+ },
+ "outcomes": {
+  "context_exhausted": 27,
+  "verified": 32,
+  "step_budget_exhausted": 40,
+  "model_error": 1
+ },
+ "session_wait_s": {
+  "n": 100,
+  "mean": 39.60218873500824,
+  "median": 0.008219599723815918,
+  "p95": 0.022943735122680525,
+  "min": 7.486343383789062e-05,
+  "max": 1283.6980187892914,
+  "sum": 3960.218873500824,
+  "p99": 1215.5664735364917
+ },
+ "tool_execution_s_per_call": {
+  "n": 1906,
+  "mean": 0.1594621784898212,
+  "median": 0.0034115209709852934,
+  "p95": 0.8595505725534167,
+  "min": 0.0,
+  "max": 1.594444999936968,
+  "sum": 303.9349122015992,
+  "p99": 1.1685178163636047
+ },
+ "tool_wait_s_per_episode": {
+  "n": 100,
+  "mean": 16.75202,
+  "median": 4.0175,
+  "p95": 90.99359999999999,
+  "min": 0.0,
+  "max": 113.881,
+  "sum": 1675.2020000000002,
+  "p99": 113.07712000000001
+ },
+ "model_calls_per_episode": {
+  "n": 100,
+  "mean": 16.27,
+  "median": 17.0,
+  "p95": 19.0,
+  "min": 8.0,
+  "max": 20.0,
+  "sum": 1627.0,
+  "p99": 20.0
+ },
+ "tool_calls_per_episode": {
+  "n": 100,
+  "mean": 11.83,
+  "median": 13.0,
+  "p95": 15.0,
+  "min": 4.0,
+  "max": 15.0,
+  "sum": 1183.0,
+  "p99": 15.0
+ },
+ "input_tokens_per_episode": {
+  "n": 100,
+  "mean": 47400.54,
+  "median": 51828.0,
+  "p95": 68728.85,
+  "min": 12220.0,
+  "max": 74297.0,
+  "sum": 4740054.0,
+  "p99": 71539.85000000002
+ },
+ "output_tokens_per_episode": {
+  "n": 100,
+  "mean": 2005.99,
+  "median": 1879.0,
+  "p95": 3011.4999999999995,
+  "min": 752.0,
+  "max": 7005.0,
+  "sum": 200599.0,
+  "p99": 4348.830000000014
+ },
+ "recomputed_tokens_per_episode": {
+  "n": 100,
+  "mean": 19403.42,
+  "median": 14554.5,
+  "p95": 58846.95,
+  "min": 4351.0,
+  "max": 68356.0,
+  "sum": 1940342.0,
+  "p99": 64041.58000000002
+ },
+ "6_ttft_ms": {
+  "n": 1627,
+  "mean": 18641.23690403196,
+  "median": 9133.241625,
+  "p95": 60646.71690889996,
+  "min": 289.43008299999997,
+  "max": 226262.897042,
+  "sum": 30329292.44286,
+  "p99": 115371.01974834001
+ },
+ "7_prefill_latency_ms": {
+  "n": 1627,
+  "mean": 9843.077985863554,
+  "median": 6148.334,
+  "p95": 35573.345299999964,
+  "min": 263.3,
+  "max": 109313.296,
+  "sum": 16014687.883000001,
+  "p99": 56380.98984000001
+ },
+ "8_session_resumption_latency_ms": {
+  "n": 208,
+  "mean": 8284.985991764424,
+  "median": 6272.161979,
+  "p95": 25007.11952469998,
+  "min": 341.836333,
+  "max": 56654.767917000005,
+  "sum": 1723277.0862870002,
+  "p99": 36839.000975810006
+ },
+ "9_queue_wait_ms": {
+  "n": 1627,
+  "mean": 8662.879168440895,
+  "median": 0.0,
+  "p95": 45072.49365912578,
+  "min": 0.0,
+  "max": 219453.61155696202,
+  "sum": 14094504.407053337,
+  "p99": 91328.95784305803,
+  "gateway_queue_ms": {
+   "n": 1627,
+   "mean": 0.0,
+   "median": 0.0,
+   "p95": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "sum": 0.0,
+   "p99": 0.0
+  },
+  "est_upstream_queue_ms": {
+   "n": 1627,
+   "mean": 8662.879168440895,
+   "median": 0.0,
+   "p95": 45072.49365912578,
+   "min": 0.0,
+   "max": 219453.61155696202,
+   "sum": 14094504.407053337,
+   "p99": 91328.95784305803
+  },
+  "note": "upstream queue is estimated: upstream TTFT - prompt_ms - 1 decode step"
+ },
+ "11_eligible_cache_hit_rate": {
+  "value": 0.822262118491921,
+  "num": 916,
+  "n": 1114,
+  "definition": "requests at step>=1 of append-mode sessions with cache_n >= 50% of prompt tokens"
+ },
+ "12_prefix_cache_reuse_ratio": {
+  "value": 0.5906498111624888,
+  "num": 2799712,
+  "n": 4740054
+ },
+ "13_recomputed_prompt_tokens": {
+  "total": 1940342,
+  "per_request": {
+   "n": 1627,
+   "mean": 1192.5888137676707,
+   "median": 819.0,
+   "p95": 4329.3999999999905,
+   "min": 23.0,
+   "max": 8035.0,
+   "sum": 1940342.0,
+   "p99": 6536.900000000001
+  }
+ },
+ "14_cache_retention_across_tool_waits": {
+  "mean_retained_fraction": {
+   "n": 208,
+   "mean": 0.8597198943294747,
+   "median": 0.9820398852338115,
+   "p95": 1.0,
+   "min": 0.004340277777777778,
+   "max": 1.0,
+   "sum": 178.82173802053074,
+   "p99": 1.0
+  },
+  "fully_retained_rate": {
+   "value": 0.6346153846153846,
+   "num": 132,
+   "n": 208
+  }
+ },
+ "15_cache_eviction_and_slot_reset_events": {
+  "prefix_loss_events": 180,
+  "slot_switches": 927,
+  "prompt_cache_saves_to_host_ram": 1868,
+  "tasks_with_zero_reuse": 12,
+  "definition": "prefix_loss: eligible request reusing <50% of the previous request's tokens; slot_switch: slot serves a different session than its previous request"
+ },
+ "16_peak_process_ram_mib": {
+  "llama": 5366.25,
+  "gateway": 6.703125,
+  "router": 16.90625,
+  "bench": 5097.515625
+ },
+ "17_slot_and_kv_utilization": {
+  "slot_utilization": {
+   "w0:0": 0.5579310675423038,
+   "w0:1": 0.6201764057331863,
+   "w1:0": 0.6263967305284543,
+   "w1:1": 0.5901585126739269
+  },
+  "mean_slot_utilization": 0.5986656791194679,
+  "kv_occupancy_estimate": {
+   "n": 84053,
+   "mean": 0.20859419273416493,
+   "median": 0.19403076171875,
+   "p95": 0.399566650390625,
+   "min": 0.0,
+   "max": 0.497467041015625,
+   "sum": 17532.967681884766,
+   "p99": 0.45196533203125,
+   "note": "sum(slot n_prompt_tokens)/n_ctx from GET /slots; an estimate because llama.cpp b11669 exposes no KV-cells-used gauge"
+  }
+ },
+ "power_samples_on_ac": {
+  "value": 1.0,
+  "num": 724,
+  "n": 724
+ },
+ "18_session_load_imbalance": {
+  "slot_busy_max_over_mean": 1.0463214317710245,
+  "slot_busy_cv": 0.04546539867319669,
+  "per_slot_requests": {
+   "w0:0": 368,
+   "w0:1": 446,
+   "w1:0": 440,
+   "w1:1": 373
+  },
+  "request_count_cv": 0.08937927544207076
+ },
+ "19_rust_routing_overhead": {
+  "decision_us": {
+   "n": 1627,
+   "mean": 0.08534419176398278,
+   "median": 0.041999999999999996,
+   "p95": 0.25,
+   "min": 0.0,
+   "max": 0.5419999999999999,
+   "sum": 138.855,
+   "p99": 0.41674
+  },
+  "gateway_overhead_ms": {
+   "n": 1627,
+   "mean": 8.416767301167779,
+   "median": 7.259249000000636,
+   "p95": 18.4447081999926,
+   "min": 1.1891249999998763,
+   "max": 46.68495800000164,
+   "sum": 13694.080398999975,
+   "p99": 20.820868419994657
+  }
+ },
+ "20_failure_rates": {
+  "model_request_failures": {
+   "value": 0.0006146281499692685,
+   "num": 1,
+   "n": 1627
+  },
+  "tool_failures": {
+   "value": 0.06339814032121724,
+   "num": 75,
+   "n": 1183
+  },
+  "episode_crashes": {
+   "value": 0.0,
+   "num": 0,
+   "n": 100
+  },
+  "gateway_logged_errors": 0
+ },
+ "tokens": {
+  "input": 4740054,
+  "cached": 2799712,
+  "output": 200599,
+  "model_calls": 1627
+ },
+ "cache_bytes": {
+  "prompt_cache_max_state_mib": 2047.516,
+  "prompt_cache_saved_mib_total": 421914.6,
+  "source": "llama-server -lv 4 log lines 'cache state' / 'prompt_save'"
+ },
+ "llama_slot_selection": {
+  "LRU": 579,
+  "LCP similarity": 1064
+ },
+ "model_startup_s": {
+  "n": 2,
+  "mean": 1.7751898765563965,
+  "median": 1.7751898765563965,
+  "p95": 1.913781762123108,
+  "min": 1.6211988925933838,
+  "max": 1.9291808605194092,
+  "sum": 3.550379753112793,
+  "p99": null
+ },
+ "by_workload": {
+  "bursty": {
+   "kind": "e2e",
+   "episodes": 20,
+   "wall_minutes": 364.91776769161226,
+   "1_task_success_rate": {
+    "value": 0.2,
+    "num": 4,
+    "n": 20
+   },
+   "2_hidden_test_pass_rate": {
+    "value": 0.5932432432432433,
+    "num": 1317,
+    "n": 2220
+   },
+   "3_regression_free_patch_rate": {
+    "value": 0.2,
+    "num": 4,
+    "n": 20
+   },
+   "3b_regression_free_given_success": {
+    "value": 1.0,
+    "num": 4,
+    "n": 4
+   },
+   "4_tool_call_success_rate": {
+    "value": 0.9147286821705426,
+    "num": 236,
+    "n": 258
+   },
+   "5_end_to_end_task_latency_s": {
+    "n": 20,
+    "mean": 1250.7915323376656,
+    "median": 1291.1600918769836,
+    "p95": 1675.6457197546958,
+    "min": 633.4251761436462,
+    "max": 1759.0637168884277,
+    "sum": 25015.83064675331,
+    "p99": 1742.3801174616813
+   },
+   "10_completed_tasks_per_minute": {
+    "value": 0.010961373641253757,
+    "successful_tasks": 4,
+    "wall_minutes": 364.91776769161226
+   },
+   "agent_completed_status_rate": {
+    "value": 0.15,
+    "num": 3,
+    "n": 20
+   },
+   "outcomes": {
+    "verified": 3,
+    "context_exhausted": 5,
+    "step_budget_exhausted": 12
+   },
+   "session_wait_s": {
+    "n": 20,
+    "mean": 197.98200505971909,
+    "median": 0.008575916290283203,
+    "p95": 1218.3192632436753,
+    "min": 0.001524209976196289,
+    "max": 1283.6980187892914,
+    "sum": 3959.6401011943817,
+    "p99": 1270.622267680168
+   },
+   "tool_execution_s_per_call": {
+    "n": 386,
+    "mean": 0.16354696470019625,
+    "median": 0.003555895993486047,
+    "p95": 0.9681284061807673,
+    "min": 0.0,
+    "max": 1.594444999936968,
+    "sum": 63.12912837427575,
+    "p99": 1.531904472247697
+   },
+   "tool_wait_s_per_episode": {
+    "n": 20,
+    "mean": 3.10555,
+    "median": 3.3145,
+    "p95": 4.22715,
+    "min": 0.5449999999999999,
+    "max": 4.705,
+    "sum": 62.111,
+    "p99": 4.60943
+   },
+   "model_calls_per_episode": {
+    "n": 20,
+    "mean": 16.85,
+    "median": 18.0,
+    "p95": 19.0,
+    "min": 9.0,
+    "max": 19.0,
+    "sum": 337.0,
+    "p99": 19.0
+   },
+   "tool_calls_per_episode": {
+    "n": 20,
+    "mean": 12.9,
+    "median": 14.5,
+    "p95": 15.0,
+    "min": 4.0,
+    "max": 15.0,
+    "sum": 258.0,
+    "p99": 15.0
+   },
+   "input_tokens_per_episode": {
+    "n": 20,
+    "mean": 51238.95,
+    "median": 53583.5,
+    "p95": 64790.15,
+    "min": 16392.0,
+    "max": 68973.0,
+    "sum": 1024779.0,
+    "p99": 68136.43
+   },
+   "output_tokens_per_episode": {
+    "n": 20,
+    "mean": 2095.6,
+    "median": 1919.5,
+    "p95": 3011.5,
+    "min": 1080.0,
+    "max": 3116.0,
+    "sum": 41912.0,
+    "p99": 3095.1
+   },
+   "recomputed_tokens_per_episode": {
+    "n": 20,
+    "mean": 15778.0,
+    "median": 15120.5,
+    "p95": 28819.550000000003,
+    "min": 6672.0,
+    "max": 30635.0,
+    "sum": 315560.0,
+    "p99": 30271.909999999996
+   },
+   "6_ttft_ms": {
+    "n": 263,
+    "mean": 43574.472555266155,
+    "median": 37376.420791,
+    "p95": 115570.39859489996,
+    "min": 405.829916,
+    "max": 208652.477542,
+    "sum": 11460086.282034999,
+    "p99": 176100.06225753992
+   },
+   "7_prefill_latency_ms": {
+    "n": 263,
+    "mean": 9742.302019011406,
+    "median": 5542.448,
+    "p95": 44675.198999999986,
+    "min": 383.122,
+    "max": 68151.061,
+    "sum": 2562225.431,
+    "p99": 65885.14314
+   },
+   "8_session_resumption_latency_ms": {
+    "n": 0
+   },
+   "9_queue_wait_ms": {
+    "n": 263,
+    "mean": 33569.05241643381,
+    "median": 29878.397702702707,
+    "p95": 93192.58653301797,
+    "min": 0.0,
+    "max": 203417.36670906725,
+    "sum": 8828660.785522092,
+    "p99": 154500.56114770405,
+    "gateway_queue_ms": {
+     "n": 263,
+     "mean": 0.0,
+     "median": 0.0,
+     "p95": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sum": 0.0,
+     "p99": 0.0
+    },
+    "est_upstream_queue_ms": {
+     "n": 263,
+     "mean": 33569.05241643381,
+     "median": 29878.397702702707,
+     "p95": 93192.58653301797,
+     "min": 0.0,
+     "max": 203417.36670906725,
+     "sum": 8828660.785522092,
+     "p99": 154500.56114770405
+    },
+    "note": "upstream queue is estimated: upstream TTFT - prompt_ms - 1 decode step"
+   },
+   "11_eligible_cache_hit_rate": {
+    "value": 0.7983539094650206,
+    "num": 194,
+    "n": 243,
+    "definition": "requests at step>=1 of append-mode sessions with cache_n >= 50% of prompt tokens"
+   },
+   "12_prefix_cache_reuse_ratio": {
+    "value": 0.7096063994786436,
+    "num": 662028,
+    "n": 932951
+   },
+   "13_recomputed_prompt_tokens": {
+    "total": 270923,
+    "per_request": {
+     "n": 263,
+     "mean": 1030.1254752851712,
+     "median": 606.0,
+     "p95": 4556.299999999997,
+     "min": 27.0,
+     "max": 7176.0,
+     "sum": 270923.0,
+     "p99": 6807.299999999998
+    }
+   },
+   "14_cache_retention_across_tool_waits": {
+    "mean_retained_fraction": {
+     "n": 0
+    },
+    "fully_retained_rate": {
+     "value": null,
+     "num": 0,
+     "n": 0
+    }
+   },
+   "15_cache_eviction_and_slot_reset_events": {
+    "prefix_loss_events": 48,
+    "slot_switches": 224,
+    "prompt_cache_saves_to_host_ram": null,
+    "tasks_with_zero_reuse": null,
+    "definition": "prefix_loss: eligible request reusing <50% of the previous request's tokens; slot_switch: slot serves a different session than its previous request"
+   },
+   "19_rust_routing_overhead": {
+    "decision_us": {
+     "n": 263,
+     "mean": 0.07685171102661595,
+     "median": 0.041999999999999996,
+     "p95": 0.20900000000000002,
+     "min": 0.0,
+     "max": 0.29200000000000004,
+     "sum": 20.211999999999996,
+     "p99": 0.25
+    },
+    "gateway_overhead_ms": {
+     "n": 263,
+     "mean": 9.284009494295963,
+     "median": 8.359041999996407,
+     "p95": 19.223682999998708,
+     "min": 1.7067489999899408,
+     "max": 24.088208000001032,
+     "sum": 2441.6944969998385,
+     "p99": 21.419290540000073
+    }
+   },
+   "20_failure_rates": {
+    "model_request_failures": {
+     "value": 0.0,
+     "num": 0,
+     "n": 263
+    },
+    "tool_failures": {
+     "value": 0.08527131782945736,
+     "num": 22,
+     "n": 258
+    },
+    "episode_crashes": {
+     "value": 0.0,
+     "num": 0,
+     "n": 20
+    },
+    "gateway_logged_errors": 0
+   },
+   "tokens": {
+    "input": 932951,
+    "cached": 662028,
+    "output": 34024,
+    "model_calls": 263
+   }
+  },
+  "concurrent": {
+   "kind": "e2e",
+   "episodes": 20,
+   "wall_minutes": 364.91776769161226,
+   "1_task_success_rate": {
+    "value": 0.5,
+    "num": 10,
+    "n": 20
+   },
+   "2_hidden_test_pass_rate": {
+    "value": 0.6855855855855856,
+    "num": 1522,
+    "n": 2220
+   },
+   "3_regression_free_patch_rate": {
+    "value": 0.5,
+    "num": 10,
+    "n": 20
+   },
+   "3b_regression_free_given_success": {
+    "value": 1.0,
+    "num": 10,
+    "n": 10
+   },
+   "4_tool_call_success_rate": {
+    "value": 0.9669811320754716,
+    "num": 205,
+    "n": 212
+   },
+   "5_end_to_end_task_latency_s": {
+    "n": 20,
+    "mean": 458.7114787578583,
+    "median": 482.2132453918457,
+    "p95": 837.1140963435173,
+    "min": 137.55613803863525,
+    "max": 847.626825094223,
+    "sum": 9174.229575157166,
+    "p99": 845.5242793440818
+   },
+   "10_completed_tasks_per_minute": {
+    "value": 0.02740343410313439,
+    "successful_tasks": 10,
+    "wall_minutes": 364.91776769161226
+   },
+   "agent_completed_status_rate": {
+    "value": 0.45,
+    "num": 9,
+    "n": 20
+   },
+   "outcomes": {
+    "verified": 9,
+    "step_budget_exhausted": 6,
+    "context_exhausted": 5
+   },
+   "session_wait_s": {
+    "n": 20,
+    "mean": 0.007247364521026612,
+    "median": 0.008000016212463379,
+    "p95": 0.011353540420532228,
+    "min": 0.0010998249053955078,
+    "max": 0.013053178787231445,
+    "sum": 0.14494729042053223,
+    "p99": 0.0127132511138916
+   },
+   "tool_execution_s_per_call": {
+    "n": 359,
+    "mean": 0.18257813482813817,
+    "median": 0.0032995829824358225,
+    "p95": 0.8890374502632766,
+    "min": 0.0,
+    "max": 1.1788987920153886,
+    "sum": 65.5455504033016,
+    "p99": 0.9962104897061363
+   },
+   "tool_wait_s_per_episode": {
+    "n": 20,
+    "mean": 5.15365,
+    "median": 5.1865000000000006,
+    "p95": 8.343800000000002,
+    "min": 1.595,
+    "max": 9.29,
+    "sum": 103.073,
+    "p99": 9.100759999999998
+   },
+   "model_calls_per_episode": {
+    "n": 20,
+    "mean": 15.1,
+    "median": 16.5,
+    "p95": 19.05,
+    "min": 8.0,
+    "max": 20.0,
+    "sum": 302.0,
+    "p99": 19.81
+   },
+   "tool_calls_per_episode": {
+    "n": 20,
+    "mean": 10.6,
+    "median": 12.0,
+    "p95": 15.0,
+    "min": 4.0,
+    "max": 15.0,
+    "sum": 212.0,
+    "p99": 15.0
+   },
+   "input_tokens_per_episode": {
+    "n": 20,
+    "mean": 41786.05,
+    "median": 47007.5,
+    "p95": 63026.4,
+    "min": 12220.0,
+    "max": 67499.0,
+    "sum": 835721.0,
+    "p99": 66604.48
+   },
+   "output_tokens_per_episode": {
+    "n": 20,
+    "mean": 1727.7,
+    "median": 1745.5,
+    "p95": 2740.0,
+    "min": 752.0,
+    "max": 2854.0,
+    "sum": 34554.0,
+    "p99": 2831.2
+   },
+   "recomputed_tokens_per_episode": {
+    "n": 20,
+    "mean": 10674.35,
+    "median": 10693.5,
+    "p95": 15810.7,
+    "min": 4351.0,
+    "max": 16299.0,
+    "sum": 213487.0,
+    "p99": 16201.34
+   },
+   "6_ttft_ms": {
+    "n": 222,
+    "mean": 9009.909847563064,
+    "median": 6031.668125,
+    "p95": 29024.36833154999,
+    "min": 289.43008299999997,
+    "max": 46575.052833,
+    "sum": 2000199.986159,
+    "p99": 36067.24791478
+   },
+   "7_prefill_latency_ms": {
+    "n": 222,
+    "mean": 6464.290454954955,
+    "median": 4525.8994999999995,
+    "p95": 16216.3208,
+    "min": 263.3,
+    "max": 34495.928,
+    "sum": 1435072.481,
+    "p99": 29103.079449999997
+   },
+   "8_session_resumption_latency_ms": {
+    "n": 0
+   },
+   "9_queue_wait_ms": {
+    "n": 222,
+    "mean": 2427.6974727767047,
+    "median": 0.0,
+    "p95": 18523.84087331111,
+    "min": 0.0,
+    "max": 33319.85921590909,
+    "sum": 538948.8389564285,
+    "p99": 26649.113006797692,
+    "gateway_queue_ms": {
+     "n": 222,
+     "mean": 0.0,
+     "median": 0.0,
+     "p95": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sum": 0.0,
+     "p99": 0.0
+    },
+    "est_upstream_queue_ms": {
+     "n": 222,
+     "mean": 2427.6974727767047,
+     "median": 0.0,
+     "p95": 18523.84087331111,
+     "min": 0.0,
+     "max": 33319.85921590909,
+     "sum": 538948.8389564285,
+     "p99": 26649.113006797692
+    },
+    "note": "upstream queue is estimated: upstream TTFT - prompt_ms - 1 decode step"
+   },
+   "11_eligible_cache_hit_rate": {
+    "value": 0.8564356435643564,
+    "num": 173,
+    "n": 202,
+    "definition": "requests at step>=1 of append-mode sessions with cache_n >= 50% of prompt tokens"
+   },
+   "12_prefix_cache_reuse_ratio": {
+    "value": 0.7775422637016304,
+    "num": 573355,
+    "n": 737394
+   },
+   "13_recomputed_prompt_tokens": {
+    "total": 164039,
+    "per_request": {
+     "n": 222,
+     "mean": 738.9144144144144,
+     "median": 470.0,
+     "p95": 2031.4999999999995,
+     "min": 24.0,
+     "max": 3573.0,
+     "sum": 164039.0,
+     "p99": 3181.7199999999984
+    }
+   },
+   "14_cache_retention_across_tool_waits": {
+    "mean_retained_fraction": {
+     "n": 0
+    },
+    "fully_retained_rate": {
+     "value": null,
+     "num": 0,
+     "n": 0
+    }
+   },
+   "15_cache_eviction_and_slot_reset_events": {
+    "prefix_loss_events": 24,
+    "slot_switches": 100,
+    "prompt_cache_saves_to_host_ram": null,
+    "tasks_with_zero_reuse": null,
+    "definition": "prefix_loss: eligible request reusing <50% of the previous request's tokens; slot_switch: slot serves a different session than its previous request"
+   },
+   "19_rust_routing_overhead": {
+    "decision_us": {
+     "n": 222,
+     "mean": 0.09066666666666665,
+     "median": 0.041999999999999996,
+     "p95": 0.20900000000000002,
+     "min": 0.0,
+     "max": 0.5,
+     "sum": 20.127999999999997,
+     "p99": 0.3243899999999997
+    },
+    "gateway_overhead_ms": {
+     "n": 222,
+     "mean": 9.57470056756773,
+     "median": 8.317645500001163,
+     "p95": 19.339551449999455,
+     "min": 1.4764580000010028,
+     "max": 21.933375000000524,
+     "sum": 2125.583526000036,
+     "p99": 21.123609820001764
+    }
+   },
+   "20_failure_rates": {
+    "model_request_failures": {
+     "value": 0.0,
+     "num": 0,
+     "n": 222
+    },
+    "tool_failures": {
+     "value": 0.0330188679245283,
+     "num": 7,
+     "n": 212
+    },
+    "episode_crashes": {
+     "value": 0.0,
+     "num": 0,
+     "n": 20
+    },
+    "gateway_logged_errors": 0
+   },
+   "tokens": {
+    "input": 737394,
+    "cached": 573355,
+    "output": 26895,
+    "model_calls": 222
+   }
+  },
+  "repeated_prefix": {
+   "kind": "e2e",
+   "episodes": 20,
+   "wall_minutes": 364.91776769161226,
+   "1_task_success_rate": {
+    "value": 0.25,
+    "num": 5,
+    "n": 20
+   },
+   "2_hidden_test_pass_rate": {
+    "value": 0.5175675675675676,
+    "num": 1149,
+    "n": 2220
+   },
+   "3_regression_free_patch_rate": {
+    "value": 0.15,
+    "num": 3,
+    "n": 20
+   },
+   "3b_regression_free_given_success": {
+    "value": 0.6,
+    "num": 3,
+    "n": 5
+   },
+   "4_tool_call_success_rate": {
+    "value": 0.9453125,
+    "num": 242,
+    "n": 256
+   },
+   "5_end_to_end_task_latency_s": {
+    "n": 20,
+    "mean": 204.76681686639785,
+    "median": 216.46939158439636,
+    "p95": 260.8358234167099,
+    "min": 88.24951601028442,
+    "max": 275.8207290172577,
+    "sum": 4095.336337327957,
+    "p99": 272.8237478971481
+   },
+   "10_completed_tasks_per_minute": {
+    "value": 0.013701717051567195,
+    "successful_tasks": 5,
+    "wall_minutes": 364.91776769161226
+   },
+   "agent_completed_status_rate": {
+    "value": 0.1,
+    "num": 2,
+    "n": 20
+   },
+   "outcomes": {
+    "context_exhausted": 8,
+    "step_budget_exhausted": 9,
+    "verified": 2,
+    "model_error": 1
+   },
+   "session_wait_s": {
+    "n": 20,
+    "mean": 0.0036766648292541502,
+    "median": 0.00013947486877441406,
+    "p95": 0.004558467864990283,
+    "min": 7.486343383789062e-05,
+    "max": 0.06950712203979492,
+    "sum": 0.07353329658508301,
+    "p99": 0.0565173912048339
+   },
+   "tool_execution_s_per_call": {
+    "n": 400,
+    "mean": 0.1273733825146337,
+    "median": 0.0032666255137883127,
+    "p95": 0.7547902853810227,
+    "min": 0.0,
+    "max": 0.9162103750277311,
+    "sum": 50.94935300585348,
+    "p99": 0.8392015066451858
+   },
+   "tool_wait_s_per_episode": {
+    "n": 20,
+    "mean": 0.0,
+    "median": 0.0,
+    "p95": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "sum": 0.0,
+    "p99": 0.0
+   },
+   "model_calls_per_episode": {
+    "n": 20,
+    "mean": 17.15,
+    "median": 18.0,
+    "p95": 19.0,
+    "min": 10.0,
+    "max": 19.0,
+    "sum": 343.0,
+    "p99": 19.0
+   },
+   "tool_calls_per_episode": {
+    "n": 20,
+    "mean": 12.8,
+    "median": 14.0,
+    "p95": 15.0,
+    "min": 4.0,
+    "max": 15.0,
+    "sum": 256.0,
+    "p99": 15.0
+   },
+   "input_tokens_per_episode": {
+    "n": 20,
+    "mean": 52789.95,
+    "median": 54184.5,
+    "p95": 70875.5,
+    "min": 15412.0,
+    "max": 71512.0,
+    "sum": 1055799.0,
+    "p99": 71384.7
+   },
+   "output_tokens_per_episode": {
+    "n": 20,
+    "mean": 2043.8,
+    "median": 2091.5,
+    "p95": 2926.05,
+    "min": 963.0,
+    "max": 2965.0,
+    "sum": 40876.0,
+    "p99": 2957.21
+   },
+   "recomputed_tokens_per_episode": {
+    "n": 20,
+    "mean": 13278.65,
+    "median": 14477.5,
+    "p95": 16409.95,
+    "min": 5335.0,
+    "max": 16865.0,
+    "sum": 265573.0,
+    "p99": 16773.989999999998
+   },
+   "6_ttft_ms": {
+    "n": 264,
+    "mean": 4900.177437613636,
+    "median": 4247.8412085,
+    "p95": 10238.86699105,
+    "min": 777.701041,
+    "max": 15403.0675,
+    "sum": 1293646.84353,
+    "p99": 13748.413727000001
+   },
+   "7_prefill_latency_ms": {
+    "n": 264,
+    "mean": 4870.802310606061,
+    "median": 4210.689,
+    "p95": 10208.531399999998,
+    "min": 768.712,
+    "max": 15365.193,
+    "sum": 1285891.81,
+    "p99": 13714.29765
+   },
+   "8_session_resumption_latency_ms": {
+    "n": 0
+   },
+   "9_queue_wait_ms": {
+    "n": 264,
+    "mean": 0.46014756941954316,
+    "median": 0.0,
+    "p95": 0.0,
+    "min": 0.0,
+    "max": 40.304343919707186,
+    "sum": 121.4789583267594,
+    "p99": 10.644949842825733,
+    "gateway_queue_ms": {
+     "n": 264,
+     "mean": 0.0,
+     "median": 0.0,
+     "p95": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sum": 0.0,
+     "p99": 0.0
+    },
+    "est_upstream_queue_ms": {
+     "n": 264,
+     "mean": 0.46014756941954316,
+     "median": 0.0,
+     "p95": 0.0,
+     "min": 0.0,
+     "max": 40.304343919707186,
+     "sum": 121.4789583267594,
+     "p99": 10.644949842825733
+    },
+    "note": "upstream queue is estimated: upstream TTFT - prompt_ms - 1 decode step"
+   },
+   "11_eligible_cache_hit_rate": {
+    "value": 0.9016393442622951,
+    "num": 220,
+    "n": 244,
+    "definition": "requests at step>=1 of append-mode sessions with cache_n >= 50% of prompt tokens"
+   },
+   "12_prefix_cache_reuse_ratio": {
+    "value": 0.7738129397674535,
+    "num": 744309,
+    "n": 961872
+   },
+   "13_recomputed_prompt_tokens": {
+    "total": 217563,
+    "per_request": {
+     "n": 264,
+     "mean": 824.1022727272727,
+     "median": 768.5,
+     "p95": 1715.7499999999995,
+     "min": 139.0,
+     "max": 2393.0,
+     "sum": 217563.0,
+     "p99": 2161.7400000000007
+    }
+   },
+   "14_cache_retention_across_tool_waits": {
+    "mean_retained_fraction": {
+     "n": 0
+    },
+    "fully_retained_rate": {
+     "value": null,
+     "num": 0,
+     "n": 0
+    }
+   },
+   "15_cache_eviction_and_slot_reset_events": {
+    "prefix_loss_events": 20,
+    "slot_switches": 37,
+    "prompt_cache_saves_to_host_ram": null,
+    "tasks_with_zero_reuse": null,
+    "definition": "prefix_loss: eligible request reusing <50% of the previous request's tokens; slot_switch: slot serves a different session than its previous request"
+   },
+   "19_rust_routing_overhead": {
+    "decision_us": {
+     "n": 264,
+     "mean": 0.10951515151515151,
+     "median": 0.041999999999999996,
+     "p95": 0.41685,
+     "min": 0.0,
+     "max": 0.5419999999999999,
+     "sum": 28.912,
+     "p99": 0.5
+    },
+    "gateway_overhead_ms": {
+     "n": 264,
+     "mean": 9.630653382575797,
+     "median": 8.842312499998116,
+     "p95": 17.790820550000625,
+     "min": 2.4655000000002474,
+     "max": 21.297207999996317,
+     "sum": 2542.4924930000107,
+     "p99": 20.192125460000135
+    }
+   },
+   "20_failure_rates": {
+    "model_request_failures": {
+     "value": 0.003787878787878788,
+     "num": 1,
+     "n": 264
+    },
+    "tool_failures": {
+     "value": 0.0546875,
+     "num": 14,
+     "n": 256
+    },
+    "episode_crashes": {
+     "value": 0.0,
+     "num": 0,
+     "n": 20
+    },
+    "gateway_logged_errors": 0
+   },
+   "tokens": {
+    "input": 961872,
+    "cached": 744309,
+    "output": 32757,
+    "model_calls": 264
+   }
+  },
+  "tool_wait": {
+   "kind": "e2e",
+   "episodes": 20,
+   "wall_minutes": 364.91776769161226,
+   "1_task_success_rate": {
+    "value": 0.4,
+    "num": 8,
+    "n": 20
+   },
+   "2_hidden_test_pass_rate": {
+    "value": 0.6621621621621622,
+    "num": 1470,
+    "n": 2220
+   },
+   "3_regression_free_patch_rate": {
+    "value": 0.35,
+    "num": 7,
+    "n": 20
+   },
+   "3b_regression_free_given_success": {
+    "value": 0.875,
+    "num": 7,
+    "n": 8
+   },
+   "4_tool_call_success_rate": {
+    "value": 0.9422222222222222,
+    "num": 212,
+    "n": 225
+   },
+   "5_end_to_end_task_latency_s": {
+    "n": 20,
+    "mean": 510.1372465848923,
+    "median": 494.07212460041046,
+    "p95": 886.0949050307274,
+    "min": 219.35509395599365,
+    "max": 926.1591618061066,
+    "sum": 10202.744931697845,
+    "p99": 918.1463104510307
+   },
+   "10_completed_tasks_per_minute": {
+    "value": 0.021922747282507513,
+    "successful_tasks": 8,
+    "wall_minutes": 364.91776769161226
+   },
+   "agent_completed_status_rate": {
+    "value": 0.4,
+    "num": 8,
+    "n": 20
+   },
+   "outcomes": {
+    "verified": 8,
+    "context_exhausted": 5,
+    "step_budget_exhausted": 7
+   },
+   "session_wait_s": {
+    "n": 20,
+    "mean": 0.00977485179901123,
+    "median": 0.010661125183105469,
+    "p95": 0.010794258117675782,
+    "min": 0.003114938735961914,
+    "max": 0.010796070098876953,
+    "sum": 0.1954970359802246,
+    "p99": 0.01079570770263672
+   },
+   "tool_execution_s_per_call": {
+    "n": 367,
+    "mean": 0.13671475680061548,
+    "median": 0.0030131249222904444,
+    "p95": 0.7947786420583723,
+    "min": 0.0,
+    "max": 1.0666035000467673,
+    "sum": 50.17431574582588,
+    "p99": 0.9584458571299892
+   },
+   "tool_wait_s_per_episode": {
+    "n": 20,
+    "mean": 70.1951,
+    "median": 68.912,
+    "p95": 113.1096,
+    "min": 20.817999999999998,
+    "max": 113.881,
+    "sum": 1403.9019999999998,
+    "p99": 113.72672
+   },
+   "model_calls_per_episode": {
+    "n": 20,
+    "mean": 15.75,
+    "median": 16.0,
+    "p95": 19.05,
+    "min": 10.0,
+    "max": 20.0,
+    "sum": 315.0,
+    "p99": 19.81
+   },
+   "tool_calls_per_episode": {
+    "n": 20,
+    "mean": 11.25,
+    "median": 13.0,
+    "p95": 15.0,
+    "min": 4.0,
+    "max": 15.0,
+    "sum": 225.0,
+    "p99": 15.0
+   },
+   "input_tokens_per_episode": {
+    "n": 20,
+    "mean": 45092.35,
+    "median": 44552.0,
+    "p95": 69591.65000000001,
+    "min": 15772.0,
+    "max": 74297.0,
+    "sum": 901847.0,
+    "p99": 73355.93
+   },
+   "output_tokens_per_episode": {
+    "n": 20,
+    "mean": 1992.75,
+    "median": 1789.0,
+    "p95": 3222.850000000001,
+    "min": 976.0,
+    "max": 4322.0,
+    "sum": 39855.0,
+    "p99": 4102.169999999998
+   },
+   "recomputed_tokens_per_episode": {
+    "n": 20,
+    "mean": 11512.5,
+    "median": 12284.0,
+    "p95": 16261.35,
+    "min": 5235.0,
+    "max": 16990.0,
+    "sum": 230250.0,
+    "p99": 16844.27
+   },
+   "6_ttft_ms": {
+    "n": 234,
+    "mean": 8260.48052632906,
+    "median": 6399.278396,
+    "p95": 24754.189975299996,
+    "min": 341.836333,
+    "max": 56654.767917000005,
+    "sum": 1932952.443161,
+    "p99": 36440.06570738998
+   },
+   "7_prefill_latency_ms": {
+    "n": 234,
+    "mean": 7235.757004273504,
+    "median": 5747.816000000001,
+    "p95": 20372.3484,
+    "min": 324.868,
+    "max": 56546.419,
+    "sum": 1693167.139,
+    "p99": 36287.37155999998
+   },
+   "8_session_resumption_latency_ms": {
+    "n": 208,
+    "mean": 8284.985991764424,
+    "median": 6272.161979,
+    "p95": 25007.11952469998,
+    "min": 341.836333,
+    "max": 56654.767917000005,
+    "sum": 1723277.0862870002,
+    "p99": 36839.000975810006
+   },
+   "9_queue_wait_ms": {
+    "n": 234,
+    "mean": 920.1537677098462,
+    "median": 0.0,
+    "p95": 6511.660299098777,
+    "min": 0.0,
+    "max": 15923.23240293392,
+    "sum": 215315.981644104,
+    "p99": 13370.8093077941,
+    "gateway_queue_ms": {
+     "n": 234,
+     "mean": 0.0,
+     "median": 0.0,
+     "p95": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sum": 0.0,
+     "p99": 0.0
+    },
+    "est_upstream_queue_ms": {
+     "n": 234,
+     "mean": 920.1537677098462,
+     "median": 0.0,
+     "p95": 6511.660299098777,
+     "min": 0.0,
+     "max": 15923.23240293392,
+     "sum": 215315.981644104,
+     "p99": 13370.8093077941
+    },
+    "note": "upstream queue is estimated: upstream TTFT - prompt_ms - 1 decode step"
+   },
+   "11_eligible_cache_hit_rate": {
+    "value": 0.8551401869158879,
+    "num": 183,
+    "n": 214,
+    "definition": "requests at step>=1 of append-mode sessions with cache_n >= 50% of prompt tokens"
+   },
+   "12_prefix_cache_reuse_ratio": {
+    "value": 0.7700181573388999,
+    "num": 623399,
+    "n": 809590
+   },
+   "13_recomputed_prompt_tokens": {
+    "total": 186191,
+    "per_request": {
+     "n": 234,
+     "mean": 795.6880341880342,
+     "median": 669.0,
+     "p95": 2193.5499999999984,
+     "min": 29.0,
+     "max": 5845.0,
+     "sum": 186191.0,
+     "p99": 3392.889999999999
+    }
+   },
+   "14_cache_retention_across_tool_waits": {
+    "mean_retained_fraction": {
+     "n": 208,
+     "mean": 0.8597198943294747,
+     "median": 0.9820398852338115,
+     "p95": 1.0,
+     "min": 0.004340277777777778,
+     "max": 1.0,
+     "sum": 178.82173802053074,
+     "p99": 1.0
+    },
+    "fully_retained_rate": {
+     "value": 0.6346153846153846,
+     "num": 132,
+     "n": 208
+    }
+   },
+   "15_cache_eviction_and_slot_reset_events": {
+    "prefix_loss_events": 25,
+    "slot_switches": 108,
+    "prompt_cache_saves_to_host_ram": null,
+    "tasks_with_zero_reuse": null,
+    "definition": "prefix_loss: eligible request reusing <50% of the previous request's tokens; slot_switch: slot serves a different session than its previous request"
+   },
+   "19_rust_routing_overhead": {
+    "decision_us": {
+     "n": 234,
+     "mean": 0.08510256410256412,
+     "median": 0.041999999999999996,
+     "p95": 0.22334999999999977,
+     "min": 0.0,
+     "max": 0.33299999999999996,
+     "sum": 19.914,
+     "p99": 0.2774699999999995
+    },
+    "gateway_overhead_ms": {
+     "n": 234,
+     "mean": 10.255280106837251,
+     "median": 9.473250000000917,
+     "p95": 18.831756250001398,
+     "min": 1.555292000000918,
+     "max": 46.68495800000164,
+     "sum": 2399.735544999917,
+     "p99": 22.357334920000262
+    }
+   },
+   "20_failure_rates": {
+    "model_request_failures": {
+     "value": 0.0,
+     "num": 0,
+     "n": 234
+    },
+    "tool_failures": {
+     "value": 0.057777777777777775,
+     "num": 13,
+     "n": 225
+    },
+    "episode_crashes": {
+     "value": 0.0,
+     "num": 0,
+     "n": 20
+    },
+    "gateway_logged_errors": 0
+   },
+   "tokens": {
+    "input": 809590,
+    "cached": 623399,
+    "output": 30777,
+    "model_calls": 234
+   }
+  },
+  "unique_prefix": {
+   "kind": "e2e",
+   "episodes": 20,
+   "wall_minutes": 364.91776769161226,
+   "1_task_success_rate": {
+    "value": 0.55,
+    "num": 11,
+    "n": 20
+   },
+   "2_hidden_test_pass_rate": {
+    "value": 0.7914414414414415,
+    "num": 1757,
+    "n": 2220
+   },
+   "3_regression_free_patch_rate": {
+    "value": 0.55,
+    "num": 11,
+    "n": 20
+   },
+   "3b_regression_free_given_success": {
+    "value": 1.0,
+    "num": 11,
+    "n": 11
+   },
+   "4_tool_call_success_rate": {
+    "value": 0.9181034482758621,
+    "num": 213,
+    "n": 232
+   },
+   "5_end_to_end_task_latency_s": {
+    "n": 20,
+    "mean": 986.3148159861564,
+    "median": 1093.026978969574,
+    "p95": 1374.7701358437541,
+    "min": 314.199049949646,
+    "max": 1880.5747759342194,
+    "sum": 19726.29631972313,
+    "p99": 1779.4138479161256
+   },
+   "10_completed_tasks_per_minute": {
+    "value": 0.03014377751344783,
+    "successful_tasks": 11,
+    "wall_minutes": 364.91776769161226
+   },
+   "agent_completed_status_rate": {
+    "value": 0.5,
+    "num": 10,
+    "n": 20
+   },
+   "outcomes": {
+    "context_exhausted": 4,
+    "verified": 10,
+    "step_budget_exhausted": 6
+   },
+   "session_wait_s": {
+    "n": 20,
+    "mean": 0.008239734172821044,
+    "median": 0.009474635124206543,
+    "p95": 0.011540031433105476,
+    "min": 0.0023491382598876953,
+    "max": 0.020493030548095703,
+    "sum": 0.1647946834564209,
+    "p99": 0.018702430725097644
+   },
+   "tool_execution_s_per_call": {
+    "n": 394,
+    "mean": 0.1881638697267576,
+    "median": 0.004783374955877662,
+    "p95": 0.9175549875537399,
+    "min": 0.0,
+    "max": 1.3179147500777617,
+    "sum": 74.1365646723425,
+    "p99": 1.0851646515540778
+   },
+   "tool_wait_s_per_episode": {
+    "n": 20,
+    "mean": 5.3058,
+    "median": 5.59,
+    "p95": 8.94435,
+    "min": 0.0,
+    "max": 9.198,
+    "sum": 106.11599999999999,
+    "p99": 9.14727
+   },
+   "model_calls_per_episode": {
+    "n": 20,
+    "mean": 16.5,
+    "median": 16.5,
+    "p95": 19.05,
+    "min": 10.0,
+    "max": 20.0,
+    "sum": 330.0,
+    "p99": 19.81
+   },
+   "tool_calls_per_episode": {
+    "n": 20,
+    "mean": 11.6,
+    "median": 12.0,
+    "p95": 15.0,
+    "min": 4.0,
+    "max": 15.0,
+    "sum": 232.0,
+    "p99": 15.0
+   },
+   "input_tokens_per_episode": {
+    "n": 20,
+    "mean": 46095.4,
+    "median": 49315.5,
+    "p95": 64589.200000000004,
+    "min": 14023.0,
+    "max": 68716.0,
+    "sum": 921908.0,
+    "p99": 67890.64
+   },
+   "output_tokens_per_episode": {
+    "n": 20,
+    "mean": 2170.1,
+    "median": 1942.5,
+    "p95": 3807.3000000000025,
+    "min": 937.0,
+    "max": 7005.0,
+    "sum": 43402.0,
+    "p99": 6365.4599999999955
+   },
+   "recomputed_tokens_per_episode": {
+    "n": 20,
+    "mean": 45773.6,
+    "median": 49025.5,
+    "p95": 64215.9,
+    "min": 13862.0,
+    "max": 68356.0,
+    "sum": 915472.0,
+    "p99": 67527.98
+   },
+   "6_ttft_ms": {
+    "n": 245,
+    "mean": 34088.51530864082,
+    "median": 31155.933917,
+    "p95": 74770.60924159997,
+    "min": 7520.172916,
+    "max": 116106.072667,
+    "sum": 8351686.250616999,
+    "p99": 105071.11233652003
+   },
+   "7_prefill_latency_ms": {
+    "n": 245,
+    "mean": 27738.82802857143,
+    "median": 26066.791,
+    "p95": 54094.83239999999,
+    "min": 7413.898,
+    "max": 109313.296,
+    "sum": 6796012.867000001,
+    "p99": 66687.10012000002
+   },
+   "8_session_resumption_latency_ms": {
+    "n": 0
+   },
+   "9_queue_wait_ms": {
+    "n": 245,
+    "mean": 6181.946733225505,
+    "median": 0.0,
+    "p95": 40320.35576571527,
+    "min": 0.0,
+    "max": 87007.62247037077,
+    "sum": 1514576.949640249,
+    "p99": 59101.06026129731,
+    "gateway_queue_ms": {
+     "n": 245,
+     "mean": 0.0,
+     "median": 0.0,
+     "p95": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sum": 0.0,
+     "p99": 0.0
+    },
+    "est_upstream_queue_ms": {
+     "n": 245,
+     "mean": 6181.946733225505,
+     "median": 0.0,
+     "p95": 40320.35576571527,
+     "min": 0.0,
+     "max": 87007.62247037077,
+     "sum": 1514576.949640249,
+     "p99": 59101.06026129731
+    },
+    "note": "upstream queue is estimated: upstream TTFT - prompt_ms - 1 decode step"
+   },
+   "11_eligible_cache_hit_rate": {
+    "value": null,
+    "num": 0,
+    "n": 0,
+    "definition": "requests at step>=1 of append-mode sessions with cache_n >= 50% of prompt tokens"
+   },
+   "12_prefix_cache_reuse_ratio": {
+    "value": 0.006188414135602459,
+    "num": 5109,
+    "n": 825575
+   },
+   "13_recomputed_prompt_tokens": {
+    "total": 820466,
+    "per_request": {
+     "n": 245,
+     "mean": 3348.840816326531,
+     "median": 3136.0,
+     "p95": 6508.0,
+     "min": 1071.0,
+     "max": 8035.0,
+     "sum": 820466.0,
+     "p99": 7620.2
+    }
+   },
+   "14_cache_retention_across_tool_waits": {
+    "mean_retained_fraction": {
+     "n": 0
+    },
+    "fully_retained_rate": {
+     "value": null,
+     "num": 0,
+     "n": 0
+    }
+   },
+   "15_cache_eviction_and_slot_reset_events": {
+    "prefix_loss_events": 0,
+    "slot_switches": 148,
+    "prompt_cache_saves_to_host_ram": null,
+    "tasks_with_zero_reuse": null,
+    "definition": "prefix_loss: eligible request reusing <50% of the previous request's tokens; slot_switch: slot serves a different session than its previous request"
+   },
+   "19_rust_routing_overhead": {
+    "decision_us": {
+     "n": 245,
+     "mean": 0.08617142857142858,
+     "median": 0.041999999999999996,
+     "p95": 0.20900000000000002,
+     "min": 0.0,
+     "max": 0.417,
+     "sum": 21.112000000000002,
+     "p99": 0.29156000000000004
+    },
+    "gateway_overhead_ms": {
+     "n": 245,
+     "mean": 10.496048624490104,
+     "median": 10.027582000009716,
+     "p95": 19.36076680000405,
+     "min": 1.9535420000029262,
+     "max": 21.131958000005397,
+     "sum": 2571.5319130000753,
+     "p99": 20.725240000005577
+    }
+   },
+   "20_failure_rates": {
+    "model_request_failures": {
+     "value": 0.0,
+     "num": 0,
+     "n": 245
+    },
+    "tool_failures": {
+     "value": 0.08189655172413793,
+     "num": 19,
+     "n": 232
+    },
+    "episode_crashes": {
+     "value": 0.0,
+     "num": 0,
+     "n": 20
+    },
+    "gateway_logged_errors": 0
+   },
+   "tokens": {
+    "input": 825575,
+    "cached": 5109,
+    "output": 34116,
+    "model_calls": 245
+   }
+  }
+ }
+}

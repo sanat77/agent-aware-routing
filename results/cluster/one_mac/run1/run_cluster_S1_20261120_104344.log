@@ -1,0 +1,16 @@
+[2026-11-20 10:43:44] setups: S1  run: run1  tiers: 0,1,2,3  profile: one_mac  (log: results/cluster/one_mac/run1/run_cluster_S1_20261120_104344.log)
+model ok, manifest ok (41f699b67124), 36 GB free, servers: w0@127.0.0.1, w1@127.0.0.1
+[2026-11-20 10:43:46] === START S1 tier0: real agents
+[cluster-one_mac-run1-S1-e2e-tier0] starting the stack: 2 model servers, 2 gateways, llm-router (50 episodes, 0 already done)
+  starting model server w0 (http://127.0.0.1:8101); loading the model takes ~10-30 s
+  model server w0 ready in 2 s
+  starting model server w1 (http://127.0.0.1:8102); loading the model takes ~10-30 s
+  model server w1 ready in 0 s
+  gateway w0 ready (passthrough) at http://127.0.0.1:8201
+  gateway w1 ready (passthrough) at http://127.0.0.1:8202
+  llm-router ready (roundrobin) at http://127.0.0.1:8300
+[cluster-one_mac-run1-S1-e2e-tier0] stack ready; agents starting. A progress line prints when each episode starts and finishes, and a 'still running' line every minute.
+[cluster-one_mac-run1-S1-e2e-tier0] starting ep0000 (repeated_prefix, boundary_conditions)
+[cluster-one_mac-run1-S1-e2e-tier0] still running (1 min): 0/50 done | w0: 4 requests, 0 in flight, 2 slots; w1: 3 requests, 1 in flight, 2 slots | last agent activity: ep0000 tool search_code (4s ago)
+received signal 2; progress saved, exiting (re-run to resume)
+[2026-11-20 10:46:35] interrupted - progress is saved; re-run the same command to resume

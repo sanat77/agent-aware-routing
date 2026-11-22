@@ -1,0 +1,2 @@
+[2026-11-20 01:55:54] setups: S2  run: run1  tiers: 0,1,2,3  profile: one_mac  (log: results/cluster/one_mac/run1/run_cluster_S2_20261120_015554.log)
+[2026-11-20 01:55:54] the Mac is on battery: plug in the charger (battery power throttles the GPU and would skew timings)

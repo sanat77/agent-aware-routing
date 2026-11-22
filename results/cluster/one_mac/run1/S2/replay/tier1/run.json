@@ -1,0 +1,93 @@
+{
+ "run": "run1",
+ "setup": "S2",
+ "profile": "one_mac",
+ "trace_root": "/Users/sanat/Desktop/Dev Projects/agent-aware-routing-session-cache/results/cluster/one_mac/run1/S2/e2e",
+ "episodes": 50,
+ "missing_traces": [],
+ "status": "complete",
+ "stack": {
+  "total_slots": 4,
+  "n_ctx_per_slot": 8192,
+  "model_startup_s": 1.334069013595581,
+  "setup": "S2",
+  "profile": "one_mac",
+  "policy": "passthrough",
+  "router_strategy": "prefixaware",
+  "started_at": 1795189647.840287,
+  "router_url": "http://127.0.0.1:8300",
+  "router_pid": 30688,
+  "router_metrics_url": "http://127.0.0.1:9300/metrics",
+  "router_commit": "c1345f71ad83d018faefdb4bf3e9c99182d9936a",
+  "router_saturation_inflight": 2,
+  "servers": [
+   {
+    "id": "w0",
+    "llama_url": "http://127.0.0.1:8101",
+    "llama_pid": 30680,
+    "local": true,
+    "np": 2,
+    "ctx": 16384,
+    "n_ctx_per_slot": 8192,
+    "model_startup_s": 1.334069013595581,
+    "build_info": "b11669-620d2225c",
+    "gateway_url": "http://127.0.0.1:8201",
+    "gateway_pid": 30686
+   },
+   {
+    "id": "w1",
+    "llama_url": "http://127.0.0.1:8102",
+    "llama_pid": 30681,
+    "local": true,
+    "np": 2,
+    "ctx": 16384,
+    "n_ctx_per_slot": 8192,
+    "model_startup_s": 0.27916908264160156,
+    "build_info": "b11669-620d2225c",
+    "gateway_url": "http://127.0.0.1:8202",
+    "gateway_pid": 30687
+   }
+  ]
+ },
+ "peak_rss_bytes": {
+  "llama_w0": 5335384064,
+  "gateway_w0": 6651904,
+  "router": 16842752,
+  "bench": 5344591872,
+  "llama_w1": 5334941696,
+  "gateway_w1": 6963200
+ },
+ "repeat_tag": "0",
+ "manifest_sha256": "41f699b67124463cac6f0b86b23b3f223f1aa4be563be96efe536299fe2cc2d6",
+ "wall_s": 9417.180008172989,
+ "invocations": [
+  {
+   "ended_at": 1795189369.081307,
+   "wall_s": 2648.4303081035614,
+   "git": {
+    "commit": "4aca86a17bbaf2ebacf62b83d4b8e07222d5c327",
+    "tag": "baseline-freeze-4-g4aca86a",
+    "frozen_paths_dirty": false,
+    "dirty_files": []
+   },
+   "status": "interrupted"
+  },
+  {
+   "ended_at": 1795196418.830434,
+   "wall_s": 6768.7497000694275,
+   "git": {
+    "commit": "4aca86a17bbaf2ebacf62b83d4b8e07222d5c327",
+    "tag": "baseline-freeze-4-g4aca86a",
+    "frozen_paths_dirty": false,
+    "dirty_files": []
+   },
+   "status": "complete"
+  }
+ ],
+ "git": {
+  "commit": "4aca86a17bbaf2ebacf62b83d4b8e07222d5c327",
+  "tag": "baseline-freeze-4-g4aca86a",
+  "frozen_paths_dirty": false,
+  "dirty_files": []
+ }
+}

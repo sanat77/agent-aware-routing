@@ -1,0 +1,27 @@
+server:
+  addr: "127.0.0.1:8300"
+  read_timeout: 60s
+  write_timeout: 0s
+  shutdown_timeout: 10s
+router:
+  strategy: roundrobin
+  chunk_size: 32
+  min_match_chunks: 2
+  saturation_inflight: 2
+workers:
+  - id: w0
+    url: http://127.0.0.1:8201
+    kv_budget: 4096
+    max_inflight: 0
+    timeout: 900s
+  - id: w1
+    url: http://127.0.0.1:8202
+    kv_budget: 4096
+    max_inflight: 0
+    timeout: 900s
+logging:
+  level: info
+  format: json
+metrics:
+  enabled: true
+  addr: "127.0.0.1:9300"

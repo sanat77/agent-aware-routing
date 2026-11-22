@@ -1,0 +1,95 @@
+{
+ "run_id": "cluster-one_mac-run1-S2-e2e-tier0",
+ "run": "run1",
+ "setup": "S2",
+ "profile": "one_mac",
+ "label": "tier0",
+ "episodes": 50,
+ "episodes_completed": 50,
+ "status": "complete",
+ "stack": {
+  "total_slots": 4,
+  "n_ctx_per_slot": 8192,
+  "model_startup_s": 2.45477294921875,
+  "setup": "S2",
+  "profile": "one_mac",
+  "policy": "passthrough",
+  "router_strategy": "prefixaware",
+  "started_at": 1795158207.845122,
+  "router_url": "http://127.0.0.1:8300",
+  "router_pid": 78220,
+  "router_metrics_url": "http://127.0.0.1:9300/metrics",
+  "router_commit": "c1345f71ad83d018faefdb4bf3e9c99182d9936a",
+  "router_saturation_inflight": 2,
+  "servers": [
+   {
+    "id": "w0",
+    "llama_url": "http://127.0.0.1:8101",
+    "llama_pid": 78194,
+    "local": true,
+    "np": 2,
+    "ctx": 16384,
+    "n_ctx_per_slot": 8192,
+    "model_startup_s": 2.45477294921875,
+    "build_info": "b11669-620d2225c",
+    "gateway_url": "http://127.0.0.1:8201",
+    "gateway_pid": 78214
+   },
+   {
+    "id": "w1",
+    "llama_url": "http://127.0.0.1:8102",
+    "llama_pid": 78195,
+    "local": true,
+    "np": 2,
+    "ctx": 16384,
+    "n_ctx_per_slot": 8192,
+    "model_startup_s": 0.010062932968139648,
+    "build_info": "b11669-620d2225c",
+    "gateway_url": "http://127.0.0.1:8202",
+    "gateway_pid": 78215
+   }
+  ]
+ },
+ "peak_rss_bytes": {
+  "llama_w0": 5282381824,
+  "gateway_w0": 6225920,
+  "router": 15548416,
+  "bench": 5829099520,
+  "llama_w1": 5764300800,
+  "gateway_w1": 6242304
+ },
+ "agent": {
+  "max_steps": 15,
+  "n_predict": 512,
+  "ctx_tokens": 8192,
+  "episode_timeout_s": 3600,
+  "api": "chat",
+  "agent_mode": "multi"
+ },
+ "model": {
+  "path": "models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+  "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+  "source": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/main/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
+ },
+ "manifest_sha256": "41f699b67124463cac6f0b86b23b3f223f1aa4be563be96efe536299fe2cc2d6",
+ "wall_s": 9627.493711233139,
+ "invocations": [
+  {
+   "ended_at": 1795167838.722873,
+   "wall_s": 9627.493711233139,
+   "git": {
+    "commit": "4aca86a17bbaf2ebacf62b83d4b8e07222d5c327",
+    "tag": "baseline-freeze-4-g4aca86a",
+    "frozen_paths_dirty": false,
+    "dirty_files": []
+   },
+   "status": "complete"
+  }
+ ],
+ "git": {
+  "commit": "4aca86a17bbaf2ebacf62b83d4b8e07222d5c327",
+  "tag": "baseline-freeze-4-g4aca86a",
+  "frozen_paths_dirty": false,
+  "dirty_files": []
+ }
+}

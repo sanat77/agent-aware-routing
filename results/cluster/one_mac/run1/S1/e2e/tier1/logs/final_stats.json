@@ -1,0 +1,133 @@
+{
+ "gateways": {
+  "w0": {
+   "aggregates": {
+    "cached_tokens": 698611,
+    "errors": 0,
+    "events": 1039,
+    "gateway_overhead_ms_total": 3356.181490999915,
+    "per_slot_requests": {
+     "0": 179,
+     "1": 228
+    },
+    "predicted_tokens": 49510,
+    "prompt_tokens": 1179460,
+    "requests": 407,
+    "routing_overhead_us_total": 30.79300000000012
+   },
+   "in_flight": 0,
+   "occupancy": {
+    "dead_tokens_resident": 8056,
+    "live_sessions": 0,
+    "saved_bytes": 0,
+    "saved_files": 0,
+    "saved_tokens": 0,
+    "slots": [
+     {
+      "busy": false,
+      "occupant": "sess-0094-99f743ef",
+      "slot": 0,
+      "state": "finished",
+      "tokens": 8056
+     },
+     {
+      "busy": false,
+      "occupant": null,
+      "slot": 1,
+      "state": null,
+      "tokens": 0
+     }
+    ],
+    "waiting_sessions": 0
+   },
+   "policy": "passthrough",
+   "server_id": "w0",
+   "session_manager": {
+    "assigned_empty": 0,
+    "assigned_over_dead": 0,
+    "assigned_over_live": 0,
+    "avoidable_live_evictions": 17,
+    "dead_evictions": 73,
+    "erases": 0,
+    "erases_on_finish": 0,
+    "live_evictions": 131,
+    "requests": 407,
+    "restore_failures": 0,
+    "restore_ms_total": 0.0,
+    "restores": 0,
+    "save_failures": 0,
+    "save_ms_total": 0.0,
+    "saved_files_deleted": 0,
+    "saves": 0,
+    "wait_ms_total": 0.0,
+    "waits": 0,
+    "warm": 0
+   }
+  },
+  "w1": {
+   "aggregates": {
+    "cached_tokens": 680776,
+    "errors": 0,
+    "events": 1011,
+    "gateway_overhead_ms_total": 3433.3414070000827,
+    "per_slot_requests": {
+     "0": 222,
+     "1": 184
+    },
+    "predicted_tokens": 47794,
+    "prompt_tokens": 1161578,
+    "requests": 406,
+    "routing_overhead_us_total": 24.737000000000087
+   },
+   "in_flight": 0,
+   "occupancy": {
+    "dead_tokens_resident": 7392,
+    "live_sessions": 0,
+    "saved_bytes": 0,
+    "saved_files": 0,
+    "saved_tokens": 0,
+    "slots": [
+     {
+      "busy": false,
+      "occupant": null,
+      "slot": 0,
+      "state": null,
+      "tokens": 0
+     },
+     {
+      "busy": false,
+      "occupant": "sess-0094-99f743ef",
+      "slot": 1,
+      "state": "finished",
+      "tokens": 7392
+     }
+    ],
+    "waiting_sessions": 0
+   },
+   "policy": "passthrough",
+   "server_id": "w1",
+   "session_manager": {
+    "assigned_empty": 0,
+    "assigned_over_dead": 0,
+    "assigned_over_live": 0,
+    "avoidable_live_evictions": 17,
+    "dead_evictions": 83,
+    "erases": 0,
+    "erases_on_finish": 0,
+    "live_evictions": 135,
+    "requests": 406,
+    "restore_failures": 0,
+    "restore_ms_total": 0.0,
+    "restores": 0,
+    "save_failures": 0,
+    "save_ms_total": 0.0,
+    "saved_files_deleted": 0,
+    "saves": 0,
+    "wait_ms_total": 0.0,
+    "waits": 0,
+    "warm": 0
+   }
+  }
+ },
+ "router_metrics": "# HELP go_gc_duration_seconds A summary of the wall-time pause (stop-the-world) duration in garbage collection cycles.\n# TYPE go_gc_duration_seconds summary\ngo_gc_duration_seconds{quantile=\"0\"} 3.9376e-05\ngo_gc_duration_seconds{quantile=\"0.25\"} 0.00033975\ngo_gc_duration_seconds{quantile=\"0.5\"} 0.000506707\ngo_gc_duration_seconds{quantile=\"0.75\"} 0.000670208\ngo_gc_duration_seconds{quantile=\"1\"} 0.005139792\ngo_gc_duration_seconds_sum 0.054993961\ngo_gc_duration_seconds_count 98\n# HELP go_gc_gogc_percent Heap size target percentage configured by the user, otherwise 100. This value is set by the GOGC environment variable, and the runtime/debug.SetGCPercent function. Sourced from /gc/gogc:percent.\n# TYPE go_gc_gogc_percent gauge\ngo_gc_gogc_percent 100\n# HELP go_gc_gomemlimit_bytes Go runtime memory limit configured by the user, otherwise math.MaxInt64. This value is set by the GOMEMLIMIT environment variable, and the runtime/debug.SetMemoryLimit function. Sourced from /gc/gomemlimit:bytes.\n# TYPE go_gc_gomemlimit_bytes gauge\ngo_gc_gomemlimit_bytes 9.223372036854776e+18\n# HELP go_goroutines Number of goroutines that currently exist.\n# TYPE go_goroutines gauge\ngo_goroutines 14\n# HELP go_info Information about the Go environment.\n# TYPE go_info gauge\ngo_info{version=\"go1.27.4\"} 1\n# HELP go_memstats_alloc_bytes Number of bytes allocated in heap and currently in use. Equals to /memory/classes/heap/objects:bytes.\n# TYPE go_memstats_alloc_bytes gauge\ngo_memstats_alloc_bytes 742696\n# HELP go_memstats_alloc_bytes_total Total number of bytes allocated in heap until now, even if released already. Equals to /gc/heap/allocs:bytes.\n# TYPE go_memstats_alloc_bytes_total counter\ngo_memstats_alloc_bytes_total 1.37584264e+08\n# HELP go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table. Equals to /memory/classes/profiling/buckets:bytes.\n# TYPE go_memstats_buck_hash_sys_bytes gauge\ngo_memstats_buck_hash_sys_bytes 1.444475e+06\n# HELP go_memstats_frees_total Total number of heap objects frees. Equals to /gc/heap/frees:objects + /gc/heap/tiny/allocs:objects.\n# TYPE go_memstats_frees_total counter\ngo_memstats_frees_total 179930\n# HELP go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata. Equals to /memory/classes/metadata/other:bytes.\n# TYPE go_memstats_gc_sys_bytes gauge\ngo_memstats_gc_sys_bytes 3.473664e+06\n# HELP go_memstats_heap_alloc_bytes Number of heap bytes allocated and currently in use, same as go_memstats_alloc_bytes. Equals to /memory/classes/heap/objects:bytes.\n# TYPE go_memstats_heap_alloc_bytes gauge\ngo_memstats_heap_alloc_bytes 742696\n# HELP go_memstats_heap_idle_bytes Number of heap bytes waiting to be used. Equals to /memory/classes/heap/released:bytes + /memory/classes/heap/free:bytes.\n# TYPE go_memstats_heap_idle_bytes gauge\ngo_memstats_heap_idle_bytes 9.453568e+06\n# HELP go_memstats_heap_inuse_bytes Number of heap bytes that are in use. Equals to /memory/classes/heap/objects:bytes + /memory/classes/heap/unused:bytes\n# TYPE go_memstats_heap_inuse_bytes gauge\ngo_memstats_heap_inuse_bytes 2.080768e+06\n# HELP go_memstats_heap_objects Number of currently allocated objects. Equals to /gc/heap/objects:objects.\n# TYPE go_memstats_heap_objects gauge\ngo_memstats_heap_objects 2598\n# HELP go_memstats_heap_released_bytes Number of heap bytes released to OS. Equals to /memory/classes/heap/released:bytes.\n# TYPE go_memstats_heap_released_bytes gauge\ngo_memstats_heap_released_bytes 7.798784e+06\n# HELP go_memstats_heap_sys_bytes Number of heap bytes obtained from system. Equals to /memory/classes/heap/objects:bytes + /memory/classes/heap/unused:bytes + /memory/classes/heap/released:bytes + /memory/classes/heap/free:bytes.\n# TYPE go_memstats_heap_sys_bytes gauge\ngo_memstats_heap_sys_bytes 1.1534336e+07\n# HELP go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection.\n# TYPE go_memstats_last_gc_time_seconds gauge\ngo_memstats_last_gc_time_seconds 1.795232612527149e+09\n# HELP go_memstats_mallocs_total Total number of heap objects allocated, both live and gc-ed. Semantically a counter version for go_memstats_heap_objects gauge. Equals to /gc/heap/allocs:objects + /gc/heap/tiny/allocs:objects.\n# TYPE go_memstats_mallocs_total counter\ngo_memstats_mallocs_total 182528\n# HELP go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures. Equals to /memory/classes/metadata/mcache/inuse:bytes.\n# TYPE go_memstats_mcache_inuse_bytes gauge\ngo_memstats_mcache_inuse_bytes 18368\n# HELP go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system. Equals to /memory/classes/metadata/mcache/inuse:bytes + /memory/classes/metadata/mcache/free:bytes.\n# TYPE go_memstats_mcache_sys_bytes gauge\ngo_memstats_mcache_sys_bytes 32144\n# HELP go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures. Equals to /memory/classes/metadata/mspan/inuse:bytes.\n# TYPE go_memstats_mspan_inuse_bytes gauge\ngo_memstats_mspan_inuse_bytes 135040\n# HELP go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system. Equals to /memory/classes/metadata/mspan/inuse:bytes + /memory/classes/metadata/mspan/free:bytes.\n# TYPE go_memstats_mspan_sys_bytes gauge\ngo_memstats_mspan_sys_bytes 163200\n# HELP go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place. Equals to /gc/heap/goal:bytes.\n# TYPE go_memstats_next_gc_bytes gauge\ngo_memstats_next_gc_bytes 4.194304e+06\n# HELP go_memstats_other_sys_bytes Number of bytes used for other system allocations. Equals to /memory/classes/other:bytes.\n# TYPE go_memstats_other_sys_bytes gauge\ngo_memstats_other_sys_bytes 1.528461e+06\n# HELP go_memstats_stack_inuse_bytes Number of bytes obtained from system for stack allocator in non-CGO environments. Equals to /memory/classes/heap/stacks:bytes.\n# TYPE go_memstats_stack_inuse_bytes gauge\ngo_memstats_stack_inuse_bytes 1.048576e+06\n# HELP go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator. Equals to /memory/classes/heap/stacks:bytes + /memory/classes/os-stacks:bytes.\n# TYPE go_memstats_stack_sys_bytes gauge\ngo_memstats_stack_sys_bytes 1.048576e+06\n# HELP go_memstats_sys_bytes Number of bytes obtained from system. Equals to /memory/classes/total:byte.\n# TYPE go_memstats_sys_bytes gauge\ngo_memstats_sys_bytes 1.9224856e+07\n# HELP go_sched_gomaxprocs_threads The current runtime.GOMAXPROCS setting, or the number of operating system threads that can execute user-level Go code simultaneously. Sourced from /sched/gomaxprocs:threads.\n# TYPE go_sched_gomaxprocs_threads gauge\ngo_sched_gomaxprocs_threads 8\n# HELP go_threads Number of OS threads created.\n# TYPE go_threads gauge\ngo_threads 15\n# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.\n# TYPE process_cpu_seconds_total counter\nprocess_cpu_seconds_total 1.6127280000000002\n# HELP process_max_fds Maximum number of open file descriptors.\n# TYPE process_max_fds gauge\nprocess_max_fds 61440\n# HELP process_open_fds Number of open file descriptors.\n# TYPE process_open_fds gauge\nprocess_open_fds 12\n# HELP process_resident_memory_bytes Resident memory size in bytes.\n# TYPE process_resident_memory_bytes gauge\nprocess_resident_memory_bytes 1.163264e+07\n# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1.79522205e+09\n# HELP process_virtual_memory_bytes Virtual memory size in bytes.\n# TYPE process_virtual_memory_bytes gauge\nprocess_virtual_memory_bytes 4.21402771456e+11\n# HELP process_virtual_memory_max_bytes Maximum amount of virtual memory available in bytes.\n# TYPE process_virtual_memory_max_bytes gauge\nprocess_virtual_memory_max_bytes 9.223372036854776e+18\n# HELP router_cache_hit_requests_total Requests counted by hit category (hit, miss). A request is a hit when the routing decision matched at least one prefix chunk.\n# TYPE router_cache_hit_requests_total counter\nrouter_cache_hit_requests_total{backend=\"w0\",category=\"miss\",strategy=\"roundrobin\"} 407\nrouter_cache_hit_requests_total{backend=\"w1\",category=\"miss\",strategy=\"roundrobin\"} 406\n# HELP router_prefix_match_chunks Distribution of prefix-tree chunks the chosen backend already held for each request.\n# TYPE router_prefix_match_chunks histogram\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"0\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"1\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"2\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"4\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"8\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"16\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"32\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"64\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"128\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"256\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"512\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"1024\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"2048\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w0\",strategy=\"roundrobin\",le=\"+Inf\"} 407\nrouter_prefix_match_chunks_sum{backend=\"w0\",strategy=\"roundrobin\"} 0\nrouter_prefix_match_chunks_count{backend=\"w0\",strategy=\"roundrobin\"} 407\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"0\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"1\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"2\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"4\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"8\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"16\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"32\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"64\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"128\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"256\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"512\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"1024\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"2048\"} 406\nrouter_prefix_match_chunks_bucket{backend=\"w1\",strategy=\"roundrobin\",le=\"+Inf\"} 406\nrouter_prefix_match_chunks_sum{backend=\"w1\",strategy=\"roundrobin\"} 0\nrouter_prefix_match_chunks_count{backend=\"w1\",strategy=\"roundrobin\"} 406\n# HELP router_request_duration_seconds End-to-end request duration in seconds.\n# TYPE router_request_duration_seconds histogram\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.005\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.01\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.02\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.04\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.08\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.16\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.32\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.64\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"1.28\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"2.56\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"5.12\"} 7\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"10.24\"} 71\nrouter_request_duration_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"+Inf\"} 407\nrouter_request_duration_seconds_sum{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\"} 17650.18045160999\nrouter_request_duration_seconds_count{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\"} 407\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.005\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.01\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.02\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.04\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.08\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.16\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.32\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.64\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"1.28\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"2.56\"} 0\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"5.12\"} 8\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"10.24\"} 66\nrouter_request_duration_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"+Inf\"} 406\nrouter_request_duration_seconds_sum{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\"} 15454.882821797\nrouter_request_duration_seconds_count{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\"} 406\n# HELP router_requests_total Total number of routed requests.\n# TYPE router_requests_total counter\nrouter_requests_total{backend=\"w0\",reason=\"round-robin\",status=\"2xx\",strategy=\"roundrobin\"} 407\nrouter_requests_total{backend=\"w1\",reason=\"round-robin\",status=\"2xx\",strategy=\"roundrobin\"} 406\n# HELP router_response_bytes_total Total bytes streamed back to clients.\n# TYPE router_response_bytes_total counter\nrouter_response_bytes_total{backend=\"w0\",strategy=\"roundrobin\"} 901259\nrouter_response_bytes_total{backend=\"w1\",strategy=\"roundrobin\"} 891353\n# HELP router_time_to_first_byte_seconds Time from request entry to first response byte.\n# TYPE router_time_to_first_byte_seconds histogram\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.001\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.002\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.004\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.008\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.016\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.032\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.064\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.128\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.256\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.512\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"1.024\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"2.048\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"4.096\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"8.192\"} 47\nrouter_time_to_first_byte_seconds_bucket{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"+Inf\"} 407\nrouter_time_to_first_byte_seconds_sum{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\"} 17650.149048658997\nrouter_time_to_first_byte_seconds_count{backend=\"w0\",reason=\"round-robin\",strategy=\"roundrobin\"} 407\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.001\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.002\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.004\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.008\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.016\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.032\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.064\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.128\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.256\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"0.512\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"1.024\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"2.048\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"4.096\"} 0\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"8.192\"} 43\nrouter_time_to_first_byte_seconds_bucket{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\",le=\"+Inf\"} 406\nrouter_time_to_first_byte_seconds_sum{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\"} 15454.853014094007\nrouter_time_to_first_byte_seconds_count{backend=\"w1\",reason=\"round-robin\",strategy=\"roundrobin\"} 406\n"
+}

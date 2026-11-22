@@ -1,0 +1,1 @@
+gateway w1 listening on 127.0.0.1:8202 policy=Passthrough n_slots=2

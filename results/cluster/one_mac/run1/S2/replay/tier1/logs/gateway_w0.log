@@ -1,0 +1,2 @@
+gateway w0 listening on 127.0.0.1:8201 policy=Passthrough n_slots=2
+gateway w0 listening on 127.0.0.1:8201 policy=Passthrough n_slots=2

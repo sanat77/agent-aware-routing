@@ -1,0 +1,43 @@
+{
+ "setup": "S3",
+ "profile": "one_mac",
+ "policy": "session_cache",
+ "router_strategy": "prefixaware",
+ "servers": [
+  {
+   "id": "w0",
+   "llama_url": "http://127.0.0.1:8101",
+   "llama_pid": 39731,
+   "local": true,
+   "np": 2,
+   "ctx": 16384,
+   "n_ctx_per_slot": 8192,
+   "model_startup_s": 1.365138053894043,
+   "build_info": "b11669-620d2225c",
+   "gateway_url": "http://127.0.0.1:8201",
+   "gateway_pid": 39735
+  },
+  {
+   "id": "w1",
+   "llama_url": "http://127.0.0.1:8102",
+   "llama_pid": 39732,
+   "local": true,
+   "np": 2,
+   "ctx": 16384,
+   "n_ctx_per_slot": 8192,
+   "model_startup_s": 0.006148099899291992,
+   "build_info": "b11669-620d2225c",
+   "gateway_url": "http://127.0.0.1:8202",
+   "gateway_pid": 39736
+  }
+ ],
+ "started_at": 1795265898.732397,
+ "router_url": "http://127.0.0.1:8300",
+ "router_pid": 39737,
+ "router_metrics_url": "http://127.0.0.1:9300/metrics",
+ "router_commit": "c1345f71ad83d018faefdb4bf3e9c99182d9936a",
+ "router_saturation_inflight": 2,
+ "total_slots": 4,
+ "n_ctx_per_slot": 8192,
+ "model_startup_s": 1.365138053894043
+}
